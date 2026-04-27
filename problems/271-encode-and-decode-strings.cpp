@@ -52,6 +52,4 @@ int main() {
 
   str = {"Hello, ", "34242$$1232"};
   ExpectEq(str, Decode(Encode(str)));
-
-  ExpectEq({"2"}, {"dfdas"});
 }

@@ -29,7 +29,8 @@ template <typename T>
 inline void ExpectEq(const T &actual, const T &expected,
                      const string &testName = "") {
   if (actual == expected) {
-    cout << "[PASS] " << testName << "\n";
+    cout << "[PASS] " << testName;
+    cout << "  : " << expected << "\n";
   } else {
     cout << "[FAIL] " << testName << "\n";
     cout << "  Expected: " << expected << "\n";
@@ -42,7 +43,15 @@ inline void ExpectEq(const vector<T> &actual, const vector<T> &expected,
                      const string &testName = "") {
 
   if (actual == expected) {
-    cout << "[PASS] " << testName << "\n";
+    cout << "[PASS] " << testName;
+    cout << "  : [";
+    for (size_t i = 0; i < expected.size(); i++) {
+      cout << expected[i];
+      if (i + 1 < expected.size())
+        cout << ", ";
+    }
+    cout << "]\n";
+
     return;
   }
 
