@@ -6,50 +6,54 @@ using namespace std;
 
 /// @problem
 ///
-/// Given an array of integers nums and an integer target, return indices of the
-/// two numbers such that they add up to target.
+/// Given an array of strings strs, group the anagrams together. You can return
+/// the answer in any order
 ///
-/// Assume each input would have exactly one solution, and you may not use the
-/// same element twice
+/// @constrains
 ///
-/// you can return the answer in any order.
+/// 1 <= str.length <= 10^4
+/// 0 <= strs[i].length <= 100
 ///
-/// @solution 1 brute force bad approach
+/// @solution 1 brute force
 ///
-/// iterate through each element and check against each other to see if it's
-/// equal to the target
+/// itterate through strs
+/// - sort each string and add to hashmap, where value is the array of string
+/// indexes.
 ///
-/// Time complexity = O(n^2)
 ///
-/// @solution 2
-/// You know the target value, itterate through elements and save each element
-/// to a hashmap. Check if element value - target = in hasmap to find the
-/// solution.
+/// Time complexity
+/// need to sort each string. which at max can be 10^4 strings of size 100 * n
+/// O (n * k log k)
 ///
-/// Time complexity = O(n)
+///
+/// Space complexity = O(n * k)
 
-vector<int> TwoSum(vector<int> &nums, int target) {
-  unordered_map<int, int> hashmap;
+vector<vector<string>> GroupedAnagram(vector<string> &strs) {
+  unordered_map<string, std::vector<size_t>> anagramsMap;
 
-  for (int i{0}; i < nums.size(); i++) {
-    auto solution = hashmap.find(target - nums[i]);
-    if (solution != hashmap.end()) {
-      return {solution->second, i};
+  for (size_t i{0}; i < strs.size(); i++) {
+    string str = strs[i];
+    std::sort(str.begin(), str.end());
+    if (!anagramsMap.contains(str)) {
+      anagramsMap[str] = {i};
+    } else {
+      anagramsMap[str].emplace_back(i);
     }
-
-    hashmap.insert({nums[i], i});
   }
 
-  return {}; // Highly unlikely
+  vector<vector<string>> grouped;
+  for (auto group : anagramsMap) {
+    vector<string> newGroup;
+    for (auto index : group.second) {
+      newGroup.emplace_back(strs[index]);
+    }
+    grouped.emplace_back(newGroup);
+  }
+
+  return grouped;
 }
 
 int main() {
-  auto nums = std::vector<int>{2, 7, 11, 15};
-  ExpectEq(TwoSum(nums, 9), std::vector<int>{0, 1});
-
-  nums = std::vector<int>{3, 2, 4};
-  ExpectEq(TwoSum(nums, 6), {1, 2});
-
-  nums = std::vector<int>{3, 3};
-  ExpectEq(TwoSum(nums, 6), {0, 1});
+  // auto nums = std::vector<int>{2, 7, 11, 15};
+  // ExpectEq(TwoSum(nums, 9), std::vector<int>{0, 1});
 }
