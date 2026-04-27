@@ -1,5 +1,4 @@
 #include "testSuite.h"
-#include <cassert>
 #include <unordered_set>
 #include <vector>
 
@@ -20,7 +19,7 @@ using namespace std;
 ///
 /// Output: false
 ///
-/// @ Solution (1)
+/// @Solution (1)
 ///
 /// iterate through nums, and add values to a hash table, when hash already
 /// exist, double value is found, and true is return,  return false when no
@@ -31,8 +30,11 @@ using namespace std;
 /// Space complexity: You will need to create a extra hash map.
 ///   O(2n), thus O(n)
 ///
+/// @Solution (2)
+///
+/// I could proboby make a stack based hash map to improve preformance,
 
-bool HasDuplicate(vector<int> &nums) {
+bool ContainsDuplicate(vector<int> &nums) {
   std::unordered_set<int> seen;
 
   for (const int num : nums) {
@@ -47,8 +49,8 @@ bool HasDuplicate(vector<int> &nums) {
 
 int main() {
   vector<int> nums = {1, 2, 3, 3};
-  ExpectTrue(HasDuplicate(nums));
+  ExpectTrue(ContainsDuplicate(nums));
 
   nums = {1, 2, 3, 4};
-  ExpectFalse(HasDuplicate(nums));
+  ExpectFalse(ContainsDuplicate(nums));
 }
