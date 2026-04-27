@@ -32,7 +32,7 @@ using namespace std;
 /// @ solution 2
 ///
 /// instead of sorting a array, we can also use a priority queue, which
-/// impelents a heap, each element is sorted on insertion.
+/// implements a heap, each element is sorted on insertion.
 ///
 /// @solution 3 bucket sort.
 ///
