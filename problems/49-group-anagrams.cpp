@@ -28,10 +28,10 @@ using namespace std;
 ///
 /// Time complexity = O(n)
 
-vector<size_t> TwoSum(vector<int> &nums, int target) {
-  unordered_map<int, size_t> hashmap;
+vector<int> TwoSum(vector<int> &nums, int target) {
+  unordered_map<int, int> hashmap;
 
-  for (size_t i{0}; i < nums.size(); i++) {
+  for (int i{0}; i < nums.size(); i++) {
     auto solution = hashmap.find(target - nums[i]);
     if (solution != hashmap.end()) {
       return {solution->second, i};
@@ -45,7 +45,7 @@ vector<size_t> TwoSum(vector<int> &nums, int target) {
 
 int main() {
   auto nums = std::vector<int>{2, 7, 11, 15};
-  ExpectEq(TwoSum(nums, 9), {0, 1});
+  ExpectEq(TwoSum(nums, 9), std::vector<int>{0, 1});
 
   nums = std::vector<int>{3, 2, 4};
   ExpectEq(TwoSum(nums, 6), {1, 2});
