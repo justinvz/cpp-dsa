@@ -65,3 +65,5 @@ temp/
 # Optional: keep if you symlink compile_commands.json
 # remove this line if you want to track it
 compile_commands.json
+
+.cache/
