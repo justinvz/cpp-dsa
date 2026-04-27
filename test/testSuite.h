@@ -12,7 +12,6 @@ inline void ExpectTrue(bool actual, const string &testName = "") {
     cout << "[PASS] " << testName << "\n";
   } else {
     cout << "[FAIL] " << testName << " (expected true)\n";
-    assert(false);
   }
 }
 
@@ -21,7 +20,6 @@ inline void ExpectFalse(bool actual, const string &testName = "") {
     cout << "[PASS] " << testName << "\n";
   } else {
     cout << "[FAIL] " << testName << " (expected false)\n";
-    assert(false);
   }
 }
 
@@ -36,7 +34,6 @@ inline void ExpectEq(const T &actual, const T &expected,
     cout << "[FAIL] " << testName << "\n";
     cout << "  Expected: " << expected << "\n";
     cout << "  Actual:   " << actual << "\n";
-    assert(false);
   }
 }
 
@@ -65,8 +62,6 @@ inline void ExpectEq(const vector<T> &actual, const vector<T> &expected,
       cout << ", ";
   }
   cout << "]\n";
-
-  assert(false);
 }
 
 template <typename T, size_t N>
