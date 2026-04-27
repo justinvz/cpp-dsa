@@ -1,0 +1,67 @@
+# Build directories
+build/
+cmake-build-*/
+out/
+
+# CMake generated files
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+compile_commands.json
+Makefile
+CTestTestfile.cmake
+Testing/
+install_manifest.txt
+
+# Ninja
+.ninja_deps
+.ninja_log
+build.ninja
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# CLion
+.idea/
+
+# VSCode C/C++
+.vscode/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Executables / binaries
+*.exe
+*.out
+*.app
+*.o
+*.obj
+*.so
+*.dll
+*.dylib
+
+# Debug / profiling
+*.dSYM/
+*.prof
+*.gcda
+*.gcno
+*.gcov
+
+# Logs
+*.log
+
+# Temporary files
+tmp/
+temp/
+
+# Optional: keep if you symlink compile_commands.json
+# remove this line if you want to track it
+compile_commands.json
