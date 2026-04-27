@@ -1,7 +1,5 @@
 
 #include "testSuite.h"
-#include <map>
-#include <queue>
 #include <unordered_map>
 #include <vector>
 
@@ -36,8 +34,11 @@ using namespace std;
 /// instead of sorting a array, we can also use a priority queue, which
 /// impelents a heap, each element is sorted on insertion.
 ///
-
-struct Node {};
+/// @solution 3 bucket sort.
+///
+/// O(n) solution by using array indexing to prevent the O(n log) insertion or
+/// sorting overhead.Only works because we need to sort on occurrence which is a
+/// int
 
 vector<int> TopKFrequent(vector<int> &nums, int k) {
   unordered_map<int, int> occurrenceMap;
@@ -46,24 +47,23 @@ vector<int> TopKFrequent(vector<int> &nums, int k) {
     occurrenceMap[num]++;
   }
 
-  std::priority_queue<std::pair<int, int>> queue;
+  vector<vector<int>> buckets(nums.size() + 1);
 
-  for (const auto [num, accourence] : occurrenceMap) {
-
-    pair<int, int> entry;
-    entry.first = accourence;
-    entry.second = num;
-    queue.emplace(entry);
+  for (auto &[num, occurence] : occurrenceMap) {
+    buckets[occurence].emplace_back(num);
   }
 
-  vector<int> output;
-
-  while (k-- && !queue.empty()) {
-    output.push_back(queue.top().second);
-    queue.pop();
+  vector<int> result;
+  for (int i = buckets.size() - 1; i >= 0 && k > 0; i--) {
+    for (int num : buckets[i]) {
+      result.push_back(num);
+      k--;
+      if (k == 0)
+        return result;
+    }
   }
 
-  return output;
+  return result;
 }
 
 int main() {
