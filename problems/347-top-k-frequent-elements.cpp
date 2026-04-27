@@ -1,6 +1,7 @@
 
 #include "testSuite.h"
 #include <map>
+#include <queue>
 #include <unordered_map>
 #include <vector>
 
@@ -30,33 +31,36 @@ using namespace std;
 ///
 /// combined is O {(n + n log n) = O(n log n)
 ///
+/// @ solution 2
+///
+/// instead of sorting a array, we can also use a priority queue, which
+/// impelents a heap, each element is sorted on insertion.
+///
+
+struct Node {};
 
 vector<int> TopKFrequent(vector<int> &nums, int k) {
   unordered_map<int, int> occurrenceMap;
 
   for (const auto num : nums) {
-    if (occurrenceMap.contains(num)) {
-      occurrenceMap[num]++;
-    } else {
-      occurrenceMap[num] = 1;
-    }
+    occurrenceMap[num]++;
   }
 
-  vector<pair<int, int>> vec(occurrenceMap.begin(), occurrenceMap.end());
+  std::priority_queue<std::pair<int, int>> queue;
 
-  sort(vec.begin(), vec.end(),
-       [](auto a, auto b) { return a.second > b.second; });
+  for (const auto [num, accourence] : occurrenceMap) {
 
-  for (auto [num, occ] : vec) {
-    std::cout << "num: " << num << " occ: :" << occ << std::endl;
+    pair<int, int> entry;
+    entry.first = accourence;
+    entry.second = num;
+    queue.emplace(entry);
   }
 
   vector<int> output;
 
-  auto it = vec.begin();
-  for (size_t i{0}; i < k; i++) {
-    output.emplace_back(it->first);
-    it = next(it);
+  while (k-- && !queue.empty()) {
+    output.push_back(queue.top().second);
+    queue.pop();
   }
 
   return output;
