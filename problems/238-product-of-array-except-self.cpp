@@ -5,47 +5,38 @@
 using namespace std;
 
 /// @problem
-/// otherwise.
+///
+/// Use prefix and suffix product array.
 
-vector<int> ProductExcpetSellf(vector<int> nums) {
+vector<int> ProductExcpetSelf(vector<int> nums) {
   vector<int> result;
 
-  int product{1};
-  bool zero{false};
+  vector<int> prefix;
+  prefix.reserve(nums.size());
 
-  for (const auto num : nums) {
-    product = product * num;
-
-    if (zero && num == 0) // When two zero's in range, return array with
-    {
-      result.assign(nums.size(), 0);
-      return result;
-    }
-
-    if (num == 0) {
-      zero = true;
-    }
+  int product = 1;
+  for (auto num : nums) {
+    prefix.push_back(product);
+    product *= num;
   }
 
-  for (const auto num : nums) {
-    if (num == 0) {
-      int zeroProduct{1};
-      for (const auto num : nums) {
-        if (num != 0) {
-          zeroProduct = zeroProduct * num;
-        }
-      }
-      result.emplace_back(zeroProduct);
-    } else {
-      result.emplace_back(product / num);
-    }
+  vector<int> sufix(nums.size());
+  product = 1;
+
+  for (int i = nums.size() - 1; i >= 0; i--) {
+    sufix[i] = product;
+    product *= nums[i];
+  }
+
+  for (size_t i{0}; i < nums.size(); i++) {
+    result.push_back(sufix[i] * prefix[i]);
   }
 
   return result;
 }
 
 int main() {
-  ExpectEq(ProductExcpetSellf({1, 2, 4, 6}), {48, 24, 12, 8});
-  ExpectEq(ProductExcpetSellf({-1, 0, 1, 2, 3}), {0, -6, 0, 0, 0});
-  ExpectEq(ProductExcpetSellf({0, 0}), {0, 0});
+  ExpectEq(ProductExcpetSelf({1, 2, 4, 6}), {48, 24, 12, 8});
+  ExpectEq(ProductExcpetSelf({-1, 0, 1, 2, 3}), {0, -6, 0, 0, 0});
+  ExpectEq(ProductExcpetSelf({0, 0}), {0, 0});
 }
