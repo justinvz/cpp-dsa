@@ -46,10 +46,11 @@ inline void ExpectEq(const T &actual, const T &expected,
                      const string &testName = "") {
   if (actual == expected) {
     cout << "[PASS] " << testName;
-    cout << "  : " << expected << "\n";
+    cout << "\n  Actual:   " << actual << "\n";
+    cout << "  Expected: " << expected << "\n";
   } else {
     cout << "[FAIL] " << testName << "\n";
-    cout << "  Expected: " << expected << "\n";
+    cout << "\n  Expected: " << expected << "\n";
     cout << "  Actual:   " << actual << "\n";
   }
 }
