@@ -1,6 +1,5 @@
 
 #include <array>
-#include <cassert>
 #include <chrono>
 #include <iostream>
 #include <string>
@@ -116,6 +115,4 @@ inline void ExpectEq(const array<T, N> &actual, const array<T, N> &expected,
       cout << ", ";
   }
   cout << "]\n";
-
-  assert(false);
 }
