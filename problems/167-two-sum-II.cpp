@@ -56,18 +56,15 @@ vector<int> TwoSum(vector<int> numbers, int target) {
   std::size_t index1 = 0;
   std::size_t index2 = numbers.size() - 1;
 
-  while (index1 != index2) {
+  while (index1 < index2) {
 
     int sum = numbers[index1] + numbers[index2];
 
     if (sum == target) {
       return {(int)index1 + 1, (int)index2 + 1};
-    }
-
-    if (sum < target) {
+    } else if (sum < target) {
       index1++;
-    }
-    if (sum > target) {
+    } else if (sum > target) {
       index2--;
     }
   }
