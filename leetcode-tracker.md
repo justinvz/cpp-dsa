@@ -14,5 +14,3 @@ I almost got the problem first try, i only struggled with using the stack becaus
 
 ### 852-car-fleet
 I almost got the problem first try, i only struggled with using the stack because i was traversing it in the wrong order. The main problem was that i didn't solve the problem properly in the design phase.
-
-
