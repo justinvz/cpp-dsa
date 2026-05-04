@@ -17,7 +17,7 @@ using namespace std;
 // Your solution must use only constant extra space.
 //
 // Because array is sorted, the bigest number of the output is always on the
-// left en the largest on the right.
+// right en the largest on the left.
 //
 // Don't forget to increment the indexes by 1
 //
@@ -49,8 +49,7 @@ using namespace std;
 // 5+8 = 13
 //
 // Worst case, it's O(n) time complexity, because you need to itterate through
-// the whole array. best case it's O(log n) because you can skip a lot of
-// values.
+// the whole array.
 
 vector<int> TwoSum(vector<int> numbers, int target) {
   std::size_t index1 = 0;
