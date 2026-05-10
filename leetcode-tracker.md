@@ -25,6 +25,7 @@ problems i want to redo later
 
 | Title | Difficulty | Reason | added to queue | 
 |-------|------------|--------|------------------|
+| 15-three-sum | Medium | Bit tired of work, solving this is like two sum | remember to skip duplicates | 06-03-2026 |
 | 853-car-fleet | Medium | I couldn't solve this problem without help | 05-03-2026 |
 
 ## Problem notes
