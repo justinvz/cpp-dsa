@@ -19,21 +19,23 @@
 | 853-car-fleet                        | Medium     | 04-05-2026 | 0:25 |
 | 128-longest-consecutive-sequence     | Medium     | 04-05-2026 | 0:20 |
 | 167-two-sum-II                       | Medium     | 04-05-2026 | 0:15 |
+| 11-constainer-with-most water        | Medium     | 10-04-2026 | 0:34 |
 
 ## Revisit Queue
 problems i want to redo later
 
 | Title | Difficulty | Reason | added to queue | 
 |-------|------------|--------|------------------|
-| 15-three-sum | Medium | Bit tired of work, solving this is like two sum | remember to skip duplicates | 06-03-2026 |
+| 15-three-sum | Medium | Bit tired of work, solving this is like two sum | remember to skip duplicates | 10-03-2026 |
 | 853-car-fleet | Medium | I couldn't solve this problem without help | 05-03-2026 |
 
 ## Problem notes
+### 739-daily-temperature (2)
+this time i solved it without a issue, probably because i knew the solution, but still i managed to design it better at the start!
+
 ### 739-daily-temperature
 I almost got the problem first try, i only struggled with using the stack because i was traversing it in the wrong order. The main problem was that i didn't solve the problem properly in the design phase.
 
-### 739-daily-temperature (2)
-this time i solved it without a issue, probably because i knew the solution, but still i managed to design it better at the start!
 
 ### 852-car-fleet
 I almost got the problem first try, i only struggled with using the stack because i was traversing it in the wrong order. The main problem was that i didn't solve the problem properly in the design phase.
