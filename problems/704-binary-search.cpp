@@ -3,7 +3,7 @@
 
 using namespace std;
 
-// Start (10-05-2026) (18:05) soved (18:27)
+// Start (10-05-2026) (18:05) solved (18:27)
 //
 /// @problem
 ///
