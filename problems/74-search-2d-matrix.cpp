@@ -58,25 +58,25 @@ int Search(vector<int> nums, int target) {
 // so the index  i = n*size + m
 
 bool SearchMatrix(vector<vector<int>> nums, int target) {
-  std::vector<int> normalized;
-  normalized.reserve(nums.size() * nums[0].size());
 
-  for (size_t n{0}; n < nums.size(); n++) {
-    for (size_t m{0}; m < nums[0].size(); m++) {
-      normalized.push_back(nums[n][m]);
-    }
-  }
+  int rows = nums.size();
+  int cols = nums[0].size();
 
   int left = 0;
-  int right = normalized.size() - 1;
+  int right = rows * cols - 1;
 
   while (left <= right) {
     int mid = left + (right - left) / 2;
-    if (normalized[mid] == target) {
+
+    int row = mid / cols;
+    int col = mid % cols;
+    int value = nums[row][col];
+
+    if (value == target) {
       return true;
-    } else if (normalized[mid] < target) {
+    } else if (value < target) {
       left = mid + 1;
-    } else if (normalized[mid] > target) {
+    } else if (value > target) {
       right = mid - 1;
     }
   }
