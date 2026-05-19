@@ -27,6 +27,7 @@ problems i want to redo later
 
 | Title | Difficulty | Reason | added to queue | 
 |-------|------------|--------|------------------|
+| 875-koko-eating-bananas | Medium | I got solution right, but implementation wrong, try implement it again. | 17-03-2026 |
 | 15-three-sum | Medium | Bit tired of work, solving this is like two sum | remember to skip duplicates | 10-03-2026 |
 | 853-car-fleet | Medium | I couldn't solve this problem without help | 05-03-2026 |
 
