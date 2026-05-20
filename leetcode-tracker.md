@@ -22,6 +22,7 @@
 | 11-constainer-with-most water        | Medium     | 10-04-2026 | 0:34 |
 | 704-binary-search                    | Easy       | 10-04-2026 | 0:24 |
 | 152-find-miniumum-in-rotated-sorted-array | Easy | 19-04-2026 | 1:30 |
+| 152-best-time-to-sell | Easy | 20-04-2026 | 1:00 |
 
 ## Revisit Queue
 problems i want to redo later
