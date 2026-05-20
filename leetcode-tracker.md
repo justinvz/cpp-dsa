@@ -21,6 +21,7 @@
 | 167-two-sum-II                       | Medium     | 04-05-2026 | 0:15 |
 | 11-constainer-with-most water        | Medium     | 10-04-2026 | 0:34 |
 | 704-binary-search                    | Easy       | 10-04-2026 | 0:24 |
+| 152-find-miniumum-in-rotated-sorted-array | Easy | 19-04-2026 | 1:30 |
 
 ## Revisit Queue
 problems i want to redo later
