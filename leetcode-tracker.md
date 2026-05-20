@@ -23,6 +23,8 @@
 | 704-binary-search                    | Easy       | 10-04-2026 | 0:24 |
 | 152-find-miniumum-in-rotated-sorted-array | Easy | 19-04-2026 | 1:30 |
 | 152-best-time-to-sell | Easy | 20-04-2026 | 1:00 |
+| 3-substring | meidum | 20-04-2026 | 0:21 |
+| 206-reverse-linked-list | easy | 20-04-2026 | 0:19 |
 
 ## Revisit Queue
 problems i want to redo later
@@ -34,6 +36,10 @@ problems i want to redo later
 | 853-car-fleet | Medium | I couldn't solve this problem without help | 05-03-2026 |
 
 ## Problem notes
+### 875-koko
+I think i need to revisit it sooner or later, i got the solution, but i just got tired of the implementation, I however first want to go over some new concepts.
+
+
 ### 739-daily-temperature (2)
 this time i solved it without a issue, probably because i knew the solution, but still i managed to design it better at the start!
 
