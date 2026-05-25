@@ -26,6 +26,7 @@
 | 3-substring | meidum | 20-04-2026 | 0:21 |
 | 206-reverse-linked-list | easy | 20-04-2026 | 0:19 |
 | 21-merge-sorted-linked-list | easy | 20-04-2026 | 1:00 |
+| 141-linked-list-cycles | easy | 25-04-2026 | 0:35 |
 
 ## Revisit Queue
 problems i want to redo later
