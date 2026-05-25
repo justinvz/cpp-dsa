@@ -25,6 +25,7 @@
 | 152-best-time-to-sell | Easy | 20-04-2026 | 1:00 |
 | 3-substring | meidum | 20-04-2026 | 0:21 |
 | 206-reverse-linked-list | easy | 20-04-2026 | 0:19 |
+| 21-merge-sorted-linked-list | easy | 20-04-2026 | 1:00 |
 
 ## Revisit Queue
 problems i want to redo later
