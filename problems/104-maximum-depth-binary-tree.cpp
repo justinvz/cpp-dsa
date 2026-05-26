@@ -1,12 +1,12 @@
 #include "testSuite.h"
 
+#include <algorithm>
+
 using namespace std;
 
 /// @problem invert binary tree
-/// Starttime = 26-05-2026 21:32
-///
-/// @ Solution Go through each node and swap left and right?
 
+/// Starttime = 26-05-2026 21:50 end 22:20
 struct TreeNode {
   int val;
   TreeNode *left;
@@ -17,18 +17,34 @@ struct TreeNode {
       : val(x), left(left), right(right) {}
 };
 
-TreeNode *invertTree(TreeNode *root) {
+/// Solution is easier when we have a depth counter. We should itterate through
+/// all nodes, when going left or right, we increment, when going up a level, we
+/// decrement.
+
+void traverse(TreeNode *node, int &depth, int &maxDepth) {
+  if (node == nullptr)
+    return;
+
+  if (node->left) {
+    depth++;
+    traverse(node->left, depth, maxDepth);
+  }
+
+  if (node->right) {
+    depth++;
+    traverse(node->right, depth, maxDepth);
+  }
+
+  maxDepth = max(depth, maxDepth);
+
+  depth--;
+}
+
+int maxDepth(TreeNode *root) {
   if (!root)
-    return nullptr;
+    return 0;
 
-  TreeNode *dummy = root->left;
-  root->left = root->right;
-  root->right = dummy;
-
-  invertTree(root->left);
-  invertTree(root->right);
-
-  return root;
+  return 1 + max(maxDepth(root->left), maxDepth(root->right));
 }
 
 int main() {
@@ -62,4 +78,6 @@ int main() {
   //
   // ExpectFalse(hasCycleBruteForce(&n1));
   // ExpectTrue(hasCycleBruteForce(&n4));
+
+  ExpectEq(maxDepth(&n4), 3);
 }
