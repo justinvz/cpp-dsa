@@ -21,25 +21,6 @@ struct TreeNode {
 /// all nodes, when going left or right, we increment, when going up a level, we
 /// decrement.
 
-void traverse(TreeNode *node, int &depth, int &maxDepth) {
-  if (node == nullptr)
-    return;
-
-  if (node->left) {
-    depth++;
-    traverse(node->left, depth, maxDepth);
-  }
-
-  if (node->right) {
-    depth++;
-    traverse(node->right, depth, maxDepth);
-  }
-
-  maxDepth = max(depth, maxDepth);
-
-  depth--;
-}
-
 int maxDepth(TreeNode *root) {
   if (!root)
     return 0;
