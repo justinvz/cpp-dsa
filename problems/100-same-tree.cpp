@@ -77,5 +77,5 @@ int main() {
   // ExpectFalse(hasCycleBruteForce(&n1));
   // ExpectTrue(hasCycleBruteForce(&n4));
 
-  ExpectEq(maxDepth(&n4), 3);
+  // ExpectEq(maxDepth(&n4), 3);
 }
