@@ -3,7 +3,7 @@
 
 using namespace std;
 
-/// @solution is backtracking starttime: 22:07
+/// @solution is backtracking starttime: 22:07 - 22:044
 ///
 /// @ Solution is also backtracing. Difference between this one and the first
 /// one is that we can only use a number once per combinaiton. so we have to
