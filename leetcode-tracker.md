@@ -40,10 +40,13 @@
 | 206-reverse-linked-list | easy | 20-04-2026 | 0:19 |
 | 21-merge-sorted-linked-list | easy | 20-04-2026 | 1:00 |
 | 141-linked-list-cycles | easy | 25-04-2026 | 0:35 |
-| 226-invert-binary-tree | easy | 26-2026 | 0:20 |
-| 543-diameter-binary-tree | easy | 26-2026 | ? |
-| 110-balanced-binary-tree | easy | 27-2026 | 0:40 |
-| 100-same-tree | easy | 27-2026 | 0:14 |
+| 226-invert-binary-tree | easy | 26-04-2026 | 0:20 |
+| 543-diameter-binary-tree | easy | 26-04-2026 | ? |
+| 110-balanced-binary-tree | easy | 27-04-2026 | 0:40 |
+| 100-same-tree | easy | 27-04-2026 | 0:14 |
+| 572-subtree | easy | 01-05-2026 | 0:30 |
+| 78-subsets | medium | 01-05-2026 | 0:30 |
+| 39-combination-sum  | medium | 01-05-2026 | 1:00 |
 
 ## Revisit Queue
 
