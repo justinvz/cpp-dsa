@@ -1,61 +1,49 @@
 #include "testSuite.h"
 #include <algorithm>
-#include <stack>
 
 using namespace std;
 
-// @problem Given an integer array nums, return all the triplets [nums[i],
-// nums[j], nums[k]] such that i != j, i != k, and j != k, and nums[i] + nums[j]
-// + nums[k] == 0. Notice that the solution set must not contain duplicate
-// triplets.
-//
-// so the sum of num[i] + num[j] + num[k] = 0.
-//
-// @ Solution
-//
-// We have to find the sum of three elements that is equal of 0, we cannot use
-// the same value twice in the same triplet.
-//
-// we can sort the array first, fix one number and use two pointers to check for
-// value.
-//
-// sorted = [-4,-1,-1,0,1,2]
+/// Output should not contain any duplicate triplets. you amy return the output
+/// and the triplets in any order!
+///
+/// given nums, return all the triplets where num[i] + num[j] + num[k] == 0 and
+/// i != j != k
 
 vector<vector<int>> ThreeSum(vector<int> nums) {
+  // Two pointer solution?
+
+  // first, we need to sort the array
   std::sort(nums.begin(), nums.end());
+  vector<vector<int>> results;
 
-  vector<vector<int>> result;
-
-  for (size_t i{0}; i < nums.size(); i++) {
-    int target = nums[i];
-
-    // Skip if target is the same as previous number.
-    if (i > 0 && target == nums[i - 1]) {
+  for (int i = 0; i < nums.size() - 2; ++i) {
+    if (i > 0 && nums[i] == nums[i - 1])
       continue;
-    }
 
-    int pointerA = i + 1;
-    int pointerB = nums.size() - 1;
+    int j = i + 1;
+    int k = nums.size() - 1;
 
-    while (pointerA < pointerB) {
-      auto sum = nums[pointerA] + nums[pointerB];
+    while (j < k) {
+      int sum = nums[i] + nums[j] + nums[k];
+      if (sum == 0) {
+        results.push_back({nums[i], nums[j], nums[k]});
 
-      // A + B = -target is result
-      if (sum == -target) {
-        result.emplace_back(
-            std::vector{nums[pointerA], nums[pointerB], nums[i]});
-        pointerA++;
-        pointerB--;
+        ++j;
+        --k;
 
-      } else if (sum < -target) {
-        pointerA++;
-      } else if (sum > -target) {
-        pointerB--;
+        while (j < k && nums[j] == nums[j - 1])
+          ++j;
+        while (j < k && nums[k] == nums[k + 1])
+          --k;
+      } else if (sum < 0) {
+        ++j;
+      } else {
+        --k;
       }
     }
   }
 
-  return result;
+  return results;
 }
 
 int main() {
