@@ -1,15 +1,19 @@
 #include "testSuite.h"
+#include <cstddef>
+#include <stack>
 #include <unordered_set>
 
 using namespace std;
 
 /// @problem reverse the linked list.
-/// Starttime = 20-05-2026 23:27
+/// Starttime = 2026-06-03 22:53
+/// @Solution
 ///
+/// I think using two pointers is simplest.
 ///
-/// @Approach
+/// p1 at start, and p2 walks to the end, point p1 to p2, and walk p1 foward,
+/// after point p2 to p1 and walk p2 backwards.
 ///
-/// Walk through linked list, reverse the pointers.
 
 struct ListNode {
   int val;
@@ -19,19 +23,67 @@ struct ListNode {
   ListNode(int x, ListNode *next) : val(x), next(next) {}
 };
 
-bool hasCycleBruteForce(ListNode *head) {
-  unordered_set<ListNode *> visited;
+bool reorderListStack(ListNode *head) {
+  stack<ListNode *> visted;
 
-  ListNode *current = head;
+  auto p1 = head;
+  auto p2 = head;
 
-  while (current) {
-    if (visited.contains(current)) {
-      return true;
-    }
-    visited.insert(current);
-    current = current->next;
+  // Walk p2 to the end.
+  while (p2 != nullptr) {
+    visted.push(p2);
+    p2 = p2->next;
   }
-  return false;
+  p2->next = nullptr;
+
+  while (p1 != p2) {
+    auto temp = p1;
+    p1 = p1->next;
+    temp->next = p2;
+
+    if (p1 == p2) {
+      break;
+    }
+
+    temp = p2;
+
+    if (visted.empty()) {
+      break;
+    }
+
+    visted.pop();
+    p2 = visted.top();
+    temp->next = p1;
+  }
+
+  return head;
+}
+
+bool reorderList(ListNode *head) {
+  /// Search for middle
+
+  ListNode *p1 = head;
+  ListNode *p2 = head;
+
+  // Fast pointer takes two steps. so when p2 is near the end. p1 is halfway.
+  while (p2->next->next != nullptr) {
+    p2->next = p2->next->next;
+    p1->next = p1;
+  }
+
+  // Split list
+  auto tail = p1->next;
+  p1->next = nullptr;
+
+  // Reverse list
+  while (p1 != nullptr) {
+    auto temp = p1;
+    p1 = p1->next;
+    p1->next = temp;
+  }
+  tail = nullptr;
+
+  /// Merge lists
 }
 
 // Use fast and slow pointer, one moves 1 node at a time, other moves two nodes
