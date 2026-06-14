@@ -1,7 +1,5 @@
 
 #include "testSuite.h"
-#include <unordered_map>
-#include <unordered_set>
 
 using namespace std;
 
@@ -16,44 +14,40 @@ using namespace std;
 // container contains the most water.
 //
 // Return the maximum amount of water a container can store.
-//
-// Notice that you may not slant the container.
-//
-/// Solution? Naive solution is O(n^2) where you check all combinations.
-/// We can however be a bit smarter and use two pointers. We start left and
-/// right and move inwards constantly moving the lowest pointer to optimize the
-/// surface area. Each time we move inward, the width decreases by one.
 
 int MaxArea(vector<int> height) {
+  // Solution can be done by using two pointers.
+  //
+  // We walk from the sides to the middle. We remember the largest container,
+  // and only walk the smallest pointer inwarts.
+  //
+  // Once pointers meet, we returun the biggest area.
+
+  int area = 0;
+  int largestArea = area;
+
   int left = 0;
   int right = height.size() - 1;
-  int area = 0;
 
-  int width = height.size() - 1;
-
-  int largestArea{0};
-
-  while (left < right) {
-
-    if (height[left] < height[right]) {
-      area = height[left] * width;
-      left++;
-    } else {
-      area = height[right] * width;
+  while (left != right) {
+    if (height[left] > height[right]) {
+      area = height[right] * (right - left);
       right--;
+    } else if (height[left] <= height[right]) {
+      area = height[left] * (right - left);
+      left++;
     }
-    width--;
 
-    if (area > largestArea) {
+    if (largestArea < area)
       largestArea = area;
-    }
-  }
+  };
 
   return largestArea;
 }
 
 int main() {
   TestTimer timer;
+  ExpectEq(MaxArea({1, 7, 2, 5, 4, 7, 3, 6}), 36);
   ExpectEq(MaxArea({1, 8, 6, 2, 5, 4, 8, 3, 7}), 49);
   ExpectEq(MaxArea({1, 1}), 1);
 }
