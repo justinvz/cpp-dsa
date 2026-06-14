@@ -1,6 +1,5 @@
 
 #include "testSuite.h"
-#include <map>
 #include <stack>
 
 using namespace std;
@@ -22,48 +21,34 @@ using namespace std;
 /// considered as part of the car fleet.
 ///
 /// return the number of car fleets that will arrive at the destination.
-///
-/// @ Solution
-///
-/// Create a mapping of the closest cars to the target and the time it takes to
-/// get to the target:
-///   - Sort cars based on the position. O(log(n))
-///   - Calculate the time it takes to go to the finish. (target -
-///     car.pos)/car.speed = time it takes.
-///
-/// Create a stack that represent the amount of fleets based on the time it
-/// takes to get to the finish. Cars can't overtake eachother.
-///
-/// Now, itterate through this mapping. and push cars to the stack when cars
-/// after the initial car is faster, this will be the solution. O(n)
-///
-/// o(n) + o(log n)  = o(n) time and o(n) space complexity.
-///
-/// @ Note: This solution is not mine, i need to revisit it
+
+struct Car {
+  int pos;
+  int speed;
+};
 
 int CarFleet(int target, vector<int> position, vector<int> speed) {
-  // step 1 is to order on position.
-  using time = double;
-  using Pos = int;
+  std::vector<Car> cars;
 
-  map<Pos, time> cars;
-
-  for (int i = 0; i < position.size(); i++) {
-    double time = (double)(target - position[i]) / speed[i];
-    cars.emplace(position[i], time);
+  for (size_t i{0}; i < position.size(); i++) {
+    cars.emplace_back(Car{position[i], speed[i]});
   }
 
-  stack<double> st;
+  std::sort(cars.begin(), cars.end(),
+            [](const Car &a, const Car &b) { return a.pos < b.pos; });
 
-  for (auto it = cars.rbegin(); it != cars.rend(); it++) {
-    auto time = it->second;
+  std::stack<int> fleets;
+  for (int i = cars.size() - 1; i >= 0; --i) {
+    double time = static_cast<double>(target - cars[i].pos) / cars[i].speed;
 
-    if (st.empty() || time > st.top()) {
-      st.push(time);
+    std::cout << time << std::endl;
+
+    if (fleets.empty() || time > fleets.top()) {
+      fleets.push(time);
     }
   }
 
-  return st.size();
+  return fleets.size();
 }
 
 int main() {
@@ -72,4 +57,5 @@ int main() {
   ExpectEq(CarFleet(12, {10, 8, 0, 5, 4}, {2, 4, 1, 1, 3}), 3);
   ExpectEq(CarFleet(10, {3}, {3}), 1);
   ExpectEq(CarFleet(100, {0, 2, 4}, {4, 2, 1}), 1);
+  ExpectEq(CarFleet(10, {0, 4, 2}, {2, 1, 3}), 1);
 }

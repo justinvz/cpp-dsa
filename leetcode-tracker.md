@@ -54,6 +54,7 @@
 | Date | Problem | Result | Time | Notes |
 |------|---------|--------|------|-------|
 | 14-06-2026 | constainer-with-most | Success | 0:10 | Sovled this problem instantly by usign two pointer approach |
+| 14-06-2026 | car-fleet | Success | 0:34 | Still some troubles with this problem. It's hard. but i got close. |
 
 ## Revisit Queue
 
