@@ -48,6 +48,7 @@
 | 78-subsets | medium | 01-05-2026 | 0:30 |
 | 39-combination-sum  | medium | 01-05-2026 | 1:00 |
 | 40-combination-sum-ii  | medium | 03-05-2026 | 0:37 |
+| 33-search-rotated-sorted-array  | medium | 14-06-2026 | 0:49 |
 
 ## Practice Log
 
