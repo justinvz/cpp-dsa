@@ -49,6 +49,8 @@
 | 39-combination-sum  | medium | 01-05-2026 | 1:00 |
 | 40-combination-sum-ii  | medium | 03-05-2026 | 0:37 |
 | 33-search-rotated-sorted-array  | medium | 14-06-2026 | 0:49 |
+| times based map | medium | 16-06-2026 |  |
+| 424-longest-repeating-character-replacement  | medium | 18-06-2026 | 1:00 |
 
 ## Practice Log
 
