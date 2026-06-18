@@ -11,52 +11,29 @@ using namespace std;
 
 bool checkInclusion(string s1, string s2) {
   int l = 0;
-  int r = s1.size() - 1;
 
-  array<int, 26> count;
-  for (auto &c : count) {
-    c = 0;
+  array<int, 26> count1{};
+  array<int, 26> count2{};
+
+  for (auto &c : s1) {
+    count1[c - 'a']++;
   }
 
-  while (r < s2.size()) {
-    // First char should be precent inside of the map.
-    if (charCountMap.contains(s2[l])) {
-      // Here we need to check if all chars are inside of the map.
-      //
-      // We create a copy of the map and decrement all char counts, when char
-      // count is 0, remove it from the map.
-      auto copyMap = charCountMap;
+  for (int r = 0; r < s2.size(); r++) {
+    count2[s2[r] - 'a']++;
 
-      int i = l;
-      while (i <= r) {
-        // If value is net precent in map. stop.
-        if (!copyMap.contains(s2[i])) {
-          break;
-        }
-
-        // Decrement char count
-        copyMap[s2[i]]--;
-        if (copyMap[s2[i]] == 0) {
-          // Remove char
-          copyMap.erase(s2[i]);
-        }
-
-        // Increment walker.
-        i++;
-      }
-
-      if (copyMap.empty()) {
-        return true;
-      }
+    if (r - l + 1 > s1.size()) {
+      count2[s2[l] - 'a']--;
+      l++;
     }
 
-    l++;
-    r++;
+    if (count1 == count2) {
+      return true;
+    }
   }
 
   return false;
 }
-
 int main() {
   ExpectEq(checkInclusion("abc", "abc"), true);
   ExpectEq(checkInclusion("abc", "jfacabb"), true);

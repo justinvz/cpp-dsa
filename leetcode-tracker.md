@@ -51,6 +51,7 @@
 | 33-search-rotated-sorted-array  | medium | 14-06-2026 | 0:49 |
 | times based map | medium | 16-06-2026 |  |
 | 424-longest-repeating-character-replacement  | medium | 18-06-2026 | 1:00 |
+| 567-permutation-in-string  | medium | 18-06-2026 | 0:43 |
 
 ## Practice Log
 
