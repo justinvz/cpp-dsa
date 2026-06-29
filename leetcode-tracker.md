@@ -55,6 +55,7 @@
 | 325-lowest-common-ancestor-of-a-bst  | medium | 28-06-2026 | 0:27 |
 | 102-binary-tree-level-order-traversal  | medium | 29-06-2026 | 0:40 |
 | 119-binary-tree-right-side-view  | medium | 29-06-2026 | 0:14 |
+| 104-max-depth-binary-tree  | medium | 29-06-2026 | 0:10 |
 
 ## Practice Log
 

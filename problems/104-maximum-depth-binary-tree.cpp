@@ -17,15 +17,14 @@ struct TreeNode {
       : val(x), left(left), right(right) {}
 };
 
-/// Solution is easier when we have a depth counter. We should itterate through
-/// all nodes, when going left or right, we increment, when going up a level, we
-/// decrement.
-
 int maxDepth(TreeNode *root) {
-  if (!root)
-    return 0;
+  if (root == nullptr)
+    return -1;
 
-  return 1 + max(maxDepth(root->left), maxDepth(root->right));
+  int lheight = maxDepth(root->left);
+  int rheight = maxDepth(root->right);
+
+  return max(lheight, rheight) + 1;
 }
 
 int main() {
@@ -43,7 +42,7 @@ int main() {
   TreeNode *root = &n4;
 
   n4.left = &n2;
-  n4.left = &n7;
+  n4.right = &n7;
 
   n2.left = &n1;
   n2.right = &n3;
@@ -60,5 +59,5 @@ int main() {
   // ExpectFalse(hasCycleBruteForce(&n1));
   // ExpectTrue(hasCycleBruteForce(&n4));
 
-  ExpectEq(maxDepth(&n4), 3);
+  ExpectEq(maxDepth(&n4), 2);
 }
