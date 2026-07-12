@@ -58,6 +58,7 @@
 | 104-max-depth-binary-tree  | medium | 29-06-2026 | 0:10 |
 | 1448-count-good-nodes-in-binary-tree  | medium | 05-07-2026 | 0:51 |
 | 98-validate-bst  | medium | 05-07-2026 | 0:28 |
+| 230-kth-smallest-element-in-bst  | medium | 05-07-2026 | 1:15 |
 
 ## Practice Log
 
