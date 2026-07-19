@@ -59,6 +59,8 @@
 | 1448-count-good-nodes-in-binary-tree  | medium | 05-07-2026 | 0:51 |
 | 98-validate-bst  | medium | 05-07-2026 | 0:28 |
 | 230-kth-smallest-element-in-bst  | medium | 05-07-2026 | 1:15 |
+| 208-construct-tree-from-inorder-and-postorder  | medium | 19-07-2026 | 2:40 |
+| 208-implement-trie  | medium | 19-07-2026 | 0:20 |
 
 ## Practice Log
 
