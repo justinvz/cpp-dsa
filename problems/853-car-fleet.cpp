@@ -1,5 +1,6 @@
 
 #include "testSuite.h"
+#include <algorithm>
 #include <stack>
 
 using namespace std;

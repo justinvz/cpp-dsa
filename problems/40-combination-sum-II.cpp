@@ -1,4 +1,5 @@
 #include "testSuite.h"
+#include <algorithm>
 #include <functional>
 
 using namespace std;
