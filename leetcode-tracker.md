@@ -62,13 +62,7 @@
 | 105-construct-tree-from-inorder-and-postorder  | medium | 19-07-2026 | 2:40 |
 | 208-implement-trie  | medium | 19-07-2026 | 0:20 |
 | 211-design-add-search-word  | medium | 22-07-2026 | 1:30 |
-
-## Practice Log
-
-| Date | Problem | Result | Time | Notes |
-|------|---------|--------|------|-------|
-| 14-06-2026 | constainer-with-most | Success | 0:10 | Sovled this problem instantly by usign two pointer approach |
-| 14-06-2026 | car-fleet | Success | 0:34 | Still some troubles with this problem. It's hard. but i got close. |
+| 200-number-of-islands  | medium | 26-07-2026 | 1:18 |
 
 ## Revisit Queue
 
@@ -81,6 +75,10 @@ problems i want to redo later
 | 853-car-fleet | Medium | I couldn't solve this problem without help | 05-03-2026 |
 
 ## Problem notes
+
+### 200 - number of islands
+
+Nice first graph problem that i solved almost on my own. With the addition of changing the input to prevent using a extra data structure was a nice eye opener.
 
 ### 875-koko
 
