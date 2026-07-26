@@ -1,6 +1,5 @@
 #include "testSuite.h"
 #include <functional>
-#include <variant>
 
 // @start 2026-07-22 18:10
 // @solved at 2026-07-26 19:29

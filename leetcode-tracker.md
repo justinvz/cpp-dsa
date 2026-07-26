@@ -64,6 +64,7 @@
 | 211-design-add-search-word  | medium | 22-07-2026 | 1:30 |
 | 200-number-of-islands  | medium | 26-07-2026 | 1:18 |
 | 853-car-fleet (2)| medium | 26-07-2026 | 0:28 |
+| 695-largest-island  | medium | 26-07-2026 | 0:28 |
 
 ## Revisit Queue
 
