@@ -1,7 +1,5 @@
-
 #include "testSuite.h"
 #include <memory>
-#include <print>
 
 /// @starttim 19:30 19-07-2026
 

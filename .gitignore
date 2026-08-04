@@ -26,15 +26,6 @@ build.ninja
 *~
 .DS_Store
 
-# CLion
-.idea/
-
-# VSCode C/C++
-.vscode/
-
-# macOS
-.DS_Store
-
 # Windows
 Thumbs.db
 
@@ -61,9 +52,5 @@ Thumbs.db
 # Temporary files
 tmp/
 temp/
-
-# Optional: keep if you symlink compile_commands.json
-# remove this line if you want to track it
-compile_commands.json
 
 .cache/

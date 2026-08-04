@@ -1,4 +1,3 @@
-
 #include "testSuite.h"
 #include <algorithm>
 #include <stack>
@@ -40,9 +39,6 @@ int CarFleet(int target, vector<int> position, vector<int> speed) {
     if (car.TimeOfArrival > fleet.top()) {
       fleet.push(car.TimeOfArrival);
     }
-
-    println("cars pos {} and timoe of arrival {}", car.startPos,
-            car.TimeOfArrival);
   }
 
   return fleet.size();
@@ -54,5 +50,5 @@ int main() {
   ExpectEq(CarFleet(12, {10, 8, 0, 5, 4}, {2, 4, 1, 1, 3}), 3);
   ExpectEq(CarFleet(10, {3}, {3}), 1);
   ExpectEq(CarFleet(100, {0, 2, 4}, {4, 2, 1}), 1);
-  ExpectEq(CarFleet(10, {0, 4, 2}, {2, 1, 3}), 2);
+  ExpectEq(CarFleet(10, {0, 4, 2}, {2, 1, 3}), 1);
 }

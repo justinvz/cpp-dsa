@@ -1,103 +1,125 @@
 # LeetCode Progress Tracker
 
-<!--toc:start-->
-- [LeetCode Progress Tracker](#leetcode-progress-tracker)
-  - [Problem solved](#problem-solved)
-  - [Revisit Queue](#revisit-queue)
-  - [Problem notes](#problem-notes)
-    - [875-koko](#875-koko)
-    - [739-daily-temperature (2)](#739-daily-temperature-2)
-    - [739-daily-temperature](#739-daily-temperature)
-    - [852-car-fleet](#852-car-fleet)
-    - [167-two-sum](#167-two-sum)
-<!--toc:end-->
+Times use `HH:MM`. A dash means the time was not recorded.
 
-## Problem solved
+## Snapshot
 
-| title                                | difficulty | date       | time |
-| ------------------------------------ | ---------- | ---------- | ---- |
-| 271-encode-and-decode-strings        | medium     | 28-04-2026 | 0:18 |
-| 125-valid-palindrome                 | easy       | 29-04-2026 | 0:12 |
-| 1-two-sum                            | easy       | 30-04-2026 | 0:15 |
-| 217-contains-duplicate               | easy       | 01-05-2026 | 0:12 |
-| 242-valid-anagram                    | easy       | 01-05-2026 | 0:12 |
-| 49-group-anagrams                    | medium     | 02-05-2026 | 0:20 |
-| 347-top-k-frequent-elements          | medium     | 02-05-2026 | 0:22 |
-| 238-product-of-array-except-self     | medium     | 03-05-2026 | 0:25 |
-| 36-valid-sudoku                      | medium     | 03-05-2026 | 0:25 |
-| 20-valid-parentheses                 | easy       | 03-05-2026 | 0:12 |
-| 155-min-stack                        | medium     | 03-05-2026 | 0:18 |
-| 150-evaluate-reverse-polish-notation | medium     | 04-05-2026 | 0:20 |
-| 739-daily-temperatures               | medium     | 04-05-2026 | 0:30 |
-| 853-car-fleet                        | medium     | 04-05-2026 | 0:25 |
-| 128-longest-consecutive-sequence     | medium     | 04-05-2026 | 0:20 |
-| 167-two-sum-ii                       | medium     | 04-05-2026 | 0:15 |
-| 11-constainer-with-most water        | medium     | 10-05-2026 | 0:34 |
-| 705-binary-search                    | easy       | 10-05-2026 | 0:24 |
-| 152-find-miniumum-in-rotated-sorted-array | asy | 19-05-2026 | 1:30   |
-| 152-best-time-to-sell | easy | 20-05-2026 | 1:00 |
-| 3-substring | meidum | 20-05-2026 | 0:21 |
-| 206-reverse-linked-list | easy | 20-05-2026 | 0:19 |
-| 21-merge-sorted-linked-list | easy | 20-05-2026 | 1:00 |
-| 141-linked-list-cycles | easy | 25-05-2026 | 0:35 |
-| 226-invert-binary-tree | easy | 26-05-2026 | 0:20 |
-| 543-diameter-binary-tree | easy | 26-05-2026 | ? |
-| 110-balanced-binary-tree | easy | 27-05-2026 | 0:40 |
-| 100-same-tree | easy | 27-05-2026 | 0:14 |
-| 572-subtree | easy | 01-06-2026 | 0:30 |
-| 78-subsets | medium | 01-06-2026 | 0:30 |
-| 39-combination-sum  | medium | 01-06-2026 | 1:00 |
-| 40-combination-sum-ii  | medium | 03-06-2026 | 0:37 |
-| 33-search-rotated-sorted-array  | medium | 14-06-2026 | 0:49 |
-| times based map | medium | 16-06-2026 |  |
-| 424-longest-repeating-character-replacement  | medium | 18-06-2026 | 1:00 |
-| 567-permutation-in-string  | medium | 18-06-2026 | 0:43 |
-| 325-lowest-common-ancestor-of-a-bst  | medium | 28-06-2026 | 0:27 |
-| 102-binary-tree-level-order-traversal  | medium | 29-06-2026 | 0:40 |
-| 119-binary-tree-right-side-view  | medium | 29-06-2026 | 0:14 |
-| 104-max-depth-binary-tree  | medium | 29-06-2026 | 0:10 |
-| 1448-count-good-nodes-in-binary-tree  | medium | 05-07-2026 | 0:51 |
-| 98-validate-bst  | medium | 05-07-2026 | 0:28 |
-| 230-kth-smallest-element-in-bst  | medium | 05-07-2026 | 1:15 |
-| 105-construct-tree-from-inorder-and-postorder  | medium | 19-07-2026 | 2:40 |
-| 208-implement-trie  | medium | 19-07-2026 | 0:20 |
-| 211-design-add-search-word  | medium | 22-07-2026 | 1:30 |
-| 200-number-of-islands  | medium | 26-07-2026 | 1:18 |
-| 853-car-fleet (2)| medium | 26-07-2026 | 0:28 |
-| 695-largest-island  | medium | 26-07-2026 | 0:28 |
+_Through 2026-07-26._ Repeated attempts are included unless stated otherwise.
+
+| Metric | Result |
+| --- | ---: |
+| Attempts | 49 |
+| Unique problems | 48 |
+| Difficulty | 16 easy, 33 medium, 0 hard |
+| Timed attempts | 47 of 49 |
+| Median solve time | 00:27 |
+| Average solve time | 00:36 |
+| Solved within 30 minutes | 30 of 47 (64%) |
+| Easy average / median | 00:25 / 00:19 |
+| Medium average / median | 00:41 / 00:28 |
+
+### What the results show
+
+- The median is a better target than the average: a few 60-160 minute sessions pull the average up.
+- Medium problems are becoming the norm: 33 of 49 attempts were medium.
+- The recent average is higher because 9 of the latest 10 timed attempts were medium, not necessarily because solving got slower.
+- Trees and BSTs are the strongest area by volume, with 13 attempts.
+- The next useful tracking fields are whether help was needed and confidence after solving. They will make revisits easier to prioritize than time alone.
+
+## Solved Problems
+
+| Date | Problem | Difficulty | Time | Attempt |
+| --- | --- | --- | ---: | ---: |
+| 2026-04-28 | 271-encode-and-decode-strings | Medium | 00:18 | 1 |
+| 2026-04-29 | 125-valid-palindrome | Easy | 00:12 | 1 |
+| 2026-04-30 | 1-two-sum | Easy | 00:15 | 1 |
+| 2026-05-01 | 217-contains-duplicate | Easy | 00:12 | 1 |
+| 2026-05-01 | 242-valid-anagram | Easy | 00:12 | 1 |
+| 2026-05-02 | 49-group-anagrams | Medium | 00:20 | 1 |
+| 2026-05-02 | 347-top-k-frequent-elements | Medium | 00:22 | 1 |
+| 2026-05-03 | 238-product-of-array-except-self | Medium | 00:25 | 1 |
+| 2026-05-03 | 36-valid-sudoku | Medium | 00:25 | 1 |
+| 2026-05-03 | 20-valid-parentheses | Easy | 00:12 | 1 |
+| 2026-05-03 | 155-min-stack | Medium | 00:18 | 1 |
+| 2026-05-04 | 150-evaluate-reverse-polish-notation | Medium | 00:20 | 1 |
+| 2026-05-04 | 739-daily-temperatures | Medium | 00:30 | 1 |
+| 2026-05-04 | 853-car-fleet | Medium | 00:25 | 1 |
+| 2026-05-04 | 128-longest-consecutive-sequence | Medium | 00:20 | 1 |
+| 2026-05-04 | 167-two-sum-ii-input-array-is-sorted | Medium | 00:15 | 1 |
+| 2026-05-10 | 11-container-with-most-water | Medium | 00:34 | 1 |
+| 2026-05-10 | 704-binary-search | Easy | 00:24 | 1 |
+| 2026-05-19 | 153-find-minimum-in-rotated-sorted-array | Medium | 01:30 | 1 |
+| 2026-05-20 | 121-best-time-to-buy-and-sell-stock | Easy | 01:00 | 1 |
+| 2026-05-20 | 3-longest-substring-without-repeating-characters | Medium | 00:21 | 1 |
+| 2026-05-20 | 206-reverse-linked-list | Easy | 00:19 | 1 |
+| 2026-05-20 | 21-merge-two-sorted-lists | Easy | 01:00 | 1 |
+| 2026-05-25 | 141-linked-list-cycle | Easy | 00:35 | 1 |
+| 2026-05-26 | 226-invert-binary-tree | Easy | 00:20 | 1 |
+| 2026-05-26 | 543-diameter-of-binary-tree | Easy | - | 1 |
+| 2026-05-27 | 110-balanced-binary-tree | Easy | 00:40 | 1 |
+| 2026-05-27 | 100-same-tree | Easy | 00:14 | 1 |
+| 2026-06-01 | 572-subtree-of-another-tree | Easy | 00:30 | 1 |
+| 2026-06-01 | 78-subsets | Medium | 00:30 | 1 |
+| 2026-06-01 | 39-combination-sum | Medium | 01:00 | 1 |
+| 2026-06-03 | 40-combination-sum-ii | Medium | 00:37 | 1 |
+| 2026-06-14 | 33-search-in-rotated-sorted-array | Medium | 00:49 | 1 |
+| 2026-06-16 | 981-time-based-key-value-store | Medium | - | 1 |
+| 2026-06-18 | 424-longest-repeating-character-replacement | Medium | 01:00 | 1 |
+| 2026-06-18 | 567-permutation-in-string | Medium | 00:43 | 1 |
+| 2026-06-28 | 235-lowest-common-ancestor-of-a-binary-search-tree | Medium | 00:27 | 1 |
+| 2026-06-29 | 102-binary-tree-level-order-traversal | Medium | 00:40 | 1 |
+| 2026-06-29 | 199-binary-tree-right-side-view | Medium | 00:14 | 1 |
+| 2026-06-29 | 104-maximum-depth-of-binary-tree | Easy | 00:10 | 1 |
+| 2026-07-05 | 1448-count-good-nodes-in-binary-tree | Medium | 00:51 | 1 |
+| 2026-07-05 | 98-validate-binary-search-tree | Medium | 00:28 | 1 |
+| 2026-07-05 | 230-kth-smallest-element-in-a-bst | Medium | 01:15 | 1 |
+| 2026-07-19 | 105-construct-binary-tree-from-preorder-and-inorder-traversal | Medium | 02:40 | 1 |
+| 2026-07-19 | 208-implement-trie-prefix-tree | Medium | 00:20 | 1 |
+| 2026-07-22 | 211-design-add-and-search-words-data-structure | Medium | 01:30 | 1 |
+| 2026-07-26 | 200-number-of-islands | Medium | 01:18 | 1 |
+| 2026-07-26 | 853-car-fleet | Medium | 00:28 | 2 |
+| 2026-07-26 | 695-max-area-of-island | Medium | 00:28 | 1 |
 
 ## Revisit Queue
 
-problems i want to redo later
+| Added | Problem | Difficulty | Reason |
+| --- | --- | --- | --- |
+| 2026-03-10 | 15-three-sum | Medium | Reimplement when rested; remember to skip duplicates. |
+| 2026-03-05 | 853-car-fleet | Medium | Needed help on the first attempt. |
+| 2026-03-17 | 875-koko-eating-bananas | Medium | The approach was correct, but the implementation was not completed. |
 
-| Title | Difficulty | Reason | added to queue |
-|-------|------------|--------|------------------|
-| 875-koko-eating-bananas | Medium | I got solution right, but implementation wrong, try implement it again. | 17-03-2026 |
-| 15-three-sum | Medium | Bit tired of work, solving this is like two sum | remember to skip duplicates | 10-03-2026 |
-| 853-car-fleet | Medium | I couldn't solve this problem without help | 05-03-2026 |
+## Problem Notes
 
-## Problem notes
+### 200-number-of-islands
 
-### 200 - number of islands
+A good first graph problem that I solved almost independently. Marking cells in the input instead of allocating a separate visited structure was a useful insight.
 
-Nice first graph problem that i solved almost on my own. With the addition of changing the input to prevent using a extra data structure was a nice eye opener.
+### 875-koko-eating-bananas
 
-### 875-koko
+I understood the approach but got tired during the implementation. Revisit after covering a few new concepts.
 
-I think i need to revisit it sooner or later, i got the solution, but i just got tired of the implementation, I however first want to go over some new concepts.
+### 853-car-fleet-revisit
 
-### 739-daily-temperature (2)
+I solved it again without an issue. Knowing the solution helped, but I also designed the implementation more clearly from the start.
 
-this time i solved it without a issue, probably because i knew the solution, but still i managed to design it better at the start!
+### 739-daily-temperatures
 
-### 739-daily-temperature
+I almost solved it on the first try. I struggled with the stack because I traversed it in the wrong order; the main issue was not fully designing the solution before implementing it.
 
-I almost got the problem first try, i only struggled with using the stack because i was traversing it in the wrong order. The main problem was that i didn't solve the problem properly in the design phase.
+### 853-car-fleet
 
-### 852-car-fleet
+I needed help on the first attempt. Revisit this to confirm that I can derive the stack approach independently.
 
-I almost got the problem first try, i only struggled with using the stack because i was traversing it in the wrong order. The main problem was that i didn't solve the problem properly in the design phase.
+### 167-two-sum-ii-input-array-is-sorted
 
-### 167-two-sum
+I solved this in **15 minutes**. Recognizing that the sorted input enables a two-pointer approach was the key insight.
 
-I am proud of myself that i solved the 167-two-sum-II in **15 minutes**. I figured out that when the array is sorted, we could use this in our advantage!
+## Entry Template
+
+Use this for future entries so time, independence, and confidence are all visible:
+
+```text
+| YYYY-MM-DD | ID-problem-title | Difficulty | HH:MM | Attempt |
+```
+
+Add a note when help was needed, the key insight was new, or confidence is low enough to justify a revisit.
