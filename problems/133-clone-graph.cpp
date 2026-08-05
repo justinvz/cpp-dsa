@@ -1,0 +1,147 @@
+#include "testSuite.h"
+#include <memory>
+#include <queue>
+#include <unordered_map>
+#include <utility>
+#include <vector>
+
+using namespace std;
+
+// @start 2026-08-05 21:34 finish  22:34
+
+/// @problem 133. Clone Graph
+/// @difficulty Medium
+///
+/// Given a reference to a node in a connected undirected graph, return a deep
+/// copy of the graph.
+///
+/// Each node in the graph contains an integer value and a list of its
+/// neighbors:
+///
+/// class Node {
+/// public:
+///   int val;
+///   vector<Node *> neighbors;
+/// };
+///
+/// The graph is represented in the test cases using an adjacency list. The
+/// value of each node is the same as its one-based index in that list. The
+/// given node is always the node with value 1.
+///
+/// Example 1:
+/// Input:  adjList = [[2,4],[1,3],[2,4],[1,3]]
+/// Output: [[2,4],[1,3],[2,4],[1,3]]
+///
+/// Example 2:
+/// Input:  adjList = [[]]
+/// Output: [[]]
+///
+/// Example 3:
+/// Input:  adjList = []
+/// Output: []
+///
+/// Constraints:
+/// - The number of nodes is between 0 and 100.
+/// - 1 <= Node.val <= 100
+/// - Every node has a unique value.
+/// - The graph has no repeated edges and no self-loops.
+/// - The graph is connected and every node can be reached from the given node.
+
+class Node {
+public:
+  int val;
+  vector<Node *> neighbors;
+
+  Node() : val(0) {}
+  explicit Node(int value) : val(value) {}
+  Node(int value, vector<Node *> adjacent)
+      : val(value), neighbors(std::move(adjacent)) {}
+};
+
+Node *cloneGraph(Node *node) {
+  if (!node) {
+    return nullptr;
+  }
+
+  unordered_map<Node *, Node *> clones;
+  queue<Node *> nodes;
+  clones.emplace(node, new Node(node->val));
+  nodes.emplace(node);
+
+  while (!nodes.empty()) {
+    Node *current = nodes.front();
+    nodes.pop();
+
+    for (Node *neighbor : current->neighbors) {
+      if (!clones.contains(neighbor)) {
+        clones.emplace(neighbor, new Node(neighbor->val));
+        nodes.emplace(neighbor);
+      }
+
+      clones.at(current)->neighbors.emplace_back(clones.at(neighbor));
+    }
+  }
+
+  return clones.at(node);
+}
+
+void TestCase1();
+void TestCase2();
+
+int main() {
+  TestTimer timer;
+
+  Node *node1 = new Node(1);
+
+  ExpectEq(cloneGraph(node1)->val, node1->val);
+
+  TestCase1();
+  TestCase2();
+}
+
+void TestCase1() {
+  std::unique_ptr<Node> node1 = std::make_unique<Node>(1);
+  std::unique_ptr<Node> node2 = std::make_unique<Node>(2);
+  node1->neighbors.emplace_back(node2.get());
+
+  Node *cloned = cloneGraph(node1.get());
+
+  ExpectTrue(cloned);
+
+  if (cloned) {
+    ExpectEq(cloned->val, node1->val);
+    ExpectEq(cloned->neighbors.size(), node1->neighbors.size());
+    ExpectEq(cloned->neighbors.front()->val, node1->neighbors.front()->val);
+    ExpectEq(cloned->neighbors.front()->val, node2->val);
+  }
+}
+
+void TestCase2() {
+  std::unique_ptr<Node> node1 = std::make_unique<Node>(1);
+  std::unique_ptr<Node> node2 = std::make_unique<Node>(2);
+  std::unique_ptr<Node> node3 = std::make_unique<Node>(3);
+  std::unique_ptr<Node> node4 = std::make_unique<Node>(4);
+
+  node1->neighbors.emplace_back(node2.get());
+  node1->neighbors.emplace_back(node4.get());
+
+  node2->neighbors.emplace_back(node1.get());
+  node2->neighbors.emplace_back(node3.get());
+
+  node3->neighbors.emplace_back(node2.get());
+  node3->neighbors.emplace_back(node4.get());
+
+  node4->neighbors.emplace_back(node1.get());
+  node4->neighbors.emplace_back(node3.get());
+
+  Node *cloned = cloneGraph(node1.get());
+
+  ExpectTrue(cloned);
+
+  if (cloned) {
+    ExpectEq(cloned->val, node1->val);
+    ExpectEq(cloned->neighbors.size(), node1->neighbors.size());
+    ExpectEq(cloned->neighbors.front()->val, node1->neighbors.front()->val);
+    ExpectEq(cloned->neighbors.front()->val, node2->val);
+  }
+}

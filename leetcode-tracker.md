@@ -4,25 +4,25 @@ Times use `HH:MM`. A dash means the time was not recorded.
 
 ## Snapshot
 
-_Through 2026-07-26._ Repeated attempts are included unless stated otherwise.
+_Through 2026-08-05._ Repeated attempts are included unless stated otherwise.
 
 | Metric | Result |
 | --- | ---: |
-| Attempts | 49 |
-| Unique problems | 48 |
-| Difficulty | 16 easy, 33 medium, 0 hard |
-| Timed attempts | 47 of 49 |
-| Median solve time | 00:27 |
+| Attempts | 50 |
+| Unique problems | 49 |
+| Difficulty | 16 easy, 34 medium, 0 hard |
+| Timed attempts | 48 of 50 |
+| Median solve time | 00:28 |
 | Average solve time | 00:36 |
-| Solved within 30 minutes | 30 of 47 (64%) |
+| Solved within 30 minutes | 30 of 48 (63%) |
 | Easy average / median | 00:25 / 00:19 |
 | Medium average / median | 00:41 / 00:28 |
 
 ### What the results show
 
 - The median is a better target than the average: a few 60-160 minute sessions pull the average up.
-- Medium problems are becoming the norm: 33 of 49 attempts were medium.
-- The recent average is higher because 9 of the latest 10 timed attempts were medium, not necessarily because solving got slower.
+- Medium problems are becoming the norm: 34 of 50 attempts were medium.
+- The recent average is higher because all of the latest 10 timed attempts were medium, not necessarily because solving got slower.
 - Trees and BSTs are the strongest area by volume, with 13 attempts.
 - The next useful tracking fields are whether help was needed and confidence after solving. They will make revisits easier to prioritize than time alone.
 
@@ -79,6 +79,7 @@ _Through 2026-07-26._ Repeated attempts are included unless stated otherwise.
 | 2026-07-26 | 200-number-of-islands | Medium | 01:18 | 1 |
 | 2026-07-26 | 853-car-fleet | Medium | 00:28 | 2 |
 | 2026-07-26 | 695-max-area-of-island | Medium | 00:28 | 1 |
+| 2026-08-05 | 133-clone-graph | Medium | 01:00 | 1 |
 
 ## Revisit Queue
 
@@ -87,8 +88,13 @@ _Through 2026-07-26._ Repeated attempts are included unless stated otherwise.
 | 2026-03-10 | 15-three-sum | Medium | Reimplement when rested; remember to skip duplicates. |
 | 2026-03-05 | 853-car-fleet | Medium | Needed help on the first attempt. |
 | 2026-03-17 | 875-koko-eating-bananas | Medium | The approach was correct, but the implementation was not completed. |
+| 2026-08-05 | 133-clone-graph | Medium | Needed extensive guidance and the final solution; redo independently using DFS. |
 
 ## Problem Notes
+
+### 133-clone-graph
+
+I recognized that BFS could traverse the graph, but needed help maintaining exactly one clone per original node and preserving edges to already visited nodes. The key insight is that the original-to-clone map can also track discovery: create and enqueue each node once, while copying every edge. Revisit this problem independently and implement it using DFS.
 
 ### 200-number-of-islands
 
