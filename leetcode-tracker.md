@@ -8,21 +8,21 @@ _Through 2026-08-05._ Repeated attempts are included unless stated otherwise.
 
 | Metric | Result |
 | --- | ---: |
-| Attempts | 50 |
-| Unique problems | 49 |
-| Difficulty | 16 easy, 34 medium, 0 hard |
-| Timed attempts | 48 of 50 |
+| Attempts | 51 |
+| Unique problems | 50 |
+| Difficulty | 17 easy, 34 medium, 0 hard |
+| Timed attempts | 49 of 51 |
 | Median solve time | 00:28 |
 | Average solve time | 00:36 |
-| Solved within 30 minutes | 30 of 48 (63%) |
-| Easy average / median | 00:25 / 00:19 |
+| Solved within 30 minutes | 30 of 49 (61%) |
+| Easy average / median | 00:26 / 00:20 |
 | Medium average / median | 00:41 / 00:28 |
 
 ### What the results show
 
 - The median is a better target than the average: a few 60-160 minute sessions pull the average up.
-- Medium problems are becoming the norm: 34 of 50 attempts were medium.
-- The recent average is higher because all of the latest 10 timed attempts were medium, not necessarily because solving got slower.
+- Medium problems are becoming the norm: 34 of 51 attempts were medium.
+- The recent average is higher because 9 of the latest 10 timed attempts were medium, not necessarily because solving got slower.
 - Trees and BSTs are the strongest area by volume, with 13 attempts.
 - The next useful tracking fields are whether help was needed and confidence after solving. They will make revisits easier to prioritize than time alone.
 
@@ -80,6 +80,7 @@ _Through 2026-08-05._ Repeated attempts are included unless stated otherwise.
 | 2026-07-26 | 853-car-fleet | Medium | 00:28 | 2 |
 | 2026-07-26 | 695-max-area-of-island | Medium | 00:28 | 1 |
 | 2026-08-05 | 133-clone-graph | Medium | 01:00 | 1 |
+| 2026-08-05 | 733-flood-fill | Easy | 00:36 | 1 |
 
 ## Revisit Queue
 
@@ -91,6 +92,10 @@ _Through 2026-08-05._ Repeated attempts are included unless stated otherwise.
 | 2026-08-05 | 133-clone-graph | Medium | Needed extensive guidance and the final solution; redo independently using DFS. |
 
 ## Problem Notes
+
+### 733-flood-fill
+
+I independently derived a recursive DFS solution using a visited set and in-place recoloring. The important edge cases were using the column count when encoding coordinates and returning early when the replacement color already matched the starting color.
 
 ### 133-clone-graph
 
