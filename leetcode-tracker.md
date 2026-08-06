@@ -4,25 +4,25 @@ Times use `HH:MM`. A dash means the time was not recorded.
 
 ## Snapshot
 
-_Through 2026-08-05._ Repeated attempts are included unless stated otherwise.
+_Through 2026-08-06._ Repeated attempts are included unless stated otherwise.
 
 | Metric | Result |
 | --- | ---: |
-| Attempts | 51 |
-| Unique problems | 50 |
-| Difficulty | 17 easy, 34 medium, 0 hard |
-| Timed attempts | 49 of 51 |
+| Attempts | 52 |
+| Unique problems | 51 |
+| Difficulty | 18 easy, 34 medium, 0 hard |
+| Timed attempts | 50 of 52 |
 | Median solve time | 00:28 |
-| Average solve time | 00:36 |
-| Solved within 30 minutes | 30 of 49 (61%) |
-| Easy average / median | 00:26 / 00:20 |
+| Average solve time | 00:38 |
+| Solved within 30 minutes | 30 of 50 (60%) |
+| Easy average / median | 00:30 / 00:20 |
 | Medium average / median | 00:41 / 00:28 |
 
 ### What the results show
 
 - The median is a better target than the average: a few 60-160 minute sessions pull the average up.
-- Medium problems are becoming the norm: 34 of 51 attempts were medium.
-- The recent average is higher because 9 of the latest 10 timed attempts were medium, not necessarily because solving got slower.
+- Medium problems are becoming the norm: 34 of 52 attempts were medium.
+- The recent average is higher because 8 of the latest 10 timed attempts were medium, not necessarily because solving got slower.
 - Trees and BSTs are the strongest area by volume, with 13 attempts.
 - The next useful tracking fields are whether help was needed and confidence after solving. They will make revisits easier to prioritize than time alone.
 
@@ -81,6 +81,7 @@ _Through 2026-08-05._ Repeated attempts are included unless stated otherwise.
 | 2026-07-26 | 695-max-area-of-island | Medium | 00:28 | 1 |
 | 2026-08-05 | 133-clone-graph | Medium | 01:00 | 1 |
 | 2026-08-05 | 733-flood-fill | Easy | 00:36 | 1 |
+| 2026-08-06 | 1971-find-if-path-exists-in-graph | Easy | 01:46 | 1 |
 
 ## Revisit Queue
 
@@ -92,6 +93,10 @@ _Through 2026-08-05._ Repeated attempts are included unless stated otherwise.
 | 2026-08-05 | 133-clone-graph | Medium | Needed extensive guidance and the final solution; redo independently using DFS. |
 
 ## Problem Notes
+
+### 1971-find-if-path-exists-in-graph
+
+I moved from a complicated component-merging idea to an adjacency map and graph traversal. I completed a recursive DFS first, then practiced converting it to an iterative traversal. The main iterative mistakes were reversing the visited check and mixing `queue.back()` with `queue.pop()`, which removes the front.
 
 ### 733-flood-fill
 

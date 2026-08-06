@@ -1,6 +1,6 @@
 # LeetCode Feedback
 
-_Updated 2026-08-05._
+_Updated 2026-08-06._
 
 ## Current Feedback
 
@@ -17,8 +17,8 @@ _Updated 2026-08-05._
   patterns.
 - **June:** Practiced recursion, trees, BSTs, and binary search.
 - **July:** Started solving more graph and grid problems.
-- **August:** Needed help with Clone Graph, then independently solved Flood Fill
-  using DFS.
+- **August:** Improved from needing help with Clone Graph to independently using
+  DFS for Flood Fill and Find if Path Exists in Graph.
 
 ## Next Steps
 
