@@ -2,6 +2,7 @@
 
 #include <array>
 #include <chrono>
+#include <cstdlib>
 #include <iostream>
 #include <string>
 #include <vector>
@@ -28,7 +29,8 @@ inline void ExpectTrue(bool actual, const string &testName = "") {
   if (actual) {
     cout << "[PASS] " << testName << "\n";
   } else {
-    cout << "[FAIL] " << testName << " (expected true)\n";
+    cerr << "[FAIL] " << testName << " (expected true)\n";
+    std::exit(EXIT_FAILURE);
   }
 }
 
@@ -36,7 +38,8 @@ inline void ExpectFalse(bool actual, const string &testName = "") {
   if (!actual) {
     cout << "[PASS] " << testName << "\n";
   } else {
-    cout << "[FAIL] " << testName << " (expected false)\n";
+    cerr << "[FAIL] " << testName << " (expected false)\n";
+    std::exit(EXIT_FAILURE);
   }
 }
 
@@ -50,9 +53,10 @@ inline void ExpectEq(const T &actual, const T &expected,
     cout << "\n  Actual:   " << actual << "\n";
     cout << "  Expected: " << expected << "\n";
   } else {
-    cout << "[FAIL] " << testName << "\n";
-    cout << "\n  Expected: " << expected << "\n";
-    cout << "  Actual:   " << actual << "\n";
+    cerr << "[FAIL] " << testName << "\n";
+    cerr << "\n  Expected: " << expected << "\n";
+    cerr << "  Actual:   " << actual << "\n";
+    std::exit(EXIT_FAILURE);
   }
 }
 
@@ -73,22 +77,23 @@ inline void ExpectEq(const vector<T> &actual, const vector<T> &expected,
     return;
   }
 
-  cout << "[FAIL] " << testName << "\n";
-  cout << "  Expected: [";
+  cerr << "[FAIL] " << testName << "\n";
+  cerr << "  Expected: [";
   for (size_t i = 0; i < expected.size(); i++) {
-    cout << expected[i];
+    cerr << expected[i];
     if (i + 1 < expected.size())
-      cout << ", ";
+      cerr << ", ";
   }
-  cout << "]\n";
+  cerr << "]\n";
 
-  cout << "  Actual:   [";
+  cerr << "  Actual:   [";
   for (size_t i = 0; i < actual.size(); i++) {
-    cout << actual[i];
+    cerr << actual[i];
     if (i + 1 < actual.size())
-      cout << ", ";
+      cerr << ", ";
   }
-  cout << "]\n";
+  cerr << "]\n";
+  std::exit(EXIT_FAILURE);
 }
 
 template <typename T, size_t N>
@@ -100,21 +105,22 @@ inline void ExpectEq(const array<T, N> &actual, const array<T, N> &expected,
     return;
   }
 
-  cout << "[FAIL] " << testName << "\n";
+  cerr << "[FAIL] " << testName << "\n";
 
-  cout << "  Expected: [";
+  cerr << "  Expected: [";
   for (size_t i = 0; i < N; i++) {
-    cout << expected[i];
+    cerr << expected[i];
     if (i + 1 < N)
-      cout << ", ";
+      cerr << ", ";
   }
-  cout << "]\n";
+  cerr << "]\n";
 
-  cout << "  Actual:   [";
+  cerr << "  Actual:   [";
   for (size_t i = 0; i < N; i++) {
-    cout << actual[i];
+    cerr << actual[i];
     if (i + 1 < N)
-      cout << ", ";
+      cerr << ", ";
   }
-  cout << "]\n";
+  cerr << "]\n";
+  std::exit(EXIT_FAILURE);
 }
