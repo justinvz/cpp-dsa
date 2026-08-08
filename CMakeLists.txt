@@ -1,6 +1,15 @@
-cmake_minimum_required(VERSION 3.16)
+cmake_minimum_required(VERSION 3.28)
 
 project(LeetCodeSolutions LANGUAGES CXX)
+
+include(CTest)
+
+if(BUILD_TESTING)
+  add_library(test-support INTERFACE)
+  target_include_directories(test-support INTERFACE
+    ${CMAKE_SOURCE_DIR}/test
+  )
+endif()
 
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -31,3 +40,5 @@ foreach(PROBLEM ${PROBLEM_SOURCES})
     ${CMAKE_SOURCE_DIR}/test
   )
 endforeach()
+
+add_subdirectory(containers/vector)

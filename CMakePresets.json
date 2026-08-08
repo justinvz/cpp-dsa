@@ -2,17 +2,18 @@
   "version": 3,
   "cmakeMinimumRequired": {
     "major": 3,
-    "minor": 21,
+    "minor": 28,
     "patch": 0
   },
   "configurePresets": [
     {
       "name": "default",
-      "displayName": "Ninja Debug",
+      "displayName": "Clang 20 Ninja Debug",
       "generator": "Ninja",
-      "binaryDir": "${sourceDir}/build",
+      "binaryDir": "${sourceDir}/build/clang-20",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_CXX_COMPILER": "/usr/bin/clang++-20",
         "CMAKE_EXPORT_COMPILE_COMMANDS": true
       }
     }
@@ -21,6 +22,15 @@
     {
       "name": "default",
       "configurePreset": "default"
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "default",
+      "configurePreset": "default",
+      "output": {
+        "outputOnFailure": true
+      }
     }
   ]
 }
