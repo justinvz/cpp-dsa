@@ -1,7 +1,11 @@
 #pragma once
 
+#include <algorithm>
 #include <cstddef>
 #include <iostream>
+#include <iterator>
+#include <print>
+#include <stdexcept>
 
 // This class is an implementation of a dynamic array. Its interface follows
 // the standard containers where practical so containers can be swapped.
@@ -18,24 +22,65 @@ public:
   static constexpr std::size_t defaultSize = 10;
 
   vector() {
+    std::println("Constructor");
     start = new T[defaultSize];
     m_capacity = defaultSize;
     end = start + defaultSize;
   }
 
-  ~vector() { delete[] start; }
+  ~vector() {
+    std::println("Destructor");
+    delete[] start;
+  }
+
   vector(vector &other) = default;  // Copy constructor
   vector(vector &&other) = default; // Move constructor
   vector(const vector &) = default;
   vector(const vector &&) = default;
 
+  T &operator[](std::size_t index) noexcept { return start[index]; }
+
+  T at(std::size_t index) {
+    if (index >= m_size) {
+      std::println("Index {} out of ranges size {}", index, m_size);
+    }
+    return start[index];
+  }
+
   bool empty() const { return m_size == 0; }
   std::size_t size() const { return m_size; }
   std::size_t capacity() const { return m_capacity; }
 
-  T at(std::size_t index) { return start[index]; }
+  // Move all elements to a bigger piece of allocated memory
+  void grow(size_t newCapacity) {
+    T *newStart = new T[newCapacity];
 
-  void push_back(T val) { std::cout << "Here!"; }
+    // For now easy way is to just copy.
+    for (size_t i{0}; i < m_size; i++) {
+      newStart[i] = start[i];
+    }
+
+    free(start);
+
+    start = newStart;
+
+    m_capacity = newCapacity;
+    end = start + newCapacity;
+
+    std::println("Vector must grow");
+  }
+
+  void push_back(T val) {
+    if (m_size >= m_capacity) {
+      grow(m_capacity * 2);
+    }
+
+    start[m_size] = val;
+    m_size++;
+
+    std::println("Pushed back value {} size {} capacity {}", val, m_size,
+                 m_capacity);
+  }
 
   void pop_back();
 
