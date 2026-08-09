@@ -1,11 +1,4 @@
-cmake_minimum_required(VERSION 3.31)
-
-# CMake still gates standard-library modules as experimental, including in 4.0.
-# This must be enabled before CMake discovers the C++ toolchain.
-set(CMAKE_EXPERIMENTAL_CXX_IMPORT_STD
-  "0e5b6991-d74f-4b3d-a41c-cf096e0b2508"
-)
-set(CMAKE_CXX_MODULE_STD ON)
+cmake_minimum_required(VERSION 3.28)
 
 project(LeetCodeSolutions LANGUAGES CXX)
 
@@ -20,8 +13,7 @@ endif()
 
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-# CMake 3.31's libc++ standard module is currently built in gnu++23 mode.
-set(CMAKE_CXX_EXTENSIONS ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 

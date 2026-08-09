@@ -1,9 +1,8 @@
-add_library(learning-vector)
+add_library(learning-vector vector.cpp)
 
-target_sources(learning-vector
+target_include_directories(learning-vector
   PUBLIC
-    FILE_SET CXX_MODULES
-    FILES vector.cppm
+    ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
 if(BUILD_TESTING)
