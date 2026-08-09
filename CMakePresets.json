@@ -14,6 +14,7 @@
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug",
         "CMAKE_CXX_COMPILER": "/usr/bin/clang++-20",
+        "CMAKE_CXX_FLAGS": "-stdlib=libc++",
         "CMAKE_EXPORT_COMPILE_COMMANDS": true
       }
     }

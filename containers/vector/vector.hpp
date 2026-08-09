@@ -1,15 +1,12 @@
 #pragma once
 
-#include <algorithm>
 #include <cstddef>
-#include <iostream>
-#include <iterator>
 #include <print>
-#include <stdexcept>
 
 // This class is an implementation of a dynamic array. Its interface follows
 // the standard containers where practical so containers can be swapped.
 namespace jtd {
+static constexpr std::size_t defaultSize = 2;
 
 template <typename T> class vector {
 private:
@@ -19,8 +16,6 @@ private:
   std::size_t m_capacity = 0;
 
 public:
-  static constexpr std::size_t defaultSize = 10;
-
   vector() {
     std::println("Constructor");
     start = new T[defaultSize];
@@ -62,12 +57,11 @@ public:
 
     free(start);
 
-    start = newStart;
+    std::println("Vector grows from {} to {}", m_capacity, newCapacity);
 
+    start = newStart;
     m_capacity = newCapacity;
     end = start + newCapacity;
-
-    std::println("Vector must grow");
   }
 
   void push_back(T val) {

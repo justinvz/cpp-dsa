@@ -7,19 +7,21 @@ int main() {
   jtd::vector<int> vector;
 
   ExpectTrue(vector.empty(), "default vector is empty");
-  ExpectEq(vector.capacity(), std::size_t{10}, "default vector capacity");
+  ExpectEq(vector.capacity(), jtd::defaultSize, "default vector capacity");
 
-  constexpr int elements{10};
+  constexpr int elements{100};
 
   for (size_t i = 0; i < elements; i++) {
     vector.push_back(i);
   }
 
   for (size_t i = 0; i < elements; i++) {
-    println("Values {}", vector.at(i));
+    // ExpectEq(vector[i], (int)i);
   }
 
-  vector.push_back(1);
+  println("");
+
+  // Out of bounds
   vector[elements + 1];
 
   return EXIT_SUCCESS;
