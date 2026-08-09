@@ -4,6 +4,7 @@
 #include <cstddef>
 #include <print>
 #include <stdexcept>
+#include <utility>
 
 // This class is an implementation of a dynamic array. Its interface follows
 // the standard containers where practical so containers can be swapped.
@@ -20,11 +21,10 @@ private:
 public:
   bool movable{true};
 
-  vector(size_t p_capacity = defaultSize) {
+  vector(std::size_t p_capacity = defaultSize)
+      : start(new T[p_capacity]), end(start), m_size(0),
+        m_capacity(p_capacity) {
     std::println("Constructor");
-    start = new T[p_capacity];
-    m_capacity = p_capacity;
-    end = start;
   }
 
   ~vector() {
@@ -32,34 +32,68 @@ public:
     delete[] start;
   }
 
-  vector(vector &other) : m_capacity(other.m_capacity), m_size(other.m_size) {
-    T *newStart = new T[other.m_capacity];
-
-    std::copy(other.start, other.start + m_size, newStart);
-
-    delete[] start;
-
-    start = newStart;
+  vector(const vector &other) : vector(other.m_capacity) {
+    std::copy_n(other.start, other.m_size, start);
+    m_size = other.m_size;
     end = start + m_size;
+    movable = other.movable;
 
     std::println("Copy");
   }
 
-  vector(vector &&other) : m_capacity(other.m_capacity), m_size(other.m_size) {
-    T *newStart = new T[other.m_capacity];
-
-    std::move(other.start, other.start + m_size, newStart);
-
-    delete[] start;
-
-    start = newStart;
-    end = start + m_size;
+  vector(vector &&other) noexcept
+      : start(other.start), end(other.end), m_size(other.m_size),
+        m_capacity(other.m_capacity), movable(other.movable) {
+    other.start = nullptr;
+    other.end = nullptr;
+    other.m_size = 0;
+    other.m_capacity = 0;
+    other.movable = true;
 
     std::println("Moved");
   }
 
-  vector(const vector &) = delete;
-  vector(const vector &&) = delete;
+  vector &operator=(const vector &other) {
+    if (this == &other) {
+      return *this;
+    }
+
+    vector copy(other);
+    swap(copy);
+    return *this;
+  }
+
+  vector &operator=(vector &&other) noexcept {
+    if (this == &other) {
+      return *this;
+    }
+
+    delete[] start;
+
+    start = other.start;
+    end = other.end;
+    m_size = other.m_size;
+    m_capacity = other.m_capacity;
+    movable = other.movable;
+
+    other.start = nullptr;
+    other.end = nullptr;
+    other.m_size = 0;
+    other.m_capacity = 0;
+    other.movable = true;
+
+    return *this;
+  }
+
+  void swap(vector &other) noexcept {
+    using std::swap;
+
+    swap(start, other.start);
+    swap(end, other.end);
+    swap(m_size, other.m_size);
+    swap(m_capacity, other.m_capacity);
+    swap(movable, other.movable);
+  }
 
   T &operator[](std::size_t index) noexcept { return start[index]; }
 
@@ -96,7 +130,7 @@ public:
 
   void push_back(T val) {
     if (m_size >= m_capacity) {
-      reserve(m_capacity * 2 == 0);
+      reserve(m_capacity == 0 ? defaultSize : m_capacity * 2);
     }
 
     start[m_size] = val;

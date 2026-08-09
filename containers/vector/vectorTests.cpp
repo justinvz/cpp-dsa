@@ -2,6 +2,7 @@
 #include "vector.hpp"
 
 #include <print>
+#include <utility>
 
 struct Entry {
   int value{0};
@@ -134,6 +135,55 @@ void TestEmptyCopyAndMove() {
   ExpectTrue(moved.empty(), "moving empty vector stays empty");
 }
 
+void TestCopyAssignment() {
+  jtd::vector<int> source;
+  source.push_back(1);
+  source.push_back(2);
+
+  jtd::vector<int> destination;
+  destination.push_back(99);
+  destination = source;
+
+  ExpectEq(destination.size(), source.size(), "copy assignment preserves size");
+  ExpectEq(destination.at(0), 1, "copy assignment preserves first value");
+  ExpectEq(destination.at(1), 2, "copy assignment preserves last value");
+  ExpectFalse(&destination[0] == &source[0],
+              "copy assignment owns separate storage");
+
+  destination[0] = 42;
+  ExpectEq(source.at(0), 1, "assigned copy is independent");
+
+  auto *sourceAlias = &source;
+  source = *sourceAlias;
+  ExpectEq(source.at(0), 1, "self-copy assignment preserves values");
+}
+
+void TestMoveAssignment() {
+  jtd::vector<int> source;
+  source.push_back(1);
+  source.push_back(2);
+  const void *sourceStorage = static_cast<const void *>(&source[0]);
+
+  jtd::vector<int> destination;
+  destination.push_back(99);
+  destination = std::move(source);
+
+  ExpectEq(destination.size(), std::size_t{2},
+           "move assignment preserves size");
+  ExpectEq(destination.at(0), 1, "move assignment preserves first value");
+  ExpectEq(destination.at(1), 2, "move assignment preserves last value");
+  ExpectTrue(static_cast<const void *>(&destination[0]) == sourceStorage,
+             "move assignment transfers storage");
+  ExpectTrue(source.empty(), "move assignment empties source");
+
+  source.push_back(3);
+  ExpectEq(source.at(0), 3, "move-assigned source remains usable");
+
+  auto *destinationAlias = &destination;
+  destination = std::move(*destinationAlias);
+  ExpectEq(destination.at(0), 1, "self-move assignment preserves values");
+}
+
 void TestClear() {
   vector<int> vector;
   for (int i{0}; 100.000 > i; i++) {
@@ -151,5 +201,7 @@ int main() {
   TestCopy();
   TestMove();
   TestEmptyCopyAndMove();
+  TestCopyAssignment();
+  TestMoveAssignment();
   return EXIT_SUCCESS;
 }
