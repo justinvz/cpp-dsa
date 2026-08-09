@@ -1,4 +1,7 @@
-#include "testSuite.h"
+#include <gtest/gtest.h>
+
+#include <cstddef>
+#include <vector>
 
 using namespace std;
 
@@ -71,10 +74,9 @@ vector<int> TwoSum(vector<int> numbers, int target) {
   return {};
 }
 
-int main() {
-  TestTimer timer;
+TEST(Problem, ExistingCases) {
 
-  ExpectEq(TwoSum({2, 7, 11, 15}, 9), {1, 2});
-  ExpectEq(TwoSum({2, 3, 4}, 6), {1, 3});
-  ExpectEq(TwoSum({-1, 0}, -1), {1, 2});
+  EXPECT_EQ(TwoSum({2, 7, 11, 15}, 9), (std::vector<int>{1, 2}));
+  EXPECT_EQ(TwoSum({2, 3, 4}, 6), (std::vector<int>{1, 3}));
+  EXPECT_EQ(TwoSum({-1, 0}, -1), (std::vector<int>{1, 2}));
 }

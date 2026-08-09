@@ -1,4 +1,7 @@
-#include "testSuite.h"
+#include <gtest/gtest.h>
+
+#include <cstddef>
+#include <string>
 #include <unordered_map>
 
 using namespace std;
@@ -37,7 +40,7 @@ int characterReplacemnet(string s, int k) {
   return result;
 }
 
-int main() {
-  ExpectEq(characterReplacemnet("ABAB", 2), 4);
-  ExpectEq(characterReplacemnet("AABABBA", 1), 4);
+TEST(Problem, ExistingCases) {
+  EXPECT_EQ(characterReplacemnet("ABAB", 2), 4);
+  EXPECT_EQ(characterReplacemnet("AABABBA", 1), 4);
 }

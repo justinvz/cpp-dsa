@@ -1,4 +1,6 @@
-#include "testSuite.h"
+#include <gtest/gtest.h>
+
+#include <vector>
 
 using namespace std;
 
@@ -52,7 +54,6 @@ int findMin(vector<int> nums) {
   return nums[l];
 }
 
-int main() {
-  TestTimer timer;
-  ExpectEq(findMin({3, 4, 5, 1, 2}), 1);
+TEST(Problem, ExistingCases) {
+  EXPECT_EQ(findMin({3, 4, 5, 1, 2}), 1);
 }

@@ -1,6 +1,9 @@
 
-#include "testSuite.h"
+#include <gtest/gtest.h>
+
+#include <cstddef>
 #include <stack>
+#include <vector>
 
 /// @problem Given an array of integers temperatures represents the daily
 /// temperatures, return an array answer such that answer[i] is the number of
@@ -48,13 +51,14 @@ vector<int> DailyTemperatures(vector<int> temperatures) {
   return result;
 }
 
-int main() {
-  TestTimer timer;
+TEST(Problem, ExistingCases) {
 
-  ExpectEq(DailyTemperatures({73, 74, 75, 71, 69, 72, 76, 73}),
-           {1, 1, 4, 2, 1, 1, 0, 0});
+  EXPECT_EQ(DailyTemperatures({73, 74, 75, 71, 69, 72, 76, 73}),
+            (std::vector<int>{1, 1, 4, 2, 1, 1, 0, 0}));
 
-  ExpectEq(DailyTemperatures({30, 40, 50, 60}), {1, 1, 1, 0});
+  EXPECT_EQ(DailyTemperatures({30, 40, 50, 60}),
+            (std::vector<int>{1, 1, 1, 0}));
 
-  ExpectEq(DailyTemperatures({30, 60, 90}), {1, 1, 0});
+  EXPECT_EQ(DailyTemperatures({30, 60, 90}),
+            (std::vector<int>{1, 1, 0}));
 }

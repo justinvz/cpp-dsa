@@ -1,6 +1,9 @@
-#include "testSuite.h"
+#include <gtest/gtest.h>
+
 #include <algorithm>
+#include <cstddef>
 #include <stack>
+#include <vector>
 
 using namespace std;
 
@@ -44,11 +47,10 @@ int CarFleet(int target, vector<int> position, vector<int> speed) {
   return fleet.size();
 }
 
-int main() {
-  TestTimer timer;
+TEST(Problem, ExistingCases) {
 
-  ExpectEq(CarFleet(12, {10, 8, 0, 5, 4}, {2, 4, 1, 1, 3}), 3);
-  ExpectEq(CarFleet(10, {3}, {3}), 1);
-  ExpectEq(CarFleet(100, {0, 2, 4}, {4, 2, 1}), 1);
-  ExpectEq(CarFleet(10, {0, 4, 2}, {2, 1, 3}), 1);
+  EXPECT_EQ(CarFleet(12, {10, 8, 0, 5, 4}, {2, 4, 1, 1, 3}), 3);
+  EXPECT_EQ(CarFleet(10, {3}, {3}), 1);
+  EXPECT_EQ(CarFleet(100, {0, 2, 4}, {4, 2, 1}), 1);
+  EXPECT_EQ(CarFleet(10, {0, 4, 2}, {2, 1, 3}), 1);
 }

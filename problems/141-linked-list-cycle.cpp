@@ -1,4 +1,5 @@
-#include "testSuite.h"
+#include <gtest/gtest.h>
+
 #include <unordered_set>
 
 using namespace std;
@@ -59,8 +60,7 @@ bool hasCycle(ListNode *head) {
   }
   return false;
 }
-int main() {
-  TestTimer timer;
+TEST(Problem, ExistingCases) {
 
   ListNode n6(6);
 
@@ -78,12 +78,12 @@ int main() {
   //   current = current->next;
   // }
   //
-  // ExpectFalse(hasCycleBruteForce(&n1));
-  // ExpectTrue(hasCycleBruteForce(&n4));
+  // EXPECT_FALSE(hasCycleBruteForce(&n1));
+  // EXPECT_TRUE(hasCycleBruteForce(&n4));
 
-  ExpectFalse(hasCycle(&n1));
-  ExpectTrue(hasCycle(&n4));
-  ExpectFalse(hasCycle(&n6));
+  EXPECT_FALSE(hasCycle(&n1));
+  EXPECT_TRUE(hasCycle(&n4));
+  EXPECT_FALSE(hasCycle(&n6));
 
   // current = reverseList(&n1);
   // while (current) {

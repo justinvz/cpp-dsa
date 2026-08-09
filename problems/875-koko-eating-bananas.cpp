@@ -1,6 +1,8 @@
-#include "testSuite.h"
+#include <gtest/gtest.h>
+
 #include <algorithm>
 #include <cmath>
+#include <vector>
 
 using namespace std;
 
@@ -59,10 +61,9 @@ int minEatingSpeed(vector<int> piles, int h) {
   return res;
 }
 
-int main() {
-  TestTimer timer;
+TEST(Problem, ExistingCases) {
 
-  ExpectEq(minEatingSpeed({3, 6, 7, 11}, 8), 4);
-  ExpectEq(minEatingSpeed({30, 11, 23, 4, 20}, 5), 30);
-  ExpectEq(minEatingSpeed({30, 11, 23, 4, 20}, 6), 23);
+  EXPECT_EQ(minEatingSpeed({3, 6, 7, 11}, 8), 4);
+  EXPECT_EQ(minEatingSpeed({30, 11, 23, 4, 20}, 5), 30);
+  EXPECT_EQ(minEatingSpeed({30, 11, 23, 4, 20}, 6), 23);
 }

@@ -1,4 +1,6 @@
-#include "testSuite.h"
+#include <gtest/gtest.h>
+
+#include <iostream>
 #include <queue>
 #include <vector>
 
@@ -53,8 +55,7 @@ vector<vector<int>> levelOrder(TreeNode *root) {
   return result;
 }
 
-int main() {
-  TestTimer timer;
+TEST(Problem, ExistingCases) {
 
   TreeNode node1(1);
   TreeNode node2(2);
@@ -78,4 +79,6 @@ int main() {
     }
     cout << endl;
   }
+
+  SUCCEED();
 }

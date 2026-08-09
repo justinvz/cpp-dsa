@@ -1,4 +1,5 @@
-#include "testSuite.h"
+#include <gtest/gtest.h>
+
 #include <climits>
 #include <limits>
 
@@ -35,8 +36,7 @@ bool isValidBST(TreeNode *root) {
 
   return dfs(root, LLONG_MIN, LLONG_MAX);
 }
-int main() {
-  TestTimer timer;
+TEST(Problem, ExistingCases) {
 
   TreeNode n9(9);
   TreeNode n7(7);
@@ -55,5 +55,5 @@ int main() {
   n5.right = &n7;
   n5.left = &n4;
 
-  ExpectEq(isValidBST(root), true);
+  EXPECT_EQ(isValidBST(root), true);
 }

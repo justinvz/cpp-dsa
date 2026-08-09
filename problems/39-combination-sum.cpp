@@ -1,5 +1,8 @@
-#include "testSuite.h"
+#include <gtest/gtest.h>
+
+#include <cstddef>
 #include <functional>
+#include <vector>
 
 using namespace std;
 
@@ -40,4 +43,4 @@ vector<vector<int>> combinationSum(vector<int> candidates, int target) {
   return result;
 }
 
-int main() {}
+TEST(Problem, ExistingCases) { SUCCEED(); }

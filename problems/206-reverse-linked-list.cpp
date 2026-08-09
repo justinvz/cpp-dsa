@@ -1,4 +1,6 @@
-#include "testSuite.h"
+#include <gtest/gtest.h>
+
+#include <iostream>
 
 using namespace std;
 
@@ -33,8 +35,7 @@ ListNode *reverseList(ListNode *head) {
   return prev;
 }
 
-int main() {
-  TestTimer timer;
+TEST(Problem, ExistingCases) {
 
   ListNode n5(5);
   ListNode n4(4, &n5);
@@ -53,4 +54,6 @@ int main() {
     std::cout << current->val << std::endl;
     current = current->next;
   }
+
+  SUCCEED();
 }

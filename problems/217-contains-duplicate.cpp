@@ -1,4 +1,5 @@
-#include "testSuite.h"
+#include <gtest/gtest.h>
+
 #include <unordered_set>
 #include <vector>
 
@@ -47,10 +48,10 @@ bool ContainsDuplicate(vector<int> &nums) {
   return false;
 }
 
-int main() {
+TEST(Problem, ExistingCases) {
   vector<int> nums = {1, 2, 3, 3};
-  ExpectTrue(ContainsDuplicate(nums));
+  EXPECT_TRUE(ContainsDuplicate(nums));
 
   nums = {1, 2, 3, 4};
-  ExpectFalse(ContainsDuplicate(nums));
+  EXPECT_FALSE(ContainsDuplicate(nums));
 }

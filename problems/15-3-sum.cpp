@@ -1,5 +1,8 @@
-#include "testSuite.h"
+#include <gtest/gtest.h>
+
 #include <algorithm>
+#include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -46,8 +49,7 @@ vector<vector<int>> ThreeSum(vector<int> nums) {
   return results;
 }
 
-int main() {
-  TestTimer timer;
+TEST(Problem, ExistingCases) {
 
   std::cout << "print" << std::endl;
   auto vect = ThreeSum({-1, 0, 1, 2, -1, -4});
@@ -75,4 +77,6 @@ int main() {
     }
     std::cout << '\n';
   }
+
+  SUCCEED();
 }

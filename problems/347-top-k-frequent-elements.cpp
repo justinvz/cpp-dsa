@@ -1,5 +1,7 @@
 
-#include "testSuite.h"
+#include <gtest/gtest.h>
+
+#include <algorithm>
 #include <unordered_map>
 #include <vector>
 
@@ -66,13 +68,19 @@ vector<int> TopKFrequent(vector<int> &nums, int k) {
   return result;
 }
 
-int main() {
+TEST(Problem, ExistingCases) {
   vector<int> nums = {1, 1, 1, 2, 2, 3};
-  ExpectEq(TopKFrequent(nums, 2), {1, 2});
+  auto result = TopKFrequent(nums, 2);
+  std::ranges::sort(result);
+  EXPECT_EQ(result, (std::vector<int>{1, 2}));
 
   nums = {1};
-  ExpectEq(TopKFrequent(nums, 1), {1});
+  result = TopKFrequent(nums, 1);
+  std::ranges::sort(result);
+  EXPECT_EQ(result, (std::vector<int>{1}));
 
   nums = {1, 2, 1, 2, 1, 2, 3, 1, 3, 2};
-  ExpectEq(TopKFrequent(nums, 2), {1, 2});
+  result = TopKFrequent(nums, 2);
+  std::ranges::sort(result);
+  EXPECT_EQ(result, (std::vector<int>{1, 2}));
 }

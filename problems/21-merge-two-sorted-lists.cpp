@@ -1,5 +1,7 @@
-#include "testSuite.h"
+#include <gtest/gtest.h>
+
 #include <cstddef>
+#include <iostream>
 #include <optional>
 
 using namespace std;
@@ -41,8 +43,7 @@ ListNode *mergeTwoLists(ListNode *list1, ListNode *list2) {
 
   return dummy.next;
 }
-int main() {
-  TestTimer timer;
+TEST(Problem, ExistingCases) {
 
   ListNode n5(5);
   ListNode n3(3, &n5);
@@ -59,4 +60,6 @@ int main() {
     std::cout << current->val << std::endl;
     current = current->next;
   }
+
+  SUCCEED();
 }

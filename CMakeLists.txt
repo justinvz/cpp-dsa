@@ -5,10 +5,17 @@ project(LeetCodeSolutions LANGUAGES CXX)
 include(CTest)
 
 if(BUILD_TESTING)
-  add_library(test-support INTERFACE)
-  target_include_directories(test-support INTERFACE
-    ${CMAKE_SOURCE_DIR}/test
+  include(FetchContent)
+
+  set(BUILD_GMOCK OFF CACHE BOOL "" FORCE)
+  set(INSTALL_GTEST OFF CACHE BOOL "" FORCE)
+  FetchContent_Declare(
+    googletest
+    URL https://github.com/google/googletest/archive/refs/tags/v1.17.0.tar.gz
+    DOWNLOAD_EXTRACT_TIMESTAMP TRUE
   )
+  FetchContent_MakeAvailable(googletest)
+  include(GoogleTest)
 endif()
 
 set(CMAKE_CXX_STANDARD 23)
@@ -24,21 +31,28 @@ else()
   add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
 
-# Automatically find all cpp files inside problems/
-file(GLOB PROBLEM_SOURCES CONFIGURE_DEPENDS
-  "${CMAKE_SOURCE_DIR}/problems/*.cpp"
-)
-
-# Create one executable per problem
-foreach(PROBLEM ${PROBLEM_SOURCES})
-  get_filename_component(PROBLEM_NAME ${PROBLEM} NAME_WE)
-
-  add_executable(${PROBLEM_NAME} ${PROBLEM})
-
-  target_include_directories(${PROBLEM_NAME} PRIVATE
-    ${CMAKE_SOURCE_DIR}/problems
-    ${CMAKE_SOURCE_DIR}/test
+if(BUILD_TESTING)
+  file(GLOB PROBLEM_SOURCES CONFIGURE_DEPENDS
+    "${CMAKE_SOURCE_DIR}/problems/*.cpp"
   )
-endforeach()
+
+  foreach(PROBLEM ${PROBLEM_SOURCES})
+    get_filename_component(PROBLEM_NAME ${PROBLEM} NAME_WE)
+
+    add_executable(${PROBLEM_NAME} ${PROBLEM})
+    target_include_directories(${PROBLEM_NAME} PRIVATE
+      ${CMAKE_SOURCE_DIR}/problems
+    )
+    target_link_libraries(${PROBLEM_NAME} PRIVATE
+      GTest::gtest_main
+    )
+
+    gtest_discover_tests(${PROBLEM_NAME}
+      TEST_PREFIX "${PROBLEM_NAME}::"
+      DISCOVERY_TIMEOUT 30
+      PROPERTIES TIMEOUT 30
+    )
+  endforeach()
+endif()
 
 add_subdirectory(containers/vector)

@@ -1,4 +1,8 @@
-#include "testSuite.h"
+#include <gtest/gtest.h>
+
+#include <algorithm>
+#include <cstddef>
+#include <string>
 #include <unordered_map>
 
 using namespace std;
@@ -27,9 +31,9 @@ int LengthOfLongestSubstring(string s) {
   return maxLength;
 }
 
-int main() {
-  ExpectEq(LengthOfLongestSubstring("abcabcbb"), 3);
-  ExpectEq(LengthOfLongestSubstring("bbbbb"), 1);
-  ExpectEq(LengthOfLongestSubstring("pwwkew"), 3);
-  ExpectEq(LengthOfLongestSubstring("abcabcbb"), 3);
+TEST(Problem, ExistingCases) {
+  EXPECT_EQ(LengthOfLongestSubstring("abcabcbb"), 3);
+  EXPECT_EQ(LengthOfLongestSubstring("bbbbb"), 1);
+  EXPECT_EQ(LengthOfLongestSubstring("pwwkew"), 3);
+  EXPECT_EQ(LengthOfLongestSubstring("abcabcbb"), 3);
 }

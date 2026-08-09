@@ -1,4 +1,6 @@
-#include "testSuite.h"
+#include <gtest/gtest.h>
+
+#include <algorithm>
 #include <vector>
 
 using namespace std;
@@ -54,9 +56,8 @@ int maxProfit(vector<int> prices) {
   return maxProfit;
 }
 
-int main() {
-  TestTimer timer;
-  ExpectEq(maxProfit({7, 1, 5, 3, 6, 4}), 5);
-  ExpectEq(maxProfit({7, 6, 4, 3, 1}), 0);
-  ExpectEq(maxProfit({1, 2, 3, 4, 5, 6}), 5);
+TEST(Problem, ExistingCases) {
+  EXPECT_EQ(maxProfit({7, 1, 5, 3, 6, 4}), 5);
+  EXPECT_EQ(maxProfit({7, 6, 4, 3, 1}), 0);
+  EXPECT_EQ(maxProfit({1, 2, 3, 4, 5, 6}), 5);
 }

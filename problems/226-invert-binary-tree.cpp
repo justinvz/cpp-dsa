@@ -1,4 +1,4 @@
-#include "testSuite.h"
+#include <gtest/gtest.h>
 
 using namespace std;
 
@@ -31,8 +31,7 @@ TreeNode *invertTree(TreeNode *root) {
   return root;
 }
 
-int main() {
-  TestTimer timer;
+TEST(Problem, ExistingCases) {
 
   TreeNode n9(9);
   TreeNode n7(7);
@@ -60,6 +59,8 @@ int main() {
   //   current = current->next;
   // }
   //
-  // ExpectFalse(hasCycleBruteForce(&n1));
-  // ExpectTrue(hasCycleBruteForce(&n4));
+  // EXPECT_FALSE(hasCycleBruteForce(&n1));
+  // EXPECT_TRUE(hasCycleBruteForce(&n4));
+
+  SUCCEED();
 }

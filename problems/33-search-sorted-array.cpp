@@ -1,4 +1,6 @@
-#include "testSuite.h"
+#include <gtest/gtest.h>
+
+#include <vector>
 
 using namespace std;
 
@@ -35,11 +37,10 @@ int search(vector<int> nums, int target) {
   return -1;
 }
 
-int main() {
-  TestTimer timer;
-  ExpectEq(search({0, 1, 2, 3, 4, 5, 6}, 0), 0);
-  ExpectEq(search({4, 5, 6, 7, 0, 1, 2}, 0), 4);
-  ExpectEq(search({6, 7, 0, 1, 2, 3}, 0), 2);
-  ExpectEq(search({4, 5, 6, 7, 0, 1, 2}, 3), -1);
-  ExpectEq(search({1}, 0), -1);
+TEST(Problem, ExistingCases) {
+  EXPECT_EQ(search({0, 1, 2, 3, 4, 5, 6}, 0), 0);
+  EXPECT_EQ(search({4, 5, 6, 7, 0, 1, 2}, 0), 4);
+  EXPECT_EQ(search({6, 7, 0, 1, 2, 3}, 0), 2);
+  EXPECT_EQ(search({4, 5, 6, 7, 0, 1, 2}, 3), -1);
+  EXPECT_EQ(search({1}, 0), -1);
 }

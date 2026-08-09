@@ -1,5 +1,8 @@
-#include "testSuite.h"
+#include <gtest/gtest.h>
+
+#include <cstddef>
 #include <functional>
+#include <vector>
 
 // @start 2026-07-22 18:10
 // @solved at 2026-07-26 19:29
@@ -54,10 +57,9 @@ int numIslands(vector<vector<char>> grid) {
   return groups;
 }
 
-int main() {
-  TestTimer timer;
+TEST(Problem, ExistingCases) {
 
-  ExpectEq(numIslands({
+  EXPECT_EQ(numIslands({
                {'1', '1', '0', '0'},
                {'1', '1', '0', '0'},
                {'0', '0', '0', '0'},
@@ -65,7 +67,7 @@ int main() {
            }),
            1);
 
-  ExpectEq(numIslands({
+  EXPECT_EQ(numIslands({
                {'1', '1', '0', '0'},
                {'1', '1', '0', '0'},
                {'0', '0', '1', '0'},
@@ -73,7 +75,7 @@ int main() {
            }),
            2);
 
-  ExpectEq(numIslands({
+  EXPECT_EQ(numIslands({
                {'1', '0', '1', '1', '1'},
                {'1', '0', '1', '0', '1'},
                {'1', '1', '1', '0', '1'},

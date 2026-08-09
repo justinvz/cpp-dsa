@@ -1,5 +1,7 @@
-#include "testSuite.h"
+#include <gtest/gtest.h>
+
 #include <stack>
+#include <string>
 #include <unordered_map>
 
 using namespace std;
@@ -33,12 +35,11 @@ bool IsValid(string s) {
   return stack.empty();
 }
 
-int main() {
-  TestTimer timer;
+TEST(Problem, ExistingCases) {
 
-  ExpectTrue(IsValid("()"));
-  ExpectTrue(IsValid("()[]{}"));
-  ExpectFalse(IsValid("(]"));
-  ExpectTrue(IsValid("([])"));
-  ExpectFalse(IsValid("([)]"));
+  EXPECT_TRUE(IsValid("()"));
+  EXPECT_TRUE(IsValid("()[]{}"));
+  EXPECT_FALSE(IsValid("(]"));
+  EXPECT_TRUE(IsValid("([])"));
+  EXPECT_FALSE(IsValid("([)]"));
 }

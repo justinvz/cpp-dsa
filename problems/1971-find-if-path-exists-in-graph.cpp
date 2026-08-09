@@ -1,4 +1,5 @@
-#include "testSuite.h"
+#include <gtest/gtest.h>
+
 #include <exception>
 #include <functional>
 #include <queue>
@@ -120,8 +121,7 @@ bool validPath([[maybe_unused]] int n, vector<vector<int>> &edges, int source,
   return false;
 }
 
-int main() {
-  TestTimer timer;
+TEST(Problem, ExistingCases) {
 
   {
     vector<vector<int>> edges{
@@ -130,7 +130,7 @@ int main() {
         {2, 0},
     };
 
-    ExpectTrue(validPath(3, edges, 0, 2), "path exists through a cycle");
+    EXPECT_TRUE(validPath(3, edges, 0, 2));
   }
 
   {
@@ -138,13 +138,13 @@ int main() {
         {0, 1}, {0, 2}, {3, 5}, {5, 4}, {4, 3},
     };
 
-    ExpectFalse(validPath(6, edges, 0, 5), "disconnected components");
+    EXPECT_FALSE(validPath(6, edges, 0, 5));
   }
 
   {
     vector<vector<int>> edges;
 
-    ExpectTrue(validPath(1, edges, 0, 0), "source is destination");
+    EXPECT_TRUE(validPath(1, edges, 0, 0));
   }
 
   {
@@ -155,7 +155,7 @@ int main() {
         {3, 4},
     };
 
-    ExpectTrue(validPath(5, edges, 0, 4), "path through several vertices");
+    EXPECT_TRUE(validPath(5, edges, 0, 4));
   }
 
   {
@@ -166,7 +166,7 @@ int main() {
         {4, 3},
     };
 
-    ExpectFalse(validPath(5, edges, 0, 5), "path through several vertices");
+    EXPECT_FALSE(validPath(5, edges, 0, 5));
   }
 
   {
@@ -174,6 +174,6 @@ int main() {
         {0, 1}, {0, 2}, {3, 5}, {4, 2}, {4, 3},
     };
 
-    ExpectTrue(validPath(5, edges, 0, 5), "path through several vertices");
+    EXPECT_TRUE(validPath(5, edges, 0, 5));
   }
 }

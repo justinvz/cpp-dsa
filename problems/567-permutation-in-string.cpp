@@ -1,4 +1,7 @@
-#include "testSuite.h"
+#include <gtest/gtest.h>
+
+#include <array>
+#include <string>
 #include <unordered_map>
 
 using namespace std;
@@ -34,8 +37,8 @@ bool checkInclusion(string s1, string s2) {
 
   return false;
 }
-int main() {
-  ExpectEq(checkInclusion("abc", "abc"), true);
-  ExpectEq(checkInclusion("abc", "jfacabb"), true);
-  ExpectEq(checkInclusion("abc", "abd"), false);
+TEST(Problem, ExistingCases) {
+  EXPECT_EQ(checkInclusion("abc", "abc"), true);
+  EXPECT_EQ(checkInclusion("abc", "jfacabb"), true);
+  EXPECT_EQ(checkInclusion("abc", "abd"), false);
 }

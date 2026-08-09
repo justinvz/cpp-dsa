@@ -1,5 +1,9 @@
-#include "testSuite.h"
+#include <gtest/gtest.h>
+
+#include <algorithm>
+#include <cstddef>
 #include <functional>
+#include <vector>
 
 // @start 2026-07-22 21:57
 // @solved at 2026-07-26 22:13
@@ -53,17 +57,16 @@ int maxAreaOfIsland(vector<vector<int>> grid) {
   return maxArea;
 }
 
-int main() {
-  TestTimer timer;
+TEST(Problem, ExistingCases) {
 
-  ExpectEq(maxAreaOfIsland({
+  EXPECT_EQ(maxAreaOfIsland({
                {1, 1, 0, 0},
                {1, 1, 0, 0},
                {0, 0, 0, 0},
                {0, 0, 0, 0},
            }),
            4);
-  ExpectEq(maxAreaOfIsland({
+  EXPECT_EQ(maxAreaOfIsland({
                {1, 1, 0, 0, 0, 1, 0},
                {1, 1, 0, 0, 1, 1, 0},
                {0, 0, 0, 0, 1, 1, 0},
@@ -74,7 +77,7 @@ int main() {
            }),
            5);
 
-  ExpectEq(maxAreaOfIsland({
+  EXPECT_EQ(maxAreaOfIsland({
                {1, 1, 0, 0, 0, 1, 0},
                {1, 1, 0, 0, 1, 1, 0},
                {0, 0, 0, 0, 1, 1, 0},
@@ -85,7 +88,7 @@ int main() {
            }),
            6);
 
-  ExpectEq(maxAreaOfIsland({
+  EXPECT_EQ(maxAreaOfIsland({
 
                {0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0},
                {0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0},

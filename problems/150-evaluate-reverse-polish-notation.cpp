@@ -1,5 +1,8 @@
-#include "testSuite.h"
+#include <gtest/gtest.h>
+
 #include <stack>
+#include <string>
+#include <vector>
 
 using namespace std;
 
@@ -61,10 +64,9 @@ int evalRPN(vector<string> tokens) {
   return stack.top();
 }
 
-int main() {
-  TestTimer timer;
+TEST(Problem, ExistingCases) {
 
   vector<string> tokens = {"10", "6", "9",  "3", "+", "-11", "*",
                            "/",  "*", "17", "+", "5", "+"};
-  ExpectEq(evalRPN(tokens), 22);
+  EXPECT_EQ(evalRPN(tokens), 22);
 }

@@ -1,4 +1,5 @@
-#include "testSuite.h"
+#include <gtest/gtest.h>
+
 #include <vector>
 
 using namespace std;
@@ -63,7 +64,7 @@ bool IsValidSudoku(vector<vector<char>> &board) {
   return true;
 }
 
-int main() {
+TEST(Problem, ExistingCases) {
 
   vector<vector<char>> board1 = {{'5', '3', '.', '.', '7', '.', '.', '.', '.'},
                                  {'6', '.', '.', '1', '9', '5', '.', '.', '.'},
@@ -85,6 +86,6 @@ int main() {
                                  {'.', '.', '.', '4', '1', '9', '.', '.', '5'},
                                  {'.', '.', '.', '.', '8', '.', '.', '7', '9'}};
 
-  ExpectTrue(IsValidSudoku(board1));
-  ExpectFalse(IsValidSudoku(board2));
+  EXPECT_TRUE(IsValidSudoku(board1));
+  EXPECT_FALSE(IsValidSudoku(board2));
 }

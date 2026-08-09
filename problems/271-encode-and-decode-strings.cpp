@@ -1,4 +1,7 @@
-#include "testSuite.h"
+#include <gtest/gtest.h>
+
+#include <cstddef>
+#include <string>
 #include <vector>
 
 using namespace std;
@@ -43,13 +46,13 @@ vector<string> Decode(string str) {
   return parts;
 }
 
-int main() {
+TEST(Problem, ExistingCases) {
   vector<string> str{"Hello, ", "World"};
-  ExpectEq(str, Decode(Encode(str)));
+  EXPECT_EQ(str, Decode(Encode(str)));
 
   str = {"13DFDAF3242!@#@!, ", "World"};
-  ExpectEq(str, Decode(Encode(str)));
+  EXPECT_EQ(str, Decode(Encode(str)));
 
   str = {"Hello, ", "34242$$1232"};
-  ExpectEq(str, Decode(Encode(str)));
+  EXPECT_EQ(str, Decode(Encode(str)));
 }

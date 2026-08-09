@@ -1,4 +1,4 @@
-#include "testSuite.h"
+#include <gtest/gtest.h>
 
 using namespace std;
 
@@ -42,8 +42,7 @@ int Traverse(TreeNode *node, int highestValue) {
 
 int goodNodes(TreeNode *root) { return Traverse(root, root->val); }
 
-int main() {
-  TestTimer timer;
+TEST(Problem, ExistingCases) {
 
   TreeNode n9(9);
   TreeNode n7(7);
@@ -63,5 +62,5 @@ int main() {
   n4.left = &n5;
   n4.right = &n6;
 
-  ExpectEq(goodNodes(root), 4);
+  EXPECT_EQ(goodNodes(root), 4);
 }

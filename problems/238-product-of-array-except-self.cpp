@@ -1,5 +1,7 @@
 
-#include "testSuite.h"
+#include <gtest/gtest.h>
+
+#include <cstddef>
 #include <vector>
 
 using namespace std;
@@ -35,8 +37,10 @@ vector<int> ProductExcpetSelf(vector<int> nums) {
   return result;
 }
 
-int main() {
-  ExpectEq(ProductExcpetSelf({1, 2, 4, 6}), {48, 24, 12, 8});
-  ExpectEq(ProductExcpetSelf({-1, 0, 1, 2, 3}), {0, -6, 0, 0, 0});
-  ExpectEq(ProductExcpetSelf({0, 0}), {0, 0});
+TEST(Problem, ExistingCases) {
+  EXPECT_EQ(ProductExcpetSelf({1, 2, 4, 6}),
+            (std::vector<int>{48, 24, 12, 8}));
+  EXPECT_EQ(ProductExcpetSelf({-1, 0, 1, 2, 3}),
+            (std::vector<int>{0, -6, 0, 0, 0}));
+  EXPECT_EQ(ProductExcpetSelf({0, 0}), (std::vector<int>{0, 0}));
 }

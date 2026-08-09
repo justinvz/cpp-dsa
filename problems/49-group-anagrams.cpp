@@ -1,5 +1,8 @@
-#include "testSuite.h"
+#include <gtest/gtest.h>
+
 #include <algorithm>
+#include <cstddef>
+#include <string>
 #include <unordered_map>
 #include <vector>
 
@@ -54,7 +57,8 @@ vector<vector<string>> GroupedAnagram(vector<string> &strs) {
   return grouped;
 }
 
-int main() {
+TEST(Problem, ExistingCases) {
   // auto nums = std::vector<int>{2, 7, 11, 15};
-  // ExpectEq(TwoSum(nums, 9), std::vector<int>{0, 1});
+  // EXPECT_EQ(TwoSum(nums, 9), (std::vector<int>{0, 1}));
+  SUCCEED();
 }

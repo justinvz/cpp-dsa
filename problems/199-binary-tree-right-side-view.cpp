@@ -1,5 +1,7 @@
-#include "testSuite.h"
+#include <gtest/gtest.h>
+
 #include <queue>
+#include <vector>
 
 using namespace std;
 
@@ -52,8 +54,7 @@ vector<int> rightSideView(TreeNode *root) {
   return result;
 }
 
-int main() {
-  TestTimer timer;
+TEST(Problem, ExistingCases) {
 
   TreeNode node1(1);
   TreeNode node2(2);
@@ -74,5 +75,5 @@ int main() {
   node3.left = &node6;
   node3.right = &node7;
 
-  ExpectEq(rightSideView(&node1), {1, 3, 7});
+  EXPECT_EQ(rightSideView(&node1), (std::vector<int>{1, 3, 7}));
 }

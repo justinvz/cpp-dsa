@@ -1,5 +1,8 @@
-#include "testSuite.h"
+#include <gtest/gtest.h>
+
+#include <array>
 #include <memory>
+#include <string>
 
 /// @starttim 19:10 19-07-2026
 /// @endtime 19:25 19-07-2026
@@ -81,15 +84,15 @@ public:
   };
 };
 
-int main() {
+TEST(Problem, ExistingCases) {
   auto trie = make_unique<Trie>();
 
   trie->insert("apple");
-  ExpectTrue(trie->search("apple"));
-  ExpectFalse(trie->search("app"));
+  EXPECT_TRUE(trie->search("apple"));
+  EXPECT_FALSE(trie->search("app"));
 
-  ExpectTrue(trie->startWith("app"));
+  EXPECT_TRUE(trie->startWith("app"));
 
   trie->insert("app");
-  ExpectTrue(trie->search("app"));
+  EXPECT_TRUE(trie->search("app"));
 }

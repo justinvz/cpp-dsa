@@ -1,4 +1,4 @@
-#include "testSuite.h"
+#include <gtest/gtest.h>
 
 using namespace std;
 
@@ -32,8 +32,7 @@ TreeNode *lowestCommonAncestor(TreeNode *root, TreeNode *p, TreeNode *q) {
   return nullptr;
 }
 
-int main() {
-  TestTimer timer;
+TEST(Problem, ExistingCases) {
 
   TreeNode node1(1);
   TreeNode node2(2);
@@ -52,8 +51,10 @@ int main() {
   node8.right = &node9;
 
   auto result = lowestCommonAncestor(&node6, &node2, &node8);
-  ExpectEq(result->val, node6.val);
+  ASSERT_NE(result, nullptr);
+  EXPECT_EQ(result->val, node6.val);
 
   result = lowestCommonAncestor(&node6, &node7, &node9);
-  ExpectEq(result->val, node8.val);
+  ASSERT_NE(result, nullptr);
+  EXPECT_EQ(result->val, node8.val);
 }

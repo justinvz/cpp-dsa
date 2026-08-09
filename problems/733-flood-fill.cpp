@@ -1,4 +1,5 @@
-#include "testSuite.h"
+#include <gtest/gtest.h>
+
 #include <functional>
 #include <unordered_set>
 #include <vector>
@@ -64,8 +65,7 @@ vector<vector<int>> floodFill(vector<vector<int>> &image, int sr, int sc,
   return image;
 }
 
-int main() {
-  TestTimer timer;
+TEST(Problem, ExistingCases) {
 
   {
     vector<vector<int>> image{
@@ -79,7 +79,7 @@ int main() {
         {2, 0, 1},
     };
 
-    ExpectTrue(floodFill(image, 1, 1, 2) == expected, "fills connected pixels");
+    EXPECT_EQ(floodFill(image, 1, 1, 2), expected) << "fills connected pixels";
   }
 
   {
@@ -89,7 +89,7 @@ int main() {
     };
     const vector<vector<int>> expected = image;
 
-    ExpectTrue(floodFill(image, 0, 0, 0) == expected, "same replacement color");
+    EXPECT_EQ(floodFill(image, 0, 0, 0), expected) << "same replacement color";
   }
 
   {
@@ -104,7 +104,7 @@ int main() {
         {0, 1, 1},
     };
 
-    ExpectTrue(floodFill(image, 0, 0, 3) == expected,
-               "does not cross diagonal gaps");
+    EXPECT_EQ(floodFill(image, 0, 0, 3), expected)
+        << "does not cross diagonal gaps";
   }
 }

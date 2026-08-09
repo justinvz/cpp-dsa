@@ -1,5 +1,9 @@
-#include "testSuite.h"
+#include <gtest/gtest.h>
+
+#include <array>
+#include <cstddef>
 #include <memory>
+#include <string>
 
 /// @starttim 19:30 19-07-2026
 
@@ -23,7 +27,7 @@ private:
 public:
   WordDictionary() { rootNode = TrieNode(); }
 
-  void addWord(string word) {
+  void addWord(std::string word) {
     TrieNode *currentNode = &rootNode;
 
     for (const auto &c : word) {
@@ -41,10 +45,10 @@ public:
     currentNode->isLeaf = true;
   }
 
-  bool dfs(string &word, size_t index, TrieNode *rootNode) {
+  bool dfs(std::string &word, std::size_t index, TrieNode *rootNode) {
     auto currentNodeDfs = rootNode;
 
-    for (size_t i = index; i < word.size(); i++) {
+    for (std::size_t i = index; i < word.size(); i++) {
       auto c = word[i];
       auto charIndex = static_cast<int>(c) - 'a';
 
@@ -70,19 +74,19 @@ public:
     return currentNodeDfs->isLeaf;
   };
 
-  bool search(string word) { return dfs(word, 0, &rootNode); }
+  bool search(std::string word) { return dfs(word, 0, &rootNode); }
 };
 
-int main() {
+TEST(Problem, ExistingCases) {
   WordDictionary dict;
   dict.addWord("bad");
   dict.addWord("dad");
   dict.addWord("mad");
 
-  ExpectFalse(dict.search("pad"));
+  EXPECT_FALSE(dict.search("pad"));
 
-  ExpectTrue(dict.search("bad"));
-  ExpectTrue(dict.search(".ad"));
+  EXPECT_TRUE(dict.search("bad"));
+  EXPECT_TRUE(dict.search(".ad"));
 
-  ExpectTrue(dict.search("b.."));
+  EXPECT_TRUE(dict.search("b.."));
 }

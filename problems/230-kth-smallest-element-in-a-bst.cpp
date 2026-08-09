@@ -1,4 +1,5 @@
-#include "testSuite.h"
+#include <gtest/gtest.h>
+
 #include <queue>
 
 using namespace std;
@@ -46,8 +47,7 @@ int kthSmallest(TreeNode *root, int k) {
   return result;
 }
 
-int main() {
-  TestTimer timer;
+TEST(Problem, ExistingCases) {
 
   TreeNode n9(9);
   TreeNode n7(7);
@@ -67,10 +67,10 @@ int main() {
   n3.right = &n4;
   n5.right = &n6;
 
-  ExpectEq(kthSmallest(root, 1), 1);
-  ExpectEq(kthSmallest(root, 2), 2);
-  ExpectEq(kthSmallest(root, 3), 3);
-  ExpectEq(kthSmallest(root, 4), 4);
-  ExpectEq(kthSmallest(root, 5), 5);
-  ExpectEq(kthSmallest(root, 6), 6);
+  EXPECT_EQ(kthSmallest(root, 1), 1);
+  EXPECT_EQ(kthSmallest(root, 2), 2);
+  EXPECT_EQ(kthSmallest(root, 3), 3);
+  EXPECT_EQ(kthSmallest(root, 4), 4);
+  EXPECT_EQ(kthSmallest(root, 5), 5);
+  EXPECT_EQ(kthSmallest(root, 6), 6);
 }

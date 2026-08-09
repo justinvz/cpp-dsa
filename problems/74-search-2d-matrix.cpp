@@ -1,4 +1,8 @@
-#include "testSuite.h"
+#include <gtest/gtest.h>
+
+#include <vector>
+
+using std::vector;
 
 // Start (14-05-2026) (13:13) sovled at (14:44)
 //
@@ -83,12 +87,13 @@ bool SearchMatrix(vector<vector<int>> nums, int target) {
   return false;
 }
 
-int main() {
-  TestTimer timer;
-  ExpectEq(SearchMatrix({{1, 2}, {3, 4}}, 3), true);
+TEST(Problem, ExistingCases) {
+  EXPECT_EQ(SearchMatrix({{1, 2}, {3, 4}}, 3), true);
 
-  ExpectEq(SearchMatrix({{1, 3, 5, 7}, {10, 11, 16, 29}, {23, 30, 34, 60}}, 7),
-           true);
-  ExpectEq(SearchMatrix({{1, 3, 5, 7}, {10, 11, 16, 29}, {23, 30, 34, 60}}, 13),
-           false);
+  EXPECT_EQ(
+      SearchMatrix({{1, 3, 5, 7}, {10, 11, 16, 29}, {23, 30, 34, 60}}, 7),
+      true);
+  EXPECT_EQ(
+      SearchMatrix({{1, 3, 5, 7}, {10, 11, 16, 29}, {23, 30, 34, 60}}, 13),
+      false);
 }

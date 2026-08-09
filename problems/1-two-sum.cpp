@@ -1,4 +1,6 @@
-#include "testSuite.h"
+#include <gtest/gtest.h>
+
+#include <cstddef>
 #include <unordered_map>
 #include <vector>
 
@@ -43,13 +45,13 @@ vector<size_t> TwoSum(vector<int> &nums, int target) {
   return {}; // Highly unlikely
 }
 
-int main() {
+TEST(Problem, ExistingCases) {
   auto nums = std::vector<int>{2, 7, 11, 15};
-  ExpectEq(TwoSum(nums, 9), {0, 1});
+  EXPECT_EQ(TwoSum(nums, 9), (std::vector<size_t>{0, 1}));
 
   nums = std::vector<int>{3, 2, 4};
-  ExpectEq(TwoSum(nums, 6), {1, 2});
+  EXPECT_EQ(TwoSum(nums, 6), (std::vector<size_t>{1, 2}));
 
   nums = std::vector<int>{3, 3};
-  ExpectEq(TwoSum(nums, 6), {0, 1});
+  EXPECT_EQ(TwoSum(nums, 6), (std::vector<size_t>{0, 1}));
 }

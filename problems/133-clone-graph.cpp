@@ -1,4 +1,5 @@
-#include "testSuite.h"
+#include <gtest/gtest.h>
+
 #include <memory>
 #include <queue>
 #include <unordered_map>
@@ -88,12 +89,13 @@ Node *cloneGraph(Node *node) {
 void TestCase1();
 void TestCase2();
 
-int main() {
-  TestTimer timer;
+TEST(Problem, ExistingCases) {
 
   Node *node1 = new Node(1);
+  Node *cloned = cloneGraph(node1);
 
-  ExpectEq(cloneGraph(node1)->val, node1->val);
+  ASSERT_TRUE(cloned);
+  EXPECT_EQ(cloned->val, node1->val);
 
   TestCase1();
   TestCase2();
@@ -106,14 +108,14 @@ void TestCase1() {
 
   Node *cloned = cloneGraph(node1.get());
 
-  ExpectTrue(cloned);
-
-  if (cloned) {
-    ExpectEq(cloned->val, node1->val);
-    ExpectEq(cloned->neighbors.size(), node1->neighbors.size());
-    ExpectEq(cloned->neighbors.front()->val, node1->neighbors.front()->val);
-    ExpectEq(cloned->neighbors.front()->val, node2->val);
-  }
+  ASSERT_TRUE(cloned);
+  EXPECT_EQ(cloned->val, node1->val);
+  EXPECT_EQ(cloned->neighbors.size(), node1->neighbors.size());
+  ASSERT_FALSE(cloned->neighbors.empty());
+  ASSERT_FALSE(node1->neighbors.empty());
+  ASSERT_TRUE(cloned->neighbors.front());
+  EXPECT_EQ(cloned->neighbors.front()->val, node1->neighbors.front()->val);
+  EXPECT_EQ(cloned->neighbors.front()->val, node2->val);
 }
 
 void TestCase2() {
@@ -136,12 +138,12 @@ void TestCase2() {
 
   Node *cloned = cloneGraph(node1.get());
 
-  ExpectTrue(cloned);
-
-  if (cloned) {
-    ExpectEq(cloned->val, node1->val);
-    ExpectEq(cloned->neighbors.size(), node1->neighbors.size());
-    ExpectEq(cloned->neighbors.front()->val, node1->neighbors.front()->val);
-    ExpectEq(cloned->neighbors.front()->val, node2->val);
-  }
+  ASSERT_TRUE(cloned);
+  EXPECT_EQ(cloned->val, node1->val);
+  EXPECT_EQ(cloned->neighbors.size(), node1->neighbors.size());
+  ASSERT_FALSE(cloned->neighbors.empty());
+  ASSERT_FALSE(node1->neighbors.empty());
+  ASSERT_TRUE(cloned->neighbors.front());
+  EXPECT_EQ(cloned->neighbors.front()->val, node1->neighbors.front()->val);
+  EXPECT_EQ(cloned->neighbors.front()->val, node2->val);
 }

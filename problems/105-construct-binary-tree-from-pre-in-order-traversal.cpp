@@ -1,5 +1,7 @@
-#include "testSuite.h"
+#include <gtest/gtest.h>
+
 #include <unordered_map>
+#include <vector>
 
 using namespace std;
 
@@ -57,8 +59,8 @@ TreeNode *buildTree(vector<int> preorder, vector<int> inorder) {
                pos);
 }
 
-int main() {
-  TestTimer timer;
+TEST(Problem, ExistingCases) {
 
   auto tree = buildTree({3, 9, 20, 15, 7}, {9, 3, 15, 20, 7});
+  SUCCEED();
 }

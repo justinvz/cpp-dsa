@@ -1,4 +1,5 @@
-#include "testSuite.h"
+#include <gtest/gtest.h>
+
 #include <limits>
 #include <stack>
 
@@ -35,15 +36,14 @@ private:
   std::stack<int> min;
 };
 
-int main() {
-  TestTimer timer;
+TEST(Problem, ExistingCases) {
 
   MinStack stack;
   stack.push(-2);
   stack.push(0);
   stack.push(-3);
-  ExpectEq(stack.getMin(), -3);
+  EXPECT_EQ(stack.getMin(), -3);
   stack.pop();
-  ExpectEq(stack.top(), 0);
-  ExpectEq(stack.getMin(), -2);
+  EXPECT_EQ(stack.top(), 0);
+  EXPECT_EQ(stack.getMin(), -2);
 }

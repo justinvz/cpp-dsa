@@ -1,5 +1,7 @@
 
-#include "testSuite.h"
+#include <gtest/gtest.h>
+
+#include <vector>
 
 using namespace std;
 
@@ -45,9 +47,8 @@ int MaxArea(vector<int> height) {
   return largestArea;
 }
 
-int main() {
-  TestTimer timer;
-  ExpectEq(MaxArea({1, 7, 2, 5, 4, 7, 3, 6}), 36);
-  ExpectEq(MaxArea({1, 8, 6, 2, 5, 4, 8, 3, 7}), 49);
-  ExpectEq(MaxArea({1, 1}), 1);
+TEST(Problem, ExistingCases) {
+  EXPECT_EQ(MaxArea({1, 7, 2, 5, 4, 7, 3, 6}), 36);
+  EXPECT_EQ(MaxArea({1, 8, 6, 2, 5, 4, 8, 3, 7}), 49);
+  EXPECT_EQ(MaxArea({1, 1}), 1);
 }

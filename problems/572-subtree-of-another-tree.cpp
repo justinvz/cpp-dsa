@@ -1,4 +1,4 @@
-#include "testSuite.h"
+#include <gtest/gtest.h>
 
 using namespace std;
 
@@ -59,8 +59,7 @@ bool isSubtree(TreeNode *root, TreeNode *subRoot) {
   return Traverse(root, subRoot, subRoot->val);
 }
 
-int main() {
-  TestTimer timer;
+TEST(Problem, ExistingCases) {
 
   TreeNode n5(5);
   TreeNode n4(4);
@@ -76,8 +75,8 @@ int main() {
 
   TreeNode *root = &n3;
 
-  ExpectTrue(isSubtree(root, &n4));
-  // ExpectTrue(isSubtree(root, root));
+  EXPECT_TRUE(isSubtree(root, &n4));
+  // EXPECT_TRUE(isSubtree(root, root));
 
   TreeNode n10(0);
   TreeNode n9(2);
@@ -88,5 +87,5 @@ int main() {
   n6.left = &n7;
   n6.right = &n9;
 
-  // ExpectFalse(isSubtree(root, &n6));
+  // EXPECT_FALSE(isSubtree(root, &n6));
 }

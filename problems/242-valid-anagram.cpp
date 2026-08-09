@@ -1,4 +1,7 @@
-#include "testSuite.h"
+#include <gtest/gtest.h>
+
+#include <array>
+#include <string>
 
 using namespace std;
 
@@ -60,11 +63,11 @@ bool IsAnagram(string s, string t) {
   return true;
 }
 
-int main() {
-  ExpectTrue(IsAnagram("stapel", "pastel"));
-  ExpectTrue(IsAnagram("spreektaal", "speelkaart"));
-  ExpectTrue(IsAnagram("anagram", "nagaram"));
-  ExpectFalse(IsAnagram("rat", "car"));
-  ExpectFalse(IsAnagram("poep", "goed"));
-  ExpectFalse(IsAnagram("kak", "pap"));
+TEST(Problem, ExistingCases) {
+  EXPECT_TRUE(IsAnagram("stapel", "pastel"));
+  EXPECT_TRUE(IsAnagram("spreektaal", "speelkaart"));
+  EXPECT_TRUE(IsAnagram("anagram", "nagaram"));
+  EXPECT_FALSE(IsAnagram("rat", "car"));
+  EXPECT_FALSE(IsAnagram("poep", "goed"));
+  EXPECT_FALSE(IsAnagram("kak", "pap"));
 }

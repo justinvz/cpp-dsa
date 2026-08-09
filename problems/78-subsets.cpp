@@ -1,5 +1,8 @@
-#include "testSuite.h"
+#include <gtest/gtest.h>
+
+#include <cstddef>
 #include <functional>
+#include <vector>
 
 using namespace std;
 
@@ -29,7 +32,8 @@ vector<vector<int>> subsets(vector<int> nums) {
   return result;
 }
 
-int main() {
+TEST(Problem, ExistingCases) {
   subsets({1, 2, 3});
   subsets({1, 2, 3, 4});
+  SUCCEED();
 }

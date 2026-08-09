@@ -1,6 +1,10 @@
-#include "testSuite.h"
+#include <gtest/gtest.h>
+
+#include <algorithm>
+#include <cstdlib>
 #include <unordered_map>
 #include <unordered_set>
+#include <vector>
 
 using namespace std;
 
@@ -48,7 +52,7 @@ int LongestConsecutiveV1(vector<int> nums) {
   return best;
 }
 
-int main() {
+TEST(Problem, ExistingCases) {
 
   int itterations = 10;
   vector<int> nums;
@@ -58,15 +62,15 @@ int main() {
   }
 
   {
-    TestTimer timer;
     for (int i = 0; i < itterations; i++) {
       LongestConsecutiveV1(nums);
     }
   }
 
   // nums = {0, 3, 7, 2, 5, 8, 4, 6, 0, 1};
-  // ExpectEq(LongestConsecutive(nums), 9);
+  // EXPECT_EQ(LongestConsecutive(nums), 9);
   //
   // nums = {1, 0, 1, 2};
-  // ExpectEq(LongestConsecutive(nums), 3);
+  // EXPECT_EQ(LongestConsecutive(nums), 3);
+  SUCCEED();
 }
