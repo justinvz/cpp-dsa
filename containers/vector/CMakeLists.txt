@@ -18,6 +18,14 @@ if(BUILD_TESTING)
     add_executable(vector-tests vectorTests.cpp)
     target_link_libraries(vector-tests PRIVATE learning-vector test-support)
 
+    if(CMAKE_CXX_COMPILER_ID MATCHES "Clang|GNU")
+      target_compile_options(vector-tests PRIVATE
+        -fsanitize=address
+        -fno-omit-frame-pointer
+      )
+      target_link_options(vector-tests PRIVATE -fsanitize=address)
+    endif()
+
     add_test(NAME vector-tests COMMAND vector-tests)
   else()
     message(STATUS
