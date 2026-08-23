@@ -8,14 +8,14 @@ _Through 2026-08-23._ Repeated attempts are included unless stated otherwise.
 
 | Metric | Result |
 | --- | ---: |
-| Attempts | 57 |
-| Unique problems | 56 |
-| Difficulty | 18 easy, 39 medium, 0 hard |
-| Timed attempts | 55 of 57 |
+| Attempts | 58 |
+| Unique problems | 57 |
+| Difficulty | 19 easy, 39 medium, 0 hard |
+| Timed attempts | 56 of 58 |
 | Median solve time | 00:28 |
 | Average solve time | 00:37 |
-| Solved within 30 minutes | 32 of 55 (58%) |
-| Easy average / median | 00:30 / 00:20 |
+| Solved within 30 minutes | 33 of 56 (59%) |
+| Easy average / median | 00:29 / 00:20 |
 | Medium average / median | 00:41 / 00:29 |
 
 ### What the results show
@@ -86,6 +86,7 @@ _Through 2026-08-23._ Repeated attempts are included unless stated otherwise.
 | 2026-08-23 | 19-remove-nth-node-from-end-of-list | Medium | 00:39 | 1 |
 | 2026-08-23 | 138-copy-list-with-random-pointer | Medium | 00:16 | 1 |
 | 2026-08-23 | 2-add-two-numbers | Medium | 00:48 | 1 |
+| 2026-08-23 | 136-single-number | Easy | 00:05 | 1 |
 
 ## Revisit Queue
 
@@ -99,6 +100,10 @@ _Through 2026-08-23._ Repeated attempts are included unless stated otherwise.
 | 2026-08-23 | 2-add-two-numbers | Medium | Needed the final carry-safe implementation; redo independently. |
 
 ## Problem Notes
+
+### 136-single-number
+
+I independently solved this in about five minutes using XOR cancellation for O(n) time and O(1) auxiliary space. I then examined the unoptimized assembly generated for the loop and noticed the importance of initializing the accumulator to zero. Confidence was not recorded.
 
 ### 2-add-two-numbers
 
