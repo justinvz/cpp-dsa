@@ -8,20 +8,20 @@ _Through 2026-08-23._ Repeated attempts are included unless stated otherwise.
 
 | Metric | Result |
 | --- | ---: |
-| Attempts | 55 |
-| Unique problems | 54 |
-| Difficulty | 18 easy, 37 medium, 0 hard |
-| Timed attempts | 53 of 55 |
+| Attempts | 56 |
+| Unique problems | 55 |
+| Difficulty | 18 easy, 38 medium, 0 hard |
+| Timed attempts | 54 of 56 |
 | Median solve time | 00:28 |
-| Average solve time | 00:38 |
-| Solved within 30 minutes | 31 of 53 (58%) |
+| Average solve time | 00:37 |
+| Solved within 30 minutes | 32 of 54 (59%) |
 | Easy average / median | 00:30 / 00:20 |
-| Medium average / median | 00:41 / 00:29 |
+| Medium average / median | 00:40 / 00:28 |
 
 ### What the results show
 
 - The median is a better target than the average: a few 60-160 minute sessions pull the average up.
-- Medium problems are becoming the norm: 37 of 55 attempts were medium.
+- Medium problems are becoming the norm: 38 of 56 attempts were medium.
 - Trees and BSTs are the strongest area by volume, with 13 attempts.
 - The next useful tracking fields are whether help was needed and confidence after solving. They will make revisits easier to prioritize than time alone.
 
@@ -84,6 +84,7 @@ _Through 2026-08-23._ Repeated attempts are included unless stated otherwise.
 | 2026-08-23 | 143-reorder-list | Medium | 00:18 | 3 |
 | 2026-08-23 | 994-rotting-oranges | Medium | 00:57 | 1 |
 | 2026-08-23 | 19-remove-nth-node-from-end-of-list | Medium | 00:39 | 1 |
+| 2026-08-23 | 138-copy-list-with-random-pointer | Medium | 00:16 | 1 |
 
 ## Revisit Queue
 
@@ -96,6 +97,10 @@ _Through 2026-08-23._ Repeated attempts are included unless stated otherwise.
 | 2026-08-23 | 143-reorder-list | Medium | Reimplement the O(1)-space split, reverse, and merge approach independently. |
 
 ## Problem Notes
+
+### 138-copy-list-with-random-pointer
+
+I independently completed the standard two-pass hash-map solution in 16 minutes. The first pass creates one copied node per original node, and the second uses the original-to-copy mapping to connect both pointer fields. The solution is O(n) average time and O(n) auxiliary space and passed empty, null-random, self-random, and mixed-reference tests. I learned the O(1)-auxiliary-space interleaving technique afterward but chose to keep my original solution. Confidence was not recorded.
 
 ### 19-remove-nth-node-from-end-of-list
 
