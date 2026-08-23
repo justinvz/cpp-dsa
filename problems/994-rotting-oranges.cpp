@@ -1,7 +1,6 @@
 #include <gtest/gtest.h>
 
 #include <queue>
-#include <unordered_set>
 #include <vector>
 
 /// @problem 994. Rotting Oranges
@@ -30,6 +29,8 @@ struct Position {
   int y;
   int time{0};
 };
+
+constexpr int directions[4][2]{{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
 
 int orangesRotting(std::vector<std::vector<int>> &grid) {
   if (grid.empty() || grid[0].empty()) {
@@ -68,35 +69,19 @@ int orangesRotting(std::vector<std::vector<int>> &grid) {
       return current.time;
     }
 
-    if (current.x + 1 < static_cast<int>(grid.size())) {
-      if (grid[current.x + 1][current.y] == 1) {
-        grid[current.x + 1][current.y] = 2;
-        queue.push(Position{current.x + 1, current.y, current.time + 1});
-      }
-    }
+    for (const auto &[rowChange, columnChange] : directions) {
+      int nextRow = current.x + rowChange;
+      int nextColumn = current.y + columnChange;
 
-    if (current.x - 1 >= 0) {
-      if (grid[current.x - 1][current.y] == 1) {
-        grid[current.x - 1][current.y] = 2;
-        queue.push(Position{current.x - 1, current.y, current.time + 1});
-      }
-    }
-
-    if (current.y + 1 < static_cast<int>(grid[0].size())) {
-      if (grid[current.x][current.y + 1] == 1) {
-        grid[current.x][current.y + 1] = 2;
-        queue.push(Position{current.x, current.y + 1, current.time + 1});
-      }
-    }
-
-    if (current.y - 1 >= 0) {
-      if (grid[current.x][current.y - 1] == 1) {
-        grid[current.x][current.y - 1] = 2;
-        queue.push(Position{current.x, current.y - 1, current.time + 1});
+      if (nextRow >= 0 && nextRow < static_cast<int>(grid.size()) &&
+          nextColumn >= 0 && nextColumn < static_cast<int>(grid[0].size())) {
+        if (grid[nextRow][nextColumn] == 1) {
+          grid[nextRow][nextColumn] = 2;
+          queue.push(Position{nextRow, nextColumn, current.time + 1});
+        }
       }
     }
   }
-
   return -1;
 }
 
