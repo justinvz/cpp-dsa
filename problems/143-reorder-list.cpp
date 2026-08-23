@@ -1,7 +1,6 @@
 #include <gtest/gtest.h>
 
 #include <cstddef>
-#include <deque>
 #include <vector>
 
 /// @problem 143. Reorder List
@@ -24,7 +23,8 @@
 /// Starttime = 2026-06-03 22:53
 /// Starttime second = 2026-08-09 22:36
 /// Starttime third = 2026-08-23 13:38
-/// Finish 13:56
+/// Finish 13:56 deque implementation
+/// finsih 15:04 fast and slow pointer
 /// @Solution
 ///
 
@@ -36,7 +36,23 @@ struct ListNode {
   ListNode(int x, ListNode *next) : val(x), next(next) {}
 };
 
-void reverseList(ListNode *head) {
+void mergeList(ListNode *head1, ListNode *head2) {
+  ListNode *current1 = head1;
+  ListNode *current2 = head2;
+
+  while (current2 != nullptr) {
+    ListNode *next1 = current1->next;
+    ListNode *next2 = current2->next;
+
+    current1->next = current2;
+    current2->next = next1;
+
+    current1 = next1;
+    current2 = next2;
+  }
+}
+
+ListNode *reverseList(ListNode *head) {
   ListNode *current = head;
   ListNode *previous = nullptr;
 
@@ -48,42 +64,25 @@ void reverseList(ListNode *head) {
     current = next;
   }
 
-  head = previous;
+  return previous;
 }
 
 void reorderList(ListNode *head) {
-  if (head == nullptr) {
+  if (head == nullptr || head->next == nullptr) {
     return;
   }
 
-  std::deque<ListNode *> dequeu;
-
-  ListNode *current = head;
-  while (current != nullptr) {
-    dequeu.push_back(current);
-    current = current->next;
-    dequeu.back()->next = nullptr;
+  // Use fast and slow pointer to find the midpoint
+  ListNode *slow = head;
+  ListNode *fast = head;
+  while (fast->next != nullptr && fast->next->next != nullptr) {
+    slow = slow->next;
+    fast = fast->next->next;
   }
 
-  if (dequeu.empty() || dequeu.size() == 1) {
-    return;
-  }
-
-  bool frontOrBack{true};
-  while (!dequeu.empty()) {
-    if (frontOrBack) {
-      current = dequeu.front();
-      current->next = dequeu.back();
-      dequeu.pop_front();
-    } else {
-      current = dequeu.back();
-      current->next = dequeu.front();
-      dequeu.pop_back();
-    }
-    frontOrBack = !frontOrBack;
-  }
-
-  current->next = nullptr;
+  ListNode *midpoint = slow->next;
+  slow->next = nullptr;
+  mergeList(head, reverseList(midpoint));
 }
 
 std::vector<ListNode *> collectNodes(ListNode *head,
