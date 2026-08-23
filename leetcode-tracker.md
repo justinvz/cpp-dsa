@@ -4,25 +4,24 @@ Times use `HH:MM`. A dash means the time was not recorded.
 
 ## Snapshot
 
-_Through 2026-08-06._ Repeated attempts are included unless stated otherwise.
+_Through 2026-08-23._ Repeated attempts are included unless stated otherwise.
 
 | Metric | Result |
 | --- | ---: |
-| Attempts | 52 |
-| Unique problems | 51 |
-| Difficulty | 18 easy, 34 medium, 0 hard |
-| Timed attempts | 50 of 52 |
+| Attempts | 53 |
+| Unique problems | 52 |
+| Difficulty | 18 easy, 35 medium, 0 hard |
+| Timed attempts | 51 of 53 |
 | Median solve time | 00:28 |
-| Average solve time | 00:38 |
-| Solved within 30 minutes | 30 of 50 (60%) |
+| Average solve time | 00:37 |
+| Solved within 30 minutes | 31 of 51 (61%) |
 | Easy average / median | 00:30 / 00:20 |
 | Medium average / median | 00:41 / 00:28 |
 
 ### What the results show
 
 - The median is a better target than the average: a few 60-160 minute sessions pull the average up.
-- Medium problems are becoming the norm: 34 of 52 attempts were medium.
-- The recent average is higher because 8 of the latest 10 timed attempts were medium, not necessarily because solving got slower.
+- Medium problems are becoming the norm: 35 of 53 attempts were medium.
 - Trees and BSTs are the strongest area by volume, with 13 attempts.
 - The next useful tracking fields are whether help was needed and confidence after solving. They will make revisits easier to prioritize than time alone.
 
@@ -82,6 +81,7 @@ _Through 2026-08-06._ Repeated attempts are included unless stated otherwise.
 | 2026-08-05 | 133-clone-graph | Medium | 01:00 | 1 |
 | 2026-08-05 | 733-flood-fill | Easy | 00:36 | 1 |
 | 2026-08-06 | 1971-find-if-path-exists-in-graph | Easy | 01:46 | 1 |
+| 2026-08-23 | 143-reorder-list | Medium | 00:18 | 3 |
 
 ## Revisit Queue
 
@@ -91,8 +91,13 @@ _Through 2026-08-06._ Repeated attempts are included unless stated otherwise.
 | 2026-03-05 | 853-car-fleet | Medium | Needed help on the first attempt. |
 | 2026-03-17 | 875-koko-eating-bananas | Medium | The approach was correct, but the implementation was not completed. |
 | 2026-08-05 | 133-clone-graph | Medium | Needed extensive guidance and the final solution; redo independently using DFS. |
+| 2026-08-23 | 143-reorder-list | Medium | Reimplement the O(1)-space split, reverse, and merge approach independently. |
 
 ## Problem Notes
+
+### 143-reorder-list
+
+I independently completed an O(n)-space deque solution in 18 minutes, then improved it to the optimal O(n)-time and O(1)-space approach. I correctly implemented the slow/fast midpoint search and in-place reversal, but needed feedback to fix the merge loop. The key merge invariant is to save both next pointers before linking one node from each half, then advance both pointers; the reversed second half controls loop termination. Confidence was not recorded.
 
 ### 1971-find-if-path-exists-in-graph
 
