@@ -1,19 +1,31 @@
 #include <gtest/gtest.h>
 
 #include <cstddef>
-#include <stack>
-#include <unordered_set>
+#include <deque>
+#include <vector>
 
-using namespace std;
-
-/// @problem reverse the linked list.
+/// @problem 143. Reorder List
+/// @difficulty Medium
+///
+/// Given the head of a singly linked list whose nodes are ordered as
+///
+///   L0 -> L1 -> ... -> Ln-1 -> Ln
+///
+/// Reorder the list in place to
+///
+///   L0 -> Ln -> L1 -> Ln-1 -> L2 -> Ln-2 -> ...
+///
+/// Node values may not be changed; only the links between nodes may change.
+///
+/// Constraints:
+/// - 1 <= number of nodes <= 5 * 10^4
+/// - 1 <= Node.val <= 1000
+///
 /// Starttime = 2026-06-03 22:53
+/// Starttime second = 2026-08-09 22:36
+/// Starttime third = 2026-08-23 13:38
+/// Finish 13:56
 /// @Solution
-///
-/// I think using two pointers is simplest.
-///
-/// p1 at start, and p2 walks to the end, point p1 to p2, and walk p1 foward,
-/// after point p2 to p1 and walk p2 backwards.
 ///
 
 struct ListNode {
@@ -24,122 +36,109 @@ struct ListNode {
   ListNode(int x, ListNode *next) : val(x), next(next) {}
 };
 
-bool reorderListStack(ListNode *head) {
-  stack<ListNode *> visted;
+void reverseList(ListNode *head) {
+  ListNode *current = head;
+  ListNode *previous = nullptr;
 
-  auto p1 = head;
-  auto p2 = head;
+  while (current != nullptr) {
+    ListNode *next = current->next;
+    current->next = previous;
 
-  // Walk p2 to the end.
-  while (p2 != nullptr) {
-    visted.push(p2);
-    p2 = p2->next;
-  }
-  p2->next = nullptr;
-
-  while (p1 != p2) {
-    auto temp = p1;
-    p1 = p1->next;
-    temp->next = p2;
-
-    if (p1 == p2) {
-      break;
-    }
-
-    temp = p2;
-
-    if (visted.empty()) {
-      break;
-    }
-
-    visted.pop();
-    p2 = visted.top();
-    temp->next = p1;
+    previous = current;
+    current = next;
   }
 
-  return head;
+  head = previous;
 }
 
-bool reorderList(ListNode *head) {
-  /// Search for middle
-
-  ListNode *p1 = head;
-  ListNode *p2 = head;
-
-  // Fast pointer takes two steps. so when p2 is near the end. p1 is halfway.
-  while (p2->next->next != nullptr) {
-    p2->next = p2->next->next;
-    p1->next = p1;
+void reorderList(ListNode *head) {
+  if (head == nullptr) {
+    return;
   }
 
-  // Split list
-  auto tail = p1->next;
-  p1->next = nullptr;
+  std::deque<ListNode *> dequeu;
 
-  // Reverse list
-  while (p1 != nullptr) {
-    auto temp = p1;
-    p1 = p1->next;
-    p1->next = temp;
-  }
-  tail = nullptr;
-
-  /// Merge lists
-}
-
-// Use fast and slow pointer, one moves 1 node at a time, other moves two nodes
-// at a time, When pointers meet, cycle is detected. If the slow pointer reaches
-// the end without meeting the fast pointer, there is no cycle.
-bool hasCycle(ListNode *head) {
-  ListNode *fast = head;
-  ListNode *slow = head;
-
-  if (head->next == nullptr) {
-    return false;
+  ListNode *current = head;
+  while (current != nullptr) {
+    dequeu.push_back(current);
+    current = current->next;
+    dequeu.back()->next = nullptr;
   }
 
-  while (fast) {
-    if (fast->next) {
-      fast = fast->next->next;
+  if (dequeu.empty() || dequeu.size() == 1) {
+    return;
+  }
+
+  bool frontOrBack{true};
+  while (!dequeu.empty()) {
+    if (frontOrBack) {
+      current = dequeu.front();
+      current->next = dequeu.back();
+      dequeu.pop_front();
     } else {
-      fast = nullptr;
+      current = dequeu.back();
+      current->next = dequeu.front();
+      dequeu.pop_back();
     }
-    slow = slow->next;
-
-    if (slow == fast) {
-      return true;
-    }
+    frontOrBack = !frontOrBack;
   }
-  return false;
+
+  current->next = nullptr;
 }
-TEST(Problem, ExistingCases) {
 
-  ListNode n6(6);
+std::vector<ListNode *> collectNodes(ListNode *head,
+                                     std::size_t expectedNodes) {
+  std::vector<ListNode *> nodes;
+  while (head != nullptr && nodes.size() <= expectedNodes) {
+    nodes.push_back(head);
+    head = head->next;
+  }
+  return nodes;
+}
 
-  ListNode n5(5);
-  ListNode n4 = ListNode(4, &n5);
-  n5.next = &n4;
+TEST(ReorderList, EmptyList) {
+  reorderList(nullptr);
+  SUCCEED();
+}
 
-  ListNode n3(3);
-  ListNode n2(2, &n3);
-  ListNode n1(1, &n2);
+TEST(ReorderList, SingleNode) {
+  ListNode node1{1};
 
-  // auto current = &n1;
-  // while (current) {
-  //   std::cout << current->val << std::endl;
-  //   current = current->next;
-  // }
-  //
-  // EXPECT_FALSE(hasCycleBruteForce(&n1));
-  // EXPECT_TRUE(hasCycleBruteForce(&n4));
+  reorderList(&node1);
 
-  EXPECT_FALSE(hasCycle(&n1));
-  EXPECT_TRUE(hasCycle(&n4));
-  EXPECT_FALSE(hasCycle(&n6));
+  EXPECT_EQ(collectNodes(&node1, 1), (std::vector<ListNode *>{&node1}));
+}
 
-  // current = reverseList(&n1);
-  // while (current) {
-  //   std::cout << current->val << std::endl;
-  //   current = current->next;
-  // }
+TEST(ReorderList, TwoNodes) {
+  ListNode node2{2};
+  ListNode node1{1, &node2};
+
+  reorderList(&node1);
+
+  EXPECT_EQ(collectNodes(&node1, 2), (std::vector<ListNode *>{&node1, &node2}));
+}
+
+TEST(ReorderList, EvenNumberOfNodes) {
+  ListNode node4{4};
+  ListNode node3{3, &node4};
+  ListNode node2{2, &node3};
+  ListNode node1{1, &node2};
+
+  reorderList(&node1);
+
+  EXPECT_EQ(collectNodes(&node1, 4),
+            (std::vector<ListNode *>{&node1, &node4, &node2, &node3}));
+}
+
+TEST(ReorderList, OddNumberOfNodes) {
+  ListNode node5{5};
+  ListNode node4{4, &node5};
+  ListNode node3{3, &node4};
+  ListNode node2{2, &node3};
+  ListNode node1{1, &node2};
+
+  reorderList(&node1);
+
+  EXPECT_EQ(collectNodes(&node1, 5),
+            (std::vector<ListNode *>{&node1, &node5, &node2, &node4, &node3}));
 }
