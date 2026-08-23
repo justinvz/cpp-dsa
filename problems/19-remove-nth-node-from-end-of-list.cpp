@@ -27,32 +27,21 @@ struct ListNode {
 };
 
 ListNode *removeNthFromEnd(ListNode *head, int n) {
-  if (head == nullptr) {
-    return head;
-  }
+  ListNode dummy(0, head);
+  ListNode *leader = &dummy;
+  ListNode *follower = &dummy;
 
-  ListNode *leader = head;
-  ListNode *follower = nullptr;
-
-  int startSignal = n;
-
-  while (leader != nullptr) {
-    if (startSignal == 0) {
-      follower = head;
-    } else if (startSignal < 0) {
-      follower = follower->next;
-    }
-    startSignal--;
+  for (int i = 0; i < n; i++) {
     leader = leader->next;
   }
 
-  if (follower == nullptr) {
-    head = head->next;
-  } else {
-    follower->next = follower->next->next;
+  while (leader->next != nullptr) {
+    leader = leader->next;
+    follower = follower->next;
   }
 
-  return head;
+  follower->next = follower->next->next;
+  return dummy.next;
 }
 
 std::vector<ListNode *> collectNodes(ListNode *head,
