@@ -8,20 +8,20 @@ _Through 2026-08-23._ Repeated attempts are included unless stated otherwise.
 
 | Metric | Result |
 | --- | ---: |
-| Attempts | 56 |
-| Unique problems | 55 |
-| Difficulty | 18 easy, 38 medium, 0 hard |
-| Timed attempts | 54 of 56 |
+| Attempts | 57 |
+| Unique problems | 56 |
+| Difficulty | 18 easy, 39 medium, 0 hard |
+| Timed attempts | 55 of 57 |
 | Median solve time | 00:28 |
 | Average solve time | 00:37 |
-| Solved within 30 minutes | 32 of 54 (59%) |
+| Solved within 30 minutes | 32 of 55 (58%) |
 | Easy average / median | 00:30 / 00:20 |
-| Medium average / median | 00:40 / 00:28 |
+| Medium average / median | 00:41 / 00:29 |
 
 ### What the results show
 
 - The median is a better target than the average: a few 60-160 minute sessions pull the average up.
-- Medium problems are becoming the norm: 38 of 56 attempts were medium.
+- Medium problems are becoming the norm: 39 of 57 attempts were medium.
 - Trees and BSTs are the strongest area by volume, with 13 attempts.
 - The next useful tracking fields are whether help was needed and confidence after solving. They will make revisits easier to prioritize than time alone.
 
@@ -85,6 +85,7 @@ _Through 2026-08-23._ Repeated attempts are included unless stated otherwise.
 | 2026-08-23 | 994-rotting-oranges | Medium | 00:57 | 1 |
 | 2026-08-23 | 19-remove-nth-node-from-end-of-list | Medium | 00:39 | 1 |
 | 2026-08-23 | 138-copy-list-with-random-pointer | Medium | 00:16 | 1 |
+| 2026-08-23 | 2-add-two-numbers | Medium | 00:48 | 1 |
 
 ## Revisit Queue
 
@@ -95,8 +96,13 @@ _Through 2026-08-23._ Repeated attempts are included unless stated otherwise.
 | 2026-03-17 | 875-koko-eating-bananas | Medium | The approach was correct, but the implementation was not completed. |
 | 2026-08-05 | 133-clone-graph | Medium | Needed extensive guidance and the final solution; redo independently using DFS. |
 | 2026-08-23 | 143-reorder-list | Medium | Reimplement the O(1)-space split, reverse, and merge approach independently. |
+| 2026-08-23 | 2-add-two-numbers | Medium | Needed the final carry-safe implementation; redo independently. |
 
 ## Problem Notes
+
+### 2-add-two-numbers
+
+I correctly recognized that the lists can be processed from least-significant digit to most-significant digit, but the initial implementation conflated the output digit with the carry, stopped when the second list ended, and did not link newly allocated nodes. I needed feedback and the final dummy-node implementation. The key invariant is that each iteration consumes one available digit from either list, writes `sum % 10`, carries `sum / 10`, and continues while either list or the carry remains. The final O(max(n, m))-time solution passed seven focused tests. Confidence was not recorded; revisit independently.
 
 ### 138-copy-list-with-random-pointer
 
