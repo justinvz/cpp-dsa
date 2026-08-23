@@ -8,20 +8,20 @@ _Through 2026-08-23._ Repeated attempts are included unless stated otherwise.
 
 | Metric | Result |
 | --- | ---: |
-| Attempts | 53 |
-| Unique problems | 52 |
-| Difficulty | 18 easy, 35 medium, 0 hard |
-| Timed attempts | 51 of 53 |
+| Attempts | 54 |
+| Unique problems | 53 |
+| Difficulty | 18 easy, 36 medium, 0 hard |
+| Timed attempts | 52 of 54 |
 | Median solve time | 00:28 |
-| Average solve time | 00:37 |
-| Solved within 30 minutes | 31 of 51 (61%) |
+| Average solve time | 00:38 |
+| Solved within 30 minutes | 31 of 52 (60%) |
 | Easy average / median | 00:30 / 00:20 |
 | Medium average / median | 00:41 / 00:28 |
 
 ### What the results show
 
 - The median is a better target than the average: a few 60-160 minute sessions pull the average up.
-- Medium problems are becoming the norm: 35 of 53 attempts were medium.
+- Medium problems are becoming the norm: 36 of 54 attempts were medium.
 - Trees and BSTs are the strongest area by volume, with 13 attempts.
 - The next useful tracking fields are whether help was needed and confidence after solving. They will make revisits easier to prioritize than time alone.
 
@@ -82,6 +82,7 @@ _Through 2026-08-23._ Repeated attempts are included unless stated otherwise.
 | 2026-08-05 | 733-flood-fill | Easy | 00:36 | 1 |
 | 2026-08-06 | 1971-find-if-path-exists-in-graph | Easy | 01:46 | 1 |
 | 2026-08-23 | 143-reorder-list | Medium | 00:18 | 3 |
+| 2026-08-23 | 994-rotting-oranges | Medium | 00:57 | 1 |
 
 ## Revisit Queue
 
@@ -94,6 +95,10 @@ _Through 2026-08-23._ Repeated attempts are included unless stated otherwise.
 | 2026-08-23 | 143-reorder-list | Medium | Reimplement the O(1)-space split, reverse, and merge approach independently. |
 
 ## Problem Notes
+
+### 994-rotting-oranges
+
+I derived a multi-source BFS by initially enqueuing every rotten orange and carrying the elapsed time with each position. I needed targeted feedback for unsigned coordinate underflow, marking fresh oranges when enqueued to prevent duplicate work, a neighbor-coordinate typo, and the all-empty grid case. The final implementation passed the reachable, impossible, no-fresh, isolated-fresh, and non-square multi-source tests. The key invariant is that each fresh orange is changed to rotten when discovered, so it enters the queue at most once. Confidence was not recorded.
 
 ### 143-reorder-list
 
