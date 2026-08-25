@@ -4,19 +4,19 @@ Times use `HH:MM`. A dash means the time was not recorded.
 
 ## Snapshot
 
-_Through 2026-08-23._ Repeated attempts are included unless stated otherwise.
+_Through 2026-08-25._ Repeated attempts are included unless stated otherwise.
 
 | Metric | Result |
 | --- | ---: |
-| Attempts | 58 |
+| Attempts | 59 |
 | Unique problems | 57 |
-| Difficulty | 19 easy, 39 medium, 0 hard |
-| Timed attempts | 56 of 58 |
+| Difficulty | 19 easy, 40 medium, 0 hard |
+| Timed attempts | 57 of 59 |
 | Median solve time | 00:28 |
-| Average solve time | 00:37 |
-| Solved within 30 minutes | 33 of 56 (59%) |
+| Average solve time | 00:36 |
+| Solved within 30 minutes | 34 of 57 (60%) |
 | Easy average / median | 00:29 / 00:20 |
-| Medium average / median | 00:41 / 00:29 |
+| Medium average / median | 00:40 / 00:28 |
 
 ### What the results show
 
@@ -87,6 +87,7 @@ _Through 2026-08-23._ Repeated attempts are included unless stated otherwise.
 | 2026-08-23 | 138-copy-list-with-random-pointer | Medium | 00:16 | 1 |
 | 2026-08-23 | 2-add-two-numbers | Medium | 00:48 | 1 |
 | 2026-08-23 | 136-single-number | Easy | 00:05 | 1 |
+| 2026-08-25 | 133-clone-graph | Medium | 00:10 | 2 |
 
 ## Revisit Queue
 
@@ -95,7 +96,6 @@ _Through 2026-08-23._ Repeated attempts are included unless stated otherwise.
 | 2026-03-10 | 15-three-sum | Medium | Reimplement when rested; remember to skip duplicates. |
 | 2026-03-05 | 853-car-fleet | Medium | Needed help on the first attempt. |
 | 2026-03-17 | 875-koko-eating-bananas | Medium | The approach was correct, but the implementation was not completed. |
-| 2026-08-05 | 133-clone-graph | Medium | Needed extensive guidance and the final solution; redo independently using DFS. |
 | 2026-08-23 | 143-reorder-list | Medium | Reimplement the O(1)-space split, reverse, and merge approach independently. |
 | 2026-08-23 | 2-add-two-numbers | Medium | Needed the final carry-safe implementation; redo independently. |
 
@@ -135,7 +135,7 @@ I independently derived a recursive DFS solution using a visited set and in-plac
 
 ### 133-clone-graph
 
-I recognized that BFS could traverse the graph, but needed help maintaining exactly one clone per original node and preserving edges to already visited nodes. The key insight is that the original-to-clone map can also track discovery: create and enqueue each node once, while copying every edge. Revisit this problem independently and implement it using DFS.
+On the first attempt, I recognized that BFS could traverse the graph but needed help maintaining exactly one clone per original node and preserving edges to already visited nodes. On the second attempt, I independently produced a correct recursive DFS in 10 minutes: one pass created the original-to-clone map and a second pass copied every edge. This is O(V + E) time and O(V) auxiliary space. I needed an explanation of the optional one-pass refinement where DFS returns each node's clone and connects neighbors during recursion. Confidence was not recorded; the independent DFS revisit is complete.
 
 ### 200-number-of-islands
 

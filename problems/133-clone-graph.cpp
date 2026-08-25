@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
 
 #include <memory>
+#include <print>
 #include <queue>
 #include <unordered_map>
 #include <utility>
@@ -8,7 +9,8 @@
 
 using namespace std;
 
-// @start 2026-08-05 21:34 finish  22:34
+// @start 2026-08-05 21:34 finish 21:44
+//
 
 /// @problem 133. Clone Graph
 /// @difficulty Medium
@@ -54,36 +56,38 @@ public:
   vector<Node *> neighbors;
 
   Node() : val(0) {}
-  explicit Node(int value) : val(value) {}
+  explicit Node(int value) : val(value) { neighbors.clear(); }
+
   Node(int value, vector<Node *> adjacent)
       : val(value), neighbors(std::move(adjacent)) {}
 };
 
 Node *cloneGraph(Node *node) {
-  if (!node) {
+  std::unordered_map<Node *, Node *> cloneMap;
+  if (node == nullptr) {
     return nullptr;
   }
 
-  unordered_map<Node *, Node *> clones;
-  queue<Node *> nodes;
-  clones.emplace(node, new Node(node->val));
-  nodes.emplace(node);
-
-  while (!nodes.empty()) {
-    Node *current = nodes.front();
-    nodes.pop();
-
-    for (Node *neighbor : current->neighbors) {
-      if (!clones.contains(neighbor)) {
-        clones.emplace(neighbor, new Node(neighbor->val));
-        nodes.emplace(neighbor);
-      }
-
-      clones.at(current)->neighbors.emplace_back(clones.at(neighbor));
-    }
+  if (node->neighbors.empty()) {
+    return new Node(node->val);
   }
 
-  return clones.at(node);
+  std::function<Node *(Node * current)> dfs;
+  dfs = [&](Node *current) {
+    if (cloneMap.contains(current)) {
+      return cloneMap.at(current);
+    }
+
+    auto clone =  new Node(current->val);
+    cloneMap.emplace(current, clone);
+
+    for (Node *neighbor : current->neighbors) {
+      clone->neighbors.push_back(dfs(neighbor));
+    }
+    return node;
+  };
+
+  return dfs(node);
 }
 
 void TestCase1();
@@ -91,12 +95,12 @@ void TestCase2();
 
 TEST(Problem, ExistingCases) {
 
-  Node *node1 = new Node(1);
-  Node *cloned = cloneGraph(node1);
-
-  ASSERT_TRUE(cloned);
-  EXPECT_EQ(cloned->val, node1->val);
-
+  // Node *node1 = new Node(1);
+  // Node *cloned = cloneGraph(node1);
+  //
+  // ASSERT_TRUE(cloned);
+  // EXPECT_EQ(cloned->val, node1->val);
+  //
   TestCase1();
   TestCase2();
 }

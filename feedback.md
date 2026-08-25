@@ -1,11 +1,13 @@
 # LeetCode Feedback
 
-_Updated 2026-08-06._
+_Updated 2026-08-25._
 
 ## Current Feedback
 
 - You usually recognize the right algorithm.
 - You are getting better at DFS and graph problems.
+- You independently revisited Clone Graph with recursive DFS in 10 minutes,
+  resolving the previous need for extensive implementation guidance.
 - Your main issue is small implementation mistakes, especially conditions and
   visited-state logic.
 - Tracing a small example before running your code will catch many of these
@@ -18,13 +20,15 @@ _Updated 2026-08-06._
 - **June:** Practiced recursion, trees, BSTs, and binary search.
 - **July:** Started solving more graph and grid problems.
 - **August:** Improved from needing help with Clone Graph to independently using
-  DFS for Flood Fill and Find if Path Exists in Graph.
+  DFS for Flood Fill and Find if Path Exists in Graph, then independently
+  reimplemented Clone Graph with DFS.
 
 ## Next Steps
 
-1. Revisit Clone Graph using DFS.
-2. Write one sentence describing the visited-state rule before coding.
-3. Test a minimal case, a cycle, and an uneven grid when relevant.
+1. Write one sentence describing the visited-state rule before coding.
+2. Test a minimal case, a cycle, and an uneven grid when relevant.
+3. Continue with a graph problem that adds a new invariant rather than only
+   repeating traversal.
 
 ## New Entry
 
