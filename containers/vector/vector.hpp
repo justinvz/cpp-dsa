@@ -2,8 +2,10 @@
 
 #include <algorithm>
 #include <cstddef>
+#include <memory>
 #include <print>
 #include <stdexcept>
+#include <sys/stat.h>
 #include <utility>
 
 // This class is an implementation of a dynamic array. Its interface follows
@@ -17,19 +19,19 @@ private:
   T *end = nullptr;
   std::size_t m_size = 0;
   std::size_t m_capacity = 0;
+  std::allocator<T> alloc;
 
 public:
   bool movable{true};
 
   vector(std::size_t p_capacity = defaultSize)
-      : start(new T[p_capacity]), end(start), m_size(0),
-        m_capacity(p_capacity) {
-    std::println("Constructor");
+      : start(alloc.allocate(p_capacity)), end(start), m_capacity(p_capacity) {
+    std::println("Constructor allocated {} bytes", sizeof(T) * p_capacity);
   }
 
   ~vector() {
-    std::println("Destructor");
-    delete[] start;
+    std::println("Destructor deallocated {} bytes", sizeof(T) * m_capacity);
+    alloc.deallocate(start, m_capacity);
   }
 
   vector(const vector &other) : vector(other.m_capacity) {
@@ -68,7 +70,7 @@ public:
       return *this;
     }
 
-    delete[] start;
+    alloc.deallocate(start, m_capacity);
 
     start = other.start;
     end = other.end;
@@ -111,7 +113,7 @@ public:
 
   // Move all elements to a bigger piece of allocated memory
   void reserve(size_t newCapacity) {
-    T *newStart = new T[newCapacity];
+    T *newStart = alloc.allocate(newCapacity);
 
     if (movable) {
       std::move(start, start + m_size, newStart);
@@ -119,11 +121,11 @@ public:
       std::copy(start, start + m_size, newStart);
     }
 
-    delete[] start;
+    alloc.deallocate(start, m_capacity);
     start = newStart;
 
-    std::println("Vector grows from {} to {}", m_capacity, newCapacity);
-
+    std::println("Vector grows from {} to {} allocated {} bytes", m_capacity,
+                 newCapacity, sizeof(T) * newCapacity);
     m_capacity = newCapacity;
     end = start + m_size;
   }
@@ -133,21 +135,31 @@ public:
       reserve(m_capacity == 0 ? defaultSize : m_capacity * 2);
     }
 
-    start[m_size] = val;
+    std::construct_at(start + m_size, val);
     m_size++;
 
     end++;
   }
 
-  void pop_back() {}
+  void pop_back() {
+
+    if (end == start) {
+      throw std::out_of_range("Can't remove more, alrady at the end");
+    }
+
+    std::destroy_at(end);
+    end--;
+  }
 
   void clear() {
+    for (size_t i = 0; i < m_size; i++) {
+      std::destroy_at(end);
+      end--;
+    }
+
     m_size = 0;
     reserve(defaultSize);
   };
-
-  // std::size_t max_size() const;
-  // void reserve() const;
 };
 
 } // namespace jtd

@@ -17,24 +17,25 @@ TEST(Vector, EntryObject) {
   EXPECT_TRUE(vector.empty()) << "default vector is empty";
   EXPECT_EQ(vector.capacity(), jtd::defaultSize) << "default vector capacity";
 
-  constexpr int elements{1000000};
+   constexpr int elements{1000000};
 
-  for (std::size_t i = 0; i < elements; i++) {
-    Entry entry;
-    entry.value = i;
-    vector.push_back(entry);
-  }
+   for (std::size_t i = 0; i < elements; i++) {
+     Entry entry;
+     entry.value = i;
+     vector.push_back(entry);
+   }
+  
 
-  std::println("With move");
-  {
-    vector.reserve(elements * 2);
-  }
+   std::println("With move");
+   {
+     vector.reserve(elements * 2);
+   }
 
-  std::println("Without move");
-  vector.movable = false;
-  {
-    vector.reserve(elements * 2);
-  }
+   std::println("Without move");
+   vector.movable = false;
+   {
+     vector.reserve(elements * 2);
+   }
 }
 
 TEST(Vector, MoveConstruction) {
@@ -180,4 +181,6 @@ TEST(Vector, Clear) {
   vector.clear();
   EXPECT_TRUE(vector.empty());
   EXPECT_EQ(vector.size(), std::size_t{0});
+
+  vector.pop_back();
 }
