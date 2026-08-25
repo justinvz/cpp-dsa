@@ -8,10 +8,10 @@ _Through 2026-08-25._ Repeated attempts are included unless stated otherwise.
 
 | Metric | Result |
 | --- | ---: |
-| Attempts | 59 |
-| Unique problems | 57 |
-| Difficulty | 19 easy, 40 medium, 0 hard |
-| Timed attempts | 57 of 59 |
+| Attempts | 60 |
+| Unique problems | 58 |
+| Difficulty | 19 easy, 41 medium, 0 hard |
+| Timed attempts | 57 of 60 |
 | Median solve time | 00:28 |
 | Average solve time | 00:36 |
 | Solved within 30 minutes | 34 of 57 (60%) |
@@ -21,7 +21,7 @@ _Through 2026-08-25._ Repeated attempts are included unless stated otherwise.
 ### What the results show
 
 - The median is a better target than the average: a few 60-160 minute sessions pull the average up.
-- Medium problems are becoming the norm: 39 of 57 attempts were medium.
+- Medium problems are becoming the norm: 41 of 60 attempts were medium.
 - Trees and BSTs are the strongest area by volume, with 13 attempts.
 - The next useful tracking fields are whether help was needed and confidence after solving. They will make revisits easier to prioritize than time alone.
 
@@ -87,6 +87,7 @@ _Through 2026-08-25._ Repeated attempts are included unless stated otherwise.
 | 2026-08-23 | 138-copy-list-with-random-pointer | Medium | 00:16 | 1 |
 | 2026-08-23 | 2-add-two-numbers | Medium | 00:48 | 1 |
 | 2026-08-23 | 136-single-number | Easy | 00:05 | 1 |
+| 2026-08-23 | 287-find-the-duplicate-number | Medium | - | 1 |
 | 2026-08-25 | 133-clone-graph | Medium | 00:10 | 2 |
 
 ## Revisit Queue
@@ -100,6 +101,10 @@ _Through 2026-08-25._ Repeated attempts are included unless stated otherwise.
 | 2026-08-23 | 2-add-two-numbers | Medium | Needed the final carry-safe implementation; redo independently. |
 
 ## Problem Notes
+
+### 287-find-the-duplicate-number
+
+I solved this using Floyd's cycle-detection algorithm by treating each array value as the next index. The first phase finds an intersection inside the cycle; the second advances one pointer from the start and one from the intersection until they meet at the cycle entrance, which is the duplicate value. The solution is O(n) time and O(1) auxiliary space, does not modify the input, and passed cases covering the minimum input, more than two duplicate occurrences, and duplicates near either end. Time, assistance, and confidence were not recorded.
 
 ### 136-single-number
 
