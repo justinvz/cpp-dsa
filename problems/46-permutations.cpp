@@ -15,34 +15,38 @@
 /// - 1 <= nums.size() <= 6
 /// - -10 <= nums[i] <= 10
 /// - All integers in nums are unique.
+///
+/// @startime = 21:30, finish time = 22:00
 
 std::vector<std::vector<int>> permute(std::vector<int> &nums) {
-  std::vector<std::vector<int>> result;
-  std::vector<int> permutation;
   std::unordered_set<int> visited;
+  std::vector<std::vector<int>> result;
+  std::vector<int> permutaiton;
 
-  std::function<void()> backtrack = [&] {
-    if (permutation.size() == nums.size()) {
-      result.push_back(permutation);
+  std::function<void()> backtrack;
+  backtrack = [&]() {
+      if (permutaiton.size() == nums.size()) {
+        result.push_back(permutaiton); // Enforce a copy
       return;
-    }
+      }
 
-    for (int num : nums) {
+    for (auto num : nums) {
       if (visited.contains(num)) {
         continue;
       }
-
+      permutaiton.emplace_back(num);
       visited.insert(num);
-      permutation.push_back(num);
+
 
       backtrack();
 
-      permutation.pop_back();
       visited.erase(num);
+      permutaiton.pop_back();
     }
   };
 
   backtrack();
+
   return result;
 }
 
@@ -68,13 +72,9 @@ TEST(Permutations, GeneratesBothOrdersForTwoElements) {
 TEST(Permutations, GeneratesAllOrdersForThreeElements) {
   std::vector<int> nums{1, 2, 3};
 
-  expectPermutations(permute(nums),
-                     {{1, 2, 3},
-                      {1, 3, 2},
-                      {2, 1, 3},
-                      {2, 3, 1},
-                      {3, 1, 2},
-                      {3, 2, 1}});
+  expectPermutations(
+      permute(nums),
+      {{1, 2, 3}, {1, 3, 2}, {2, 1, 3}, {2, 3, 1}, {3, 1, 2}, {3, 2, 1}});
 }
 
 TEST(Permutations, HandlesNegativeValues) {

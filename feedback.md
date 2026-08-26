@@ -1,6 +1,6 @@
 # LeetCode Feedback
 
-_Updated 2026-08-25._
+_Updated 2026-08-26._
 
 ## Current Feedback
 
@@ -8,6 +8,8 @@ _Updated 2026-08-25._
 - You are getting better at DFS and graph problems.
 - You independently revisited Clone Graph with recursive DFS in 10 minutes,
   resolving the previous need for extensive implementation guidance.
+- You independently revisited Permutations and correctly implemented the
+  choose-recurse-undo backtracking invariant that blocked the first attempt.
 - Your main issue is small implementation mistakes, especially conditions and
   visited-state logic.
 - Tracing a small example before running your code will catch many of these
@@ -21,7 +23,7 @@ _Updated 2026-08-25._
 - **July:** Started solving more graph and grid problems.
 - **August:** Improved from needing help with Clone Graph to independently using
   DFS for Flood Fill and Find if Path Exists in Graph, then independently
-  reimplemented Clone Graph with DFS.
+  reimplemented Clone Graph with DFS and Permutations with backtracking.
 
 ## Next Steps
 

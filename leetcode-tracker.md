@@ -4,14 +4,14 @@ Times use `HH:MM`. A dash means the time was not recorded.
 
 ## Snapshot
 
-_Through 2026-08-25._ Repeated attempts are included unless stated otherwise.
+_Through 2026-08-26._ Repeated attempts are included unless stated otherwise.
 
 | Metric | Result |
 | --- | ---: |
-| Attempts | 61 |
+| Attempts | 62 |
 | Unique problems | 59 |
-| Difficulty | 19 easy, 42 medium, 0 hard |
-| Timed attempts | 57 of 61 |
+| Difficulty | 19 easy, 43 medium, 0 hard |
+| Timed attempts | 57 of 62 |
 | Median solve time | 00:28 |
 | Average solve time | 00:36 |
 | Solved within 30 minutes | 34 of 57 (60%) |
@@ -21,7 +21,7 @@ _Through 2026-08-25._ Repeated attempts are included unless stated otherwise.
 ### What the results show
 
 - The median is a better target than the average: a few 60-160 minute sessions pull the average up.
-- Medium problems are becoming the norm: 42 of 61 attempts were medium.
+- Medium problems are becoming the norm: 43 of 62 attempts were medium.
 - Trees and BSTs are the strongest area by volume, with 13 attempts.
 - The next useful tracking fields are whether help was needed and confidence after solving. They will make revisits easier to prioritize than time alone.
 
@@ -90,6 +90,7 @@ _Through 2026-08-25._ Repeated attempts are included unless stated otherwise.
 | 2026-08-23 | 287-find-the-duplicate-number | Medium | - | 1 |
 | 2026-08-25 | 133-clone-graph | Medium | 00:10 | 2 |
 | 2026-08-25 | 46-permutations | Medium | - | 1 |
+| 2026-08-26 | 46-permutations | Medium | - | 2 |
 
 ## Revisit Queue
 
@@ -100,13 +101,12 @@ _Through 2026-08-25._ Repeated attempts are included unless stated otherwise.
 | 2026-03-17 | 875-koko-eating-bananas | Medium | The approach was correct, but the implementation was not completed. |
 | 2026-08-23 | 143-reorder-list | Medium | Reimplement the O(1)-space split, reverse, and merge approach independently. |
 | 2026-08-23 | 2-add-two-numbers | Medium | Needed the final carry-safe implementation; redo independently. |
-| 2026-08-25 | 46-permutations | Medium | Planned the recursion tree independently but needed the final choose-recurse-undo implementation; retry when rested. |
 
 ## Problem Notes
 
 ### 46-permutations
 
-I independently planned the backtracking decision tree: choose each available value, recurse until the path reaches the input size, and save each completed permutation. I became stuck translating the plan into mutable state and needed the final implementation. The key invariant is that the current path contains exactly the values marked visited; every choice must be undone after its recursive call. The solution is O(n * n!) time, O(n) auxiliary space excluding recursion output, and O(n * n!) output space. Four focused tests passed. Time and confidence were not recorded; revisit independently when rested.
+On my first attempt, I independently planned the backtracking decision tree but needed the final choose-recurse-undo implementation. On my second attempt, I independently translated that plan into a correct solution: the current path contains exactly the values marked visited, and each choice is removed from both after its recursive call. All four focused tests passed. The complete-path check could instead be placed at the start of `backtrack`, where saving and returning would avoid one scan of already visited values. Returning directly from the current check would be incorrect because it would skip that frame's undo operations. The solution is O(n * n!) time, O(n) auxiliary space excluding output, and O(n * n!) output space. Time was not recorded; the independent revisit is complete.
 
 ### 287-find-the-duplicate-number
 
