@@ -1,39 +1,81 @@
 #include <gtest/gtest.h>
 
-#include <cstddef>
-#include <functional>
+#include <algorithm>
 #include <vector>
 
-using namespace std;
-
-/// @problem first backtracking problem solved by watching a video, concept
-/// seems okeyish, but still difficult, i should revisit this problem!
+/// @problem 78. Subsets
+/// @difficulty Medium
 ///
+/// Given an integer array nums of unique elements, return all possible subsets
+/// (the power set).
+///
+/// The solution set must not contain duplicate subsets. The answer may be
+/// returned in any order.
+///
+/// Constraints:
+/// - 1 <= nums.size() <= 10
+/// - -10 <= nums[i] <= 10
+/// - All values in nums are unique.
+///
+/// @starttime = 21:43
+/// @finishtime =
 
-vector<vector<int>> subsets(vector<int> nums) {
+std::vector<std::vector<int>> subsets(std::vector<int> nums) {
+  std::vector<std::vector<int>> result;
 
-  vector<vector<int>> result;
-  vector<int> subset;
+  // Start with []
+  //
+  // check first number, take it, and leave it.
+  //
+  // check second, take it and leave int
+  //
+  // check n, take it and leave it.
+  //
+  // when depth nums.size() is reached, append to results.
 
-  std::function<void(size_t)> dfs = [&](size_t i) {
-    if (i >= nums.size()) {
+  std::function<void(int index, std::vector<int> subset)> backtrace;
+  backtrace = [&](int index, std::vector<int> subset) {
+    if (index >= nums.size()) {
       result.push_back(subset);
       return;
     }
 
-    subset.push_back(nums[i]);
-    dfs(i + 1);
-
+    subset.push_back(nums[index]);
+    backtrace(index + 1, subset);
     subset.pop_back();
-    dfs(i + 1);
+    backtrace(index + 1, subset);
   };
 
-  dfs(0);
+  backtrace(0, {});
+
   return result;
 }
 
-TEST(Problem, ExistingCases) {
-  subsets({1, 2, 3});
-  subsets({1, 2, 3, 4});
-  SUCCEED();
+void expectSubsets(std::vector<std::vector<int>> actual,
+                   std::vector<std::vector<int>> expected) {
+  for (auto &subset : actual) {
+    std::ranges::sort(subset);
+  }
+  for (auto &subset : expected) {
+    std::ranges::sort(subset);
+  }
+
+  std::ranges::sort(actual);
+  std::ranges::sort(expected);
+  EXPECT_EQ(actual, expected);
+}
+
+TEST(Subsets, HandlesSingleton) { expectSubsets(subsets({1}), {{}, {1}}); }
+
+TEST(Subsets, GeneratesPowerSetOfTwoElements) {
+  expectSubsets(subsets({1, 2}), {{}, {1}, {2}, {1, 2}});
+}
+
+TEST(Subsets, GeneratesPowerSetOfThreeElements) {
+  expectSubsets(subsets({1, 2, 3}),
+                {{}, {1}, {2}, {3}, {1, 2}, {1, 3}, {2, 3}, {1, 2, 3}});
+}
+
+TEST(Subsets, HandlesNegativeValues) {
+  expectSubsets(subsets({-1, 2}), {{}, {-1}, {2}, {-1, 2}});
 }
