@@ -4,14 +4,14 @@ Times use `HH:MM`. A dash means the time was not recorded.
 
 ## Snapshot
 
-_Through 2026-08-26._ Repeated attempts are included unless stated otherwise.
+_Through 2026-08-27._ Repeated attempts are included unless stated otherwise.
 
 | Metric | Result |
 | --- | ---: |
-| Attempts | 63 |
-| Unique problems | 60 |
-| Difficulty | 19 easy, 44 medium, 0 hard |
-| Timed attempts | 57 of 63 |
+| Attempts | 65 |
+| Unique problems | 61 |
+| Difficulty | 19 easy, 46 medium, 0 hard |
+| Timed attempts | 57 of 65 |
 | Median solve time | 00:28 |
 | Average solve time | 00:36 |
 | Solved within 30 minutes | 34 of 57 (60%) |
@@ -21,11 +21,11 @@ _Through 2026-08-26._ Repeated attempts are included unless stated otherwise.
 ### What the results show
 
 - The median is a better target than the average: a few 60-160 minute sessions pull the average up.
-- Medium problems are becoming the norm: 44 of 63 attempts were medium.
+- Medium problems are becoming the norm: 46 of 65 attempts were medium.
 - Trees and BSTs are the strongest area by volume, with 13 attempts.
 - The next useful tracking fields are whether help was needed and confidence after solving. They will make revisits easier to prioritize than time alone.
 
-## Solved Problems
+## Problem Attempts
 
 | Date | Problem | Difficulty | Time | Attempt |
 | --- | --- | --- | ---: | ---: |
@@ -92,6 +92,8 @@ _Through 2026-08-26._ Repeated attempts are included unless stated otherwise.
 | 2026-08-25 | 46-permutations | Medium | - | 1 |
 | 2026-08-26 | 46-permutations | Medium | - | 2 |
 | 2026-08-26 | 90-subsets-ii | Medium | - | 1 |
+| 2026-08-27 | 78-subsets | Medium | - | 2 |
+| 2026-08-27 | 22-generate-parentheses | Medium | - | 1 |
 
 ## Revisit Queue
 
@@ -103,8 +105,17 @@ _Through 2026-08-26._ Repeated attempts are included unless stated otherwise.
 | 2026-08-23 | 143-reorder-list | Medium | Reimplement the O(1)-space split, reverse, and merge approach independently. |
 | 2026-08-23 | 2-add-two-numbers | Medium | Needed the final carry-safe implementation; redo independently. |
 | 2026-08-26 | 90-subsets-ii | Medium | Had the backtracking skeleton but needed the forward-only index and same-depth duplicate rule; redo independently. |
+| 2026-08-27 | 22-generate-parentheses | Medium | Incomplete first attempt; practice simpler decision trees, then revisit the count invariant when rested. |
 
 ## Problem Notes
+
+### 22-generate-parentheses
+
+I attempted constrained backtracking after completing Subsets. I recognized that each recursion level chooses either `(` or `)` and, on revision, introduced open and close counters. The implementation remained incomplete: I used the wrong target-length condition, did not return at the base case, did not restrict choices with `open < n` and `close < open`, and mutated shared counters without undoing them. I needed feedback to define the invariant `0 <= close <= open <= n`. Time was not recorded. This was too large a jump while tired; practice binary-string generation and another include/exclude problem before revisiting it.
+
+### 78-subsets
+
+On my second attempt, I worked from a fresh scaffold and translated the include/exclude decision tree into a correct recursive implementation. Each frame decides whether to include `nums[index]`, and the subset passed to each recursive call contains exactly the decisions made before the next index. The implementation passed singleton, two-element, three-element, and negative-value tests. Because the subset is passed by value, it is correct but performs more copying than a shared path with choose-recurse-undo. Time was not recorded; confidence in recognizing backtracking is still developing.
 
 ### 90-subsets-ii
 
