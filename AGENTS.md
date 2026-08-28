@@ -33,6 +33,7 @@
 
 ## Problem Workflow
 
+- When creating a new `problems/*.cpp` exercise file, record the local start time as `HH:MM` in its metadata before work begins; obtain the actual time rather than estimating it later.
 - Before graph or grid code, state the visited-state rule. Test a minimal case, a cycle or disconnected case, and uneven dimensions where applicable.
 - Derive regression cases from every branch and precondition: empty, singleton, duplicates, monotonic input, integer extremes, skewed trees, and answers below the root.
 - When reviewing a claimed solution, verify the implementation and tests rather than trusting its tracker status.
@@ -40,10 +41,12 @@
 ## Tracker
 
 - When the user reports a LeetCode attempt, update `leetcode-tracker.md`: add the attempt, advance the through-date, and recalculate all Snapshot statistics.
+- Before finishing any tracker update, clean the affected log: preserve one row per real attempt, consolidate repetitive notes under the existing problem heading, remove stale or resolved wording, and verify that narrative statistics match the Snapshot table.
 - Record time as `HH:MM`; use `-` only when no time was recorded. Repeated attempts count as attempts but not unique problems.
 - Record assistance, confidence, key insight, and revisit need honestly in the problem notes or revisit queue; do not infer these from elapsed time.
 - Update `feedback.md` only when an attempt materially changes the current assessment, timeline, or next priorities.
 - A source file existing does not by itself mean the problem was solved.
+- Do not commit or push tracker changes unless the user explicitly requests that action in the current request.
 
 ## Tooling
 

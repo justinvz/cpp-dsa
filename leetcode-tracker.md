@@ -21,7 +21,7 @@ _Through 2026-08-28._ Repeated attempts are included unless stated otherwise.
 ### What the results show
 
 - The median is a better target than the average: a few 60-160 minute sessions pull the average up.
-- Medium problems are becoming the norm: 46 of 65 attempts were medium.
+- Medium problems are becoming the norm: 47 of 66 attempts were medium.
 - Trees and BSTs are the strongest area by volume, with 13 attempts.
 - The next useful tracking fields are whether help was needed and confidence after solving. They will make revisits easier to prioritize than time alone.
 
@@ -101,7 +101,6 @@ _Through 2026-08-28._ Repeated attempts are included unless stated otherwise.
 | Added | Problem | Difficulty | Reason |
 | --- | --- | --- | --- |
 | 2026-03-10 | 15-three-sum | Medium | Reimplement when rested; remember to skip duplicates. |
-| 2026-03-05 | 853-car-fleet | Medium | Needed help on the first attempt. |
 | 2026-03-17 | 875-koko-eating-bananas | Medium | The approach was correct, but the implementation was not completed. |
 | 2026-08-23 | 143-reorder-list | Medium | Reimplement the O(1)-space split, reverse, and merge approach independently. |
 | 2026-08-23 | 2-add-two-numbers | Medium | Needed the final carry-safe implementation; redo independently. |
@@ -116,9 +115,7 @@ I attempted constrained backtracking after completing Subsets. I recognized that
 
 ### 78-subsets
 
-On my second attempt, I worked from a fresh scaffold and translated the include/exclude decision tree into a correct recursive implementation. Each frame decides whether to include `nums[index]`, and the subset passed to each recursive call contains exactly the decisions made before the next index. The implementation passed singleton, two-element, three-element, and negative-value tests. Because the subset is passed by value, it is correct but performs more copying than a shared path with choose-recurse-undo. Time was not recorded; confidence in recognizing backtracking was still developing.
-
-On my third attempt, I first defined the state `(i, subset)`, the take-or-skip choices, the `i + 1` transition, and the base case `i == nums.size()`. I needed design-phase questions to clarify that the path stores included choices while `i` records all decisions, and that `pop_back()` undoes the take choice rather than representing the skip choice. I then independently wrote the correct choose-recurse-undo implementation in 21 minutes. The three active focused tests passed; the singleton test was commented out. Confidence was not recorded.
+I produced correct include/exclude recursion on both revisits. On attempt 2, I worked from a fresh scaffold and passed singleton, two-element, three-element, and negative-value tests. On attempt 3, I first defined the state `(i, subset)`, take-or-skip choices, `i + 1` transition, and `i == nums.size()` base case. Design-phase questions clarified that the path stores included choices while `i` records all decisions, and that `pop_back()` undoes the take choice rather than representing the skip choice; I then independently wrote the implementation in 21 minutes. Passing the subset by value is correct but performs more copying than a shared path. The three active focused tests passed, while the singleton test was commented out. Confidence was not recorded.
 
 ### 90-subsets-ii
 
@@ -176,17 +173,13 @@ A good first graph problem that I solved almost independently. Marking cells in 
 
 I understood the approach but got tired during the implementation. Revisit after covering a few new concepts.
 
-### 853-car-fleet-revisit
-
-I solved it again without an issue. Knowing the solution helped, but I also designed the implementation more clearly from the start.
-
 ### 739-daily-temperatures
 
 I almost solved it on the first try. I struggled with the stack because I traversed it in the wrong order; the main issue was not fully designing the solution before implementing it.
 
 ### 853-car-fleet
 
-I needed help on the first attempt. Revisit this to confirm that I can derive the stack approach independently.
+I needed help on the first attempt. On attempt 2, I solved it again without an issue and designed the implementation more clearly from the start. Knowing the solution helped, but the independent revisit is complete.
 
 ### 167-two-sum-ii-input-array-is-sorted
 
