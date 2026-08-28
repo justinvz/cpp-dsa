@@ -4,19 +4,19 @@ Times use `HH:MM`. A dash means the time was not recorded.
 
 ## Snapshot
 
-_Through 2026-08-27._ Repeated attempts are included unless stated otherwise.
+_Through 2026-08-28._ Repeated attempts are included unless stated otherwise.
 
 | Metric | Result |
 | --- | ---: |
-| Attempts | 65 |
+| Attempts | 66 |
 | Unique problems | 61 |
-| Difficulty | 19 easy, 46 medium, 0 hard |
-| Timed attempts | 57 of 65 |
+| Difficulty | 19 easy, 47 medium, 0 hard |
+| Timed attempts | 58 of 66 |
 | Median solve time | 00:28 |
 | Average solve time | 00:36 |
-| Solved within 30 minutes | 34 of 57 (60%) |
+| Solved within 30 minutes | 35 of 58 (60%) |
 | Easy average / median | 00:29 / 00:20 |
-| Medium average / median | 00:40 / 00:28 |
+| Medium average / median | 00:39 / 00:28 |
 
 ### What the results show
 
@@ -94,6 +94,7 @@ _Through 2026-08-27._ Repeated attempts are included unless stated otherwise.
 | 2026-08-26 | 90-subsets-ii | Medium | - | 1 |
 | 2026-08-27 | 78-subsets | Medium | - | 2 |
 | 2026-08-27 | 22-generate-parentheses | Medium | - | 1 |
+| 2026-08-28 | 78-subsets | Medium | 00:21 | 3 |
 
 ## Revisit Queue
 
@@ -115,7 +116,9 @@ I attempted constrained backtracking after completing Subsets. I recognized that
 
 ### 78-subsets
 
-On my second attempt, I worked from a fresh scaffold and translated the include/exclude decision tree into a correct recursive implementation. Each frame decides whether to include `nums[index]`, and the subset passed to each recursive call contains exactly the decisions made before the next index. The implementation passed singleton, two-element, three-element, and negative-value tests. Because the subset is passed by value, it is correct but performs more copying than a shared path with choose-recurse-undo. Time was not recorded; confidence in recognizing backtracking is still developing.
+On my second attempt, I worked from a fresh scaffold and translated the include/exclude decision tree into a correct recursive implementation. Each frame decides whether to include `nums[index]`, and the subset passed to each recursive call contains exactly the decisions made before the next index. The implementation passed singleton, two-element, three-element, and negative-value tests. Because the subset is passed by value, it is correct but performs more copying than a shared path with choose-recurse-undo. Time was not recorded; confidence in recognizing backtracking was still developing.
+
+On my third attempt, I first defined the state `(i, subset)`, the take-or-skip choices, the `i + 1` transition, and the base case `i == nums.size()`. I needed design-phase questions to clarify that the path stores included choices while `i` records all decisions, and that `pop_back()` undoes the take choice rather than representing the skip choice. I then independently wrote the correct choose-recurse-undo implementation in 21 minutes. The three active focused tests passed; the singleton test was commented out. Confidence was not recorded.
 
 ### 90-subsets-ii
 
