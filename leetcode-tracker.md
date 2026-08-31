@@ -4,24 +4,24 @@ Times use `HH:MM`. A dash means the time was not recorded.
 
 ## Snapshot
 
-_Through 2026-08-28._ Repeated attempts are included unless stated otherwise.
+_Through 2026-08-31._ Repeated attempts are included unless stated otherwise.
 
 | Metric | Result |
 | --- | ---: |
-| Attempts | 66 |
+| Attempts | 67 |
 | Unique problems | 61 |
-| Difficulty | 19 easy, 47 medium, 0 hard |
-| Timed attempts | 58 of 66 |
+| Difficulty | 19 easy, 48 medium, 0 hard |
+| Timed attempts | 59 of 67 |
 | Median solve time | 00:28 |
 | Average solve time | 00:36 |
-| Solved within 30 minutes | 35 of 58 (60%) |
+| Solved within 30 minutes | 36 of 59 (61%) |
 | Easy average / median | 00:29 / 00:20 |
 | Medium average / median | 00:39 / 00:28 |
 
 ### What the results show
 
 - The median is a better target than the average: a few 60-160 minute sessions pull the average up.
-- Medium problems are becoming the norm: 47 of 66 attempts were medium.
+- Medium problems are becoming the norm: 48 of 67 attempts were medium.
 - Trees and BSTs are the strongest area by volume, with 13 attempts.
 - The next useful tracking fields are whether help was needed and confidence after solving. They will make revisits easier to prioritize than time alone.
 
@@ -95,6 +95,7 @@ _Through 2026-08-28._ Repeated attempts are included unless stated otherwise.
 | 2026-08-27 | 78-subsets | Medium | - | 2 |
 | 2026-08-27 | 22-generate-parentheses | Medium | - | 1 |
 | 2026-08-28 | 78-subsets | Medium | 00:21 | 3 |
+| 2026-08-31 | 90-subsets-ii | Medium | 00:30 | 2 |
 
 ## Revisit Queue
 
@@ -104,7 +105,6 @@ _Through 2026-08-28._ Repeated attempts are included unless stated otherwise.
 | 2026-03-17 | 875-koko-eating-bananas | Medium | The approach was correct, but the implementation was not completed. |
 | 2026-08-23 | 143-reorder-list | Medium | Reimplement the O(1)-space split, reverse, and merge approach independently. |
 | 2026-08-23 | 2-add-two-numbers | Medium | Needed the final carry-safe implementation; redo independently. |
-| 2026-08-26 | 90-subsets-ii | Medium | Had the backtracking skeleton but needed the forward-only index and same-depth duplicate rule; redo independently. |
 | 2026-08-27 | 22-generate-parentheses | Medium | Incomplete first attempt; practice simpler decision trees, then revisit the count invariant when rested. |
 
 ## Problem Notes
@@ -119,7 +119,7 @@ I produced correct include/exclude recursion on both revisits. On attempt 2, I w
 
 ### 90-subsets-ii
 
-I recognized backtracking, saved the current subset, and used choose-undo mutations correctly. The frequency-map approach still restarted every recursive frame from the entire input, which generated permutations rather than forward-only subsets, and the recursion condition omitted valid terminal choices. I needed the final solution to introduce the key structure: sort the input, recurse with a `start` index, and skip equal adjacent values only when they are alternative choices at the same depth. This preserves valid repeated-value subsets such as `[2, 2]` without generating duplicates. Time was not recorded; revisit independently.
+On my first attempt, I recognized backtracking, saved the current subset, and used choose-undo mutations correctly. The frequency-map approach still restarted every recursive frame from the entire input, which generated permutations rather than forward-only subsets, and the recursion condition omitted valid terminal choices. I needed the final solution to introduce the key structure: sort the input, recurse with a `start` index, and skip equal adjacent values only when they are alternative choices at the same depth. This preserves valid repeated-value subsets such as `[2, 2]` without generating duplicates. On my second attempt, I solved it in 30 minutes and described advancing the index past duplicate alternatives. Assistance and confidence were not recorded; the revisit is complete.
 
 ### 46-permutations
 
