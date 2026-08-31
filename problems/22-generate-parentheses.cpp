@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
 
 #include <algorithm>
+#include <functional>
 #include <string>
 #include <vector>
 
@@ -17,28 +18,29 @@
 
 std::vector<std::string> generateParenthesis(int n) {
   std::vector<std::string> result;
+  std::string path;
 
-  std::function<void(std::string parenthese, int opened, int closed)> backtrace;
-
-  backtrace = [&](std::string parenthese, int opened, int closed) {
-    if (parenthese.size() == n * 2) {
-      if (opened == closed) { // Insert this, otherwise just return!
-        result.push_back(parenthese);
-      }
+  std::function<void(int opened, int closed)> backtrack;
+  backtrack = [&](int opened, int closed) {
+    if (opened == n && closed == n) {
+      result.push_back(path);
       return;
     }
 
-    parenthese.push_back('('); // should either add '(' or ')'
-    backtrace(parenthese, opened + 1, closed);
+    if (opened < n) {
+      path.push_back('(');
+      backtrack(opened + 1, closed);
+      path.pop_back();
+    }
 
-    if (opened > closed) { // Only close when something is open!
-      parenthese.pop_back();
-      parenthese.push_back(')'); // should either add '(' or ')'
-      backtrace(parenthese, opened, closed + 1);
+    if (closed < opened) {
+      path.push_back(')');
+      backtrack(opened, closed + 1);
+      path.pop_back();
     }
   };
 
-  backtrace({"("}, 1, 0);
+  backtrack(0, 0);
 
   return result;
 }
