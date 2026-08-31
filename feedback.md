@@ -12,6 +12,9 @@ _Updated 2026-08-31._
   choose-recurse-undo backtracking invariant that blocked the first attempt.
 - You completed the Subsets II revisit in 30 minutes and articulated the need
   to advance past duplicate alternatives while moving forward through the input.
+- You completed the Generate Parentheses revisit in 34 minutes. You designed
+  the recursive state and branching independently and needed only a small hint
+  to express the validity invariant as C++ branch conditions.
 - Your main issue is small implementation mistakes, especially conditions and
   visited-state logic.
 - Tracing a small example before running your code will catch many of these
@@ -25,15 +28,15 @@ _Updated 2026-08-31._
 - **July:** Started solving more graph and grid problems.
 - **August:** Improved from needing help with Clone Graph to independently using
   DFS for Flood Fill and Find if Path Exists in Graph, then independently
-  reimplemented Clone Graph and Permutations and completed the Subsets II
-  revisit.
+  reimplemented Clone Graph and Permutations and completed the Subsets II and
+  Generate Parentheses revisits.
 
 ## Next Steps
 
 1. Write one sentence describing the visited-state rule before coding.
 2. Test a minimal case, a cycle, and an uneven grid when relevant.
-3. Revisit Generate Parentheses using the invariant
-   `0 <= close <= open <= n` before coding.
+3. On the next backtracking problem, enforce every invariant bound before
+   recursing so invalid branches are pruned rather than filtered at the end.
 
 ## New Entry
 

@@ -8,20 +8,20 @@ _Through 2026-08-31._ Repeated attempts are included unless stated otherwise.
 
 | Metric | Result |
 | --- | ---: |
-| Attempts | 67 |
+| Attempts | 68 |
 | Unique problems | 61 |
-| Difficulty | 19 easy, 48 medium, 0 hard |
-| Timed attempts | 59 of 67 |
+| Difficulty | 19 easy, 49 medium, 0 hard |
+| Timed attempts | 60 of 68 |
 | Median solve time | 00:28 |
 | Average solve time | 00:36 |
-| Solved within 30 minutes | 36 of 59 (61%) |
+| Solved within 30 minutes | 36 of 60 (60%) |
 | Easy average / median | 00:29 / 00:20 |
-| Medium average / median | 00:39 / 00:28 |
+| Medium average / median | 00:39 / 00:29 |
 
 ### What the results show
 
 - The median is a better target than the average: a few 60-160 minute sessions pull the average up.
-- Medium problems are becoming the norm: 48 of 67 attempts were medium.
+- Medium problems are becoming the norm: 49 of 68 attempts were medium.
 - Trees and BSTs are the strongest area by volume, with 13 attempts.
 - The next useful tracking fields are whether help was needed and confidence after solving. They will make revisits easier to prioritize than time alone.
 
@@ -96,6 +96,7 @@ _Through 2026-08-31._ Repeated attempts are included unless stated otherwise.
 | 2026-08-27 | 22-generate-parentheses | Medium | - | 1 |
 | 2026-08-28 | 78-subsets | Medium | 00:21 | 3 |
 | 2026-08-31 | 90-subsets-ii | Medium | 00:30 | 2 |
+| 2026-08-31 | 22-generate-parentheses | Medium | 00:34 | 2 |
 
 ## Revisit Queue
 
@@ -105,13 +106,12 @@ _Through 2026-08-31._ Repeated attempts are included unless stated otherwise.
 | 2026-03-17 | 875-koko-eating-bananas | Medium | The approach was correct, but the implementation was not completed. |
 | 2026-08-23 | 143-reorder-list | Medium | Reimplement the O(1)-space split, reverse, and merge approach independently. |
 | 2026-08-23 | 2-add-two-numbers | Medium | Needed the final carry-safe implementation; redo independently. |
-| 2026-08-27 | 22-generate-parentheses | Medium | Incomplete first attempt; practice simpler decision trees, then revisit the count invariant when rested. |
 
 ## Problem Notes
 
 ### 22-generate-parentheses
 
-I attempted constrained backtracking after completing Subsets. I recognized that each recursion level chooses either `(` or `)` and, on revision, introduced open and close counters. The implementation remained incomplete: I used the wrong target-length condition, did not return at the base case, did not restrict choices with `open < n` and `close < open`, and mutated shared counters without undoing them. I needed feedback to define the invariant `0 <= close <= open <= n`. Time was not recorded. This was too large a jump while tired; practice binary-string generation and another include/exclude problem before revisiting it.
+On my first attempt, I recognized that each recursion level chooses either `(` or `)` and introduced open and close counters, but the implementation remained incomplete. On my second attempt, I independently designed the recursive state, both choices, path handling, and terminal condition. At 34 minutes, the solution was close but used the mathematical-looking expression `0 <= closed <= opened <= n`, which does not represent that chained comparison in C++. A small targeted hint clarified that the invariant must become branch conditions; I then guarded closing with `closed < opened`, retained a terminal equality check, and passed all three focused tests. The implementation could prune earlier by also guarding opening with `opened < n`, but it is correct. The revisit is complete; confidence was not recorded.
 
 ### 78-subsets
 
