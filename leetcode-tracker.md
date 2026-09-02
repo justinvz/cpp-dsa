@@ -4,24 +4,24 @@ Times use `HH:MM`. A dash means the time was not recorded.
 
 ## Snapshot
 
-_Through 2026-08-31._ Repeated attempts are included unless stated otherwise.
+_Through 2026-09-01._ Repeated attempts are included unless stated otherwise.
 
 | Metric | Result |
 | --- | ---: |
-| Attempts | 68 |
-| Unique problems | 61 |
-| Difficulty | 19 easy, 49 medium, 0 hard |
-| Timed attempts | 60 of 68 |
+| Attempts | 69 |
+| Unique problems | 62 |
+| Difficulty | 19 easy, 50 medium, 0 hard |
+| Timed attempts | 61 of 69 |
 | Median solve time | 00:28 |
 | Average solve time | 00:36 |
-| Solved within 30 minutes | 36 of 60 (60%) |
+| Solved within 30 minutes | 36 of 61 (59%) |
 | Easy average / median | 00:29 / 00:20 |
-| Medium average / median | 00:39 / 00:29 |
+| Medium average / median | 00:39 / 00:30 |
 
 ### What the results show
 
 - The median is a better target than the average: a few 60-160 minute sessions pull the average up.
-- Medium problems are becoming the norm: 49 of 68 attempts were medium.
+- Medium problems are becoming the norm: 50 of 69 attempts were medium.
 - Trees and BSTs are the strongest area by volume, with 13 attempts.
 - The next useful tracking fields are whether help was needed and confidence after solving. They will make revisits easier to prioritize than time alone.
 
@@ -97,6 +97,7 @@ _Through 2026-08-31._ Repeated attempts are included unless stated otherwise.
 | 2026-08-28 | 78-subsets | Medium | 00:21 | 3 |
 | 2026-08-31 | 90-subsets-ii | Medium | 00:30 | 2 |
 | 2026-08-31 | 22-generate-parentheses | Medium | 00:34 | 2 |
+| 2026-09-01 | 79-word-search | Medium | 01:00 | 1 |
 
 ## Revisit Queue
 
@@ -108,6 +109,10 @@ _Through 2026-08-31._ Repeated attempts are included unless stated otherwise.
 | 2026-08-23 | 2-add-two-numbers | Medium | Needed the final carry-safe implementation; redo independently. |
 
 ## Problem Notes
+
+### 79-word-search
+
+I independently chose DFS with backtracking, gathered matching starting cells, and represented path-local visited state with encoded coordinates. The solution was close, but I needed targeted review and direct fixes for the visited predicate, coordinate encoding, and upward and leftward boundary checks. It then passed six focused tests but timed out on LeetCode after 87 of 88 cases on an adversarial mostly-`A` board. I added a board-frequency precheck and completed direct boolean success propagation through the DFS; seven focused tests now pass, but a successful LeetCode resubmission has not been recorded. Confidence and revisit need were not recorded.
 
 ### 22-generate-parentheses
 
